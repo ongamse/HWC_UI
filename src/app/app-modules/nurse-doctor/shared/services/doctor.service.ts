@@ -2159,6 +2159,26 @@ export class DoctorService {
     return diagnosisFormData;
   }
 
+  // postNCDCareCaseRecordDiagnosis(diagnosisForm, otherDetails) {
+  //   let diagnosisFormData = JSON.parse(JSON.stringify(diagnosisForm.value));
+
+  //   if (diagnosisFormData.ncdScreeningCondition) {
+  //     diagnosisFormData.ncdScreeningConditionID =
+  //       diagnosisFormData.ncdScreeningCondition.ncdScreeningConditionID;
+  //     diagnosisFormData.ncdScreeningCondition =
+  //       diagnosisFormData.ncdScreeningCondition.screeningCondition;
+  //   }
+
+  //   if (diagnosisFormData.ncdCareType) {
+  //     diagnosisFormData.ncdCareTypeID =
+  //       diagnosisFormData.ncdCareType.ncdCareTypeID;
+  //     diagnosisFormData.ncdCareType = diagnosisFormData.ncdCareType.ncdCareType;
+  //   }
+
+  //   let diagnosisData = Object.assign({}, diagnosisFormData, otherDetails);
+  //   return diagnosisData;
+  // }
+
   postNCDCareCaseRecordDiagnosis(diagnosisForm, otherDetails) {
     let diagnosisFormData = JSON.parse(JSON.stringify(diagnosisForm.value));
 
@@ -2175,9 +2195,16 @@ export class DoctorService {
       diagnosisFormData.ncdCareType = diagnosisFormData.ncdCareType.ncdCareType;
     }
 
-    let diagnosisData = Object.assign({}, diagnosisFormData, otherDetails);
+    let diagnosisData = Object.assign({}, diagnosisFormData,diagnosisForm.value, otherDetails);
     return diagnosisData;
+    // let diagnosisFormData = Object.assign(
+    //   {},
+    //   diagnosisForm.value,
+    //   otherDetails
+    // );
+    // return diagnosisFormData;
   }
+
 
   postGeneralCaseRecordInvestigation(investigationForm, otherDetails) {
     let investigationFormValue = JSON.parse(

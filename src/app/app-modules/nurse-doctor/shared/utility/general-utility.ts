@@ -667,6 +667,7 @@ export class GeneralUtils {
      specialistDiagnosis : null,
      vanID: JSON.parse(localStorage.getItem('serviceLineDetails')).vanID,
      parkingPlaceID: JSON.parse(localStorage.getItem('serviceLineDetails')).parkingPlaceID,
+     provisionalDiagnosisList: this.fb.array([this.initProvisionalDiagnosisList()])
     })
   }
 

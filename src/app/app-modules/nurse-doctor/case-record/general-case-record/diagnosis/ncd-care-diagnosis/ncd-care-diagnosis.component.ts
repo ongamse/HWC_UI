@@ -20,12 +20,15 @@
 * along with this program.  If not, see https://www.gnu.org/licenses/.
 */
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 
 import { MasterdataService, DoctorService } from "../../../../shared/services";
 import { HttpServiceService } from "app/app-modules/core/services/http-service.service";
 import { SetLanguageComponent } from "app/app-modules/core/components/set-language.component";
 import { Subscription } from "rxjs/Subscription";
+import { ConfirmationService } from "app/app-modules/core/services/confirmation.service";
+import { GeneralUtils } from "app/app-modules/nurse-doctor/shared/utility";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-ncd-care-diagnosis",
@@ -33,11 +36,16 @@ import { Subscription } from "rxjs/Subscription";
   styleUrls: ["./ncd-care-diagnosis.component.css"],
 })
 export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
+  utils = new GeneralUtils(this.fb);
+  
   @Input("generalDiagnosisForm")
   generalDiagnosisForm: FormGroup;
 
   @Input("caseRecordMode")
   caseRecordMode: string;
+
+  @Input('visitCategory')
+  visitCat: any;
 
   ncdCareConditions = [];
   ncdCareTypes: any;
@@ -47,10 +55,15 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
   isNcdScreeningConditionOther: boolean = false;
   temp: any = [];
   visitCategory: string;
+  attendantType: any;
+  enableNCDCondition: boolean = false;
   constructor(
+    private fb: FormBuilder,
     private masterdataService: MasterdataService,
     public httpServiceService: HttpServiceService,
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private confirmationService: ConfirmationService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -66,6 +79,10 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
       this.specialist = false;
     }
     this.visitCategory = localStorage.getItem('visitCategory');
+    this.attendantType = this.route.snapshot.params['attendant'];
+    if(this.attendantType == "doctor"){
+      this.enableNCDCondition= true;
+    }
   }
 
   ngDoCheck() {
@@ -98,54 +115,210 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
         }
         if (masterData.ncdCareTypes)
           this.ncdCareTypes = masterData.ncdCareTypes.slice();
-
+          
+        // if (this.caseRecordMode == "view") {
+        //   this.getDiagnosisDetails();
+        // }
         if (this.caseRecordMode == "view") {
-          this.getDiagnosisDetails();
+          let beneficiaryRegID = localStorage.getItem('beneficiaryRegID');
+          let visitID = localStorage.getItem('visitID');
+          let visitCategory = localStorage.getItem('visitCategory');
+          this.getDiagnosisDetails(beneficiaryRegID, visitID, visitCategory);
         }
       }
     });
   }
 
-  diagnosisSubscription: Subscription;
-  getDiagnosisDetails() {
-    this.diagnosisSubscription =
-      this.doctorService.populateCaserecordResponse$.subscribe((res) => {
+  // diagnosisSubscription: Subscription;
+  // getDiagnosisDetails() {
+  //   this.diagnosisSubscription =
+  //     this.doctorService.populateCaserecordResponse$.subscribe((res) => {
+  //       if (res && res.statusCode == 200 && res.data && res.data.diagnosis) {
+  //         this.patchDiagnosisDetails(res.data.diagnosis);
+  //       }
+  //     });
+  // }
+
+  diagnosisSubscription: any;
+  getDiagnosisDetails(beneficiaryRegID, visitID, visitCategory) {
+    this.diagnosisSubscription = this.doctorService.getCaseRecordAndReferDetails(beneficiaryRegID, visitID, visitCategory)
+      .subscribe(res => {
         if (res && res.statusCode == 200 && res.data && res.data.diagnosis) {
-          this.patchDiagnosisDetails(res.data.diagnosis);
+          this.generalDiagnosisForm.patchValue(res.data.diagnosis);
+          if (res.data.diagnosis.provisionalDiagnosisList){
+                this.patchDiagnosisDetails(res.data.diagnosis.provisionalDiagnosisList);
+        }
+          
         }
       });
   }
 
-  patchDiagnosisDetails(diagnosis) {
-    console.log("diagnosis", diagnosis);
 
-    // let ncdScreeningCondition = this.ncdCareConditions.filter(item => {
-    //   console.log('item',item);
-    //   return item.screeningCondition == diagnosis.ncdScreeningCondition
-    // });
-    // if (ncdScreeningCondition.length > 0)
-    //   diagnosis.ncdScreeningCondition = ncdScreeningCondition[0];
-    if (
-      diagnosis != undefined &&
-      diagnosis.ncdScreeningConditionArray != undefined &&
-      diagnosis.ncdScreeningConditionArray != null
-    ) {
-      this.temp = diagnosis.ncdScreeningConditionArray;
-    }
-    if (
-      diagnosis != undefined &&
-      diagnosis.ncdScreeningConditionOther != undefined &&
-      diagnosis.ncdScreeningConditionOther != null
-    ) {
-      this.isNcdScreeningConditionOther = true;
-    }
-    let ncdCareType = this.ncdCareTypes.filter((item) => {
-      return item.ncdCareType == diagnosis.ncdCareType;
-    });
-    if (ncdCareType.length > 0) diagnosis.ncdCareType = ncdCareType[0];
 
-    this.generalDiagnosisForm.patchValue(diagnosis);
+  // patchDiagnosisDetails(diagnosis) {
+  //   console.log("diagnosis", diagnosis);
+
+  //   // let ncdScreeningCondition = this.ncdCareConditions.filter(item => {
+  //   //   console.log('item',item);
+  //   //   return item.screeningCondition == diagnosis.ncdScreeningCondition
+  //   // });
+  //   // if (ncdScreeningCondition.length > 0)
+  //   //   diagnosis.ncdScreeningCondition = ncdScreeningCondition[0];
+  //   if (
+  //     diagnosis != undefined &&
+  //     diagnosis.ncdScreeningConditionArray != undefined &&
+  //     diagnosis.ncdScreeningConditionArray != null
+  //   ) {
+  //     this.temp = diagnosis.ncdScreeningConditionArray;
+  //   }
+  //   if (
+  //     diagnosis != undefined &&
+  //     diagnosis.ncdScreeningConditionOther != undefined &&
+  //     diagnosis.ncdScreeningConditionOther != null
+  //   ) {
+  //     this.isNcdScreeningConditionOther = true;
+  //   }
+  //   let ncdCareType = this.ncdCareTypes.filter((item) => {
+  //     return item.ncdCareType == diagnosis.ncdCareType;
+  //   });
+  //   if (ncdCareType.length > 0) diagnosis.ncdCareType = ncdCareType[0];
+
+  //   this.generalDiagnosisForm.patchValue(diagnosis);
+  // }
+
+  // patchDiagnosisDetails(provisionalDiagnosis) {
+  //   let savedDiagnosisData = provisionalDiagnosis;
+  //   let diagnosisArrayList = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+  //   console.log("from diagnosis" + provisionalDiagnosis[0].term );
+  //   if(provisionalDiagnosis[0].term != "" && provisionalDiagnosis[0].conceptID != "")
+  //   {
+  //     console.log("from diagnosis second" + provisionalDiagnosis[0].term );
+      
+  //     for (let i = 0; i < savedDiagnosisData.length; i++) {
+
+  //       diagnosisArrayList.at(i).patchValue({
+  //         "viewProvisionalDiagnosisProvided": savedDiagnosisData[i].term,
+  //         "term": savedDiagnosisData[i].term,
+  //         "conceptID": savedDiagnosisData[i].conceptID
+  //       });
+  //       (<FormGroup>diagnosisArrayList.at(i)).controls['viewProvisionalDiagnosisProvided'].disable();
+  //       if (diagnosisArrayList.length < savedDiagnosisData.length)
+  //         this.addDiagnosis();
+  //     }
+  //   }
+  // }
+  patchDiagnosisDetails(provisionalDiagnosis) {
+    let savedDiagnosisData = provisionalDiagnosis;
+    let diagnosisArrayList = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+    console.log("from diagnosis" + provisionalDiagnosis[0].term );
+    if(provisionalDiagnosis[0].term != "" && provisionalDiagnosis[0].conceptID != "")
+    {
+      console.log("from diagnosis second" + provisionalDiagnosis[0].term );
+      
+      for (let i = 0; i < savedDiagnosisData.length; i++) {
+
+        diagnosisArrayList.at(i).patchValue({
+          "viewProvisionalDiagnosisProvided": savedDiagnosisData[i].term,
+          "term": savedDiagnosisData[i].term,
+          "conceptID": savedDiagnosisData[i].conceptID
+        });
+        (<FormGroup>diagnosisArrayList.at(i)).controls['viewProvisionalDiagnosisProvided'].disable();
+        if (diagnosisArrayList.length < savedDiagnosisData.length)
+          this.addDiagnosis();
+      }
+    }
   }
+
+  addDiagnosis() {
+    let diagnosisArrayList = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+    if (diagnosisArrayList.length <= 29) {
+      diagnosisArrayList.push(this.utils.initProvisionalDiagnosisList());
+    } else {
+      this.confirmationService.alert(this.current_language_set.alerts.info.maxDiagnosis);
+    }
+  }
+  removeDiagnosisFromList(index, diagnosisListForm?: FormGroup) {
+    let diagnosisListArray = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+    if (diagnosisListArray.at(index).valid) {
+      this.confirmationService.confirm(`warn`, this.current_language_set.alerts.info.warn).subscribe(result => {
+        if (result) {
+          let diagnosisListArray = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+          if (diagnosisListArray.length > 1) {
+            diagnosisListArray.removeAt(index);
+          }
+          else {
+            diagnosisListForm.reset();
+            diagnosisListForm.controls['viewProvisionalDiagnosisProvided'].enable();
+          }
+          this.generalDiagnosisForm.markAsDirty();
+        }
+      });
+    } else {
+      if (diagnosisListArray.length > 1) {
+        diagnosisListArray.removeAt(index);
+      }
+      else {
+        diagnosisListForm.reset();
+        diagnosisListForm.controls['viewProvisionalDiagnosisProvided'].enable();
+      }
+    }
+
+  }
+  checkProvisionalDiagnosisValidity(provisionalDiagnosis) {
+    let temp = provisionalDiagnosis.value;
+    if (temp.term && temp.conceptID) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // addDiagnosis() {
+  //   let diagnosisArrayList = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+  //   if (diagnosisArrayList.length <= 29) {
+  //     diagnosisArrayList.push(this.utils.initProvisionalDiagnosisList());
+  //   } else {
+  //     this.confirmationService.alert(this.current_language_set.alerts.info.maxDiagnosis);
+  //   }
+  // }
+
+  // removeDiagnosisFromList(index, diagnosisListForm?: FormGroup) {
+  //   let diagnosisListArray = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+  //   if (diagnosisListArray.at(index).valid) {
+  //     this.confirmationService.confirm(`warn`, this.current_language_set.alerts.info.warn).subscribe(result => {
+  //       if (result) {
+  //         let diagnosisListArray = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
+  //         if (diagnosisListArray.length > 1) {
+  //           diagnosisListArray.removeAt(index);
+  //         }
+  //         else {
+  //           diagnosisListForm.reset();
+  //           diagnosisListForm.controls['viewProvisionalDiagnosisProvided'].enable();
+  //         }
+  //         this.generalDiagnosisForm.markAsDirty();
+  //       }
+  //     });
+  //   } else {
+  //     if (diagnosisListArray.length > 1) {
+  //       diagnosisListArray.removeAt(index);
+  //     }
+  //     else {
+  //       diagnosisListForm.reset();
+  //       diagnosisListForm.controls['viewProvisionalDiagnosisProvided'].enable();
+  //     }
+  //   }
+
+  // }
+
+  // checkProvisionalDiagnosisValidity(provisionalDiagnosis) {
+  //   let temp = provisionalDiagnosis.value;
+  //   if (temp.term && temp.conceptID) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
+
   changeNcdScreeningCondition(value, event) {
     let flag = false;
     if (value != undefined && value != null && value.length > 0) {

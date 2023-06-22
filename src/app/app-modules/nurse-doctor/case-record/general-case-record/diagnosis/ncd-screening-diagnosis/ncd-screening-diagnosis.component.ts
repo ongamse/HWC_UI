@@ -87,6 +87,7 @@ export class NcdScreeningDiagnosisComponent implements OnInit, OnDestroy {
   previousConfirmedDiseases: any[];
   confirmDiseasesSubscription: Subscription;
   previousVisitConfirmedDiseasesSubscription: Subscription;
+  enableProvisionalDiag: boolean;
   constructor(
     private fb: FormBuilder,
     private doctorService: DoctorService,
@@ -94,6 +95,7 @@ export class NcdScreeningDiagnosisComponent implements OnInit, OnDestroy {
     private confirmationService: ConfirmationService,
     private ncdScreeningService: NcdScreeningService,
     private idrsScoreService: IdrsscoreService,
+    private nurseService: NurseService
   ) {}
 
   ngOnInit() {
@@ -134,6 +136,15 @@ export class NcdScreeningDiagnosisComponent implements OnInit, OnDestroy {
     );
     this.idrsScoreService.finalDiagnosisDiabetesConfirm(false);
     this.idrsScoreService.finalDiagnosisHypertensionConfirm(false);
+    this.nurseService.enableProvisionalDiag$.subscribe(
+      (response) => {
+        if(response == true) {
+          this.enableProvisionalDiag = true;
+        } else {
+          this.enableProvisionalDiag = false;
+        }
+      }
+    );
   }
 
   ngDoCheck() {

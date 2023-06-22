@@ -855,7 +855,7 @@
           "typeofLymphadenopathy": "लिम्फाडेनोपैथी के प्रकार",
           "edema": "एडेमा",
           "extentofEdema": "एडेमा की सीमा",
-          "typeofEdema": "एडेमा के प्रकार",
+          "typeofEdema": "एडेमा के प्रकार *",
           "pitting": "दबा हुआ",
           "nonPitting": "बिना दबाब वाला"
         },

@@ -61,6 +61,8 @@ export class NurseService {
   ncdScreeningVisitDetails: any;
   comorbidityConcurrentCondition: any;
   isAssessmentDone: boolean = false;
+  enableProvisionalDiag = new BehaviorSubject(this.temp);
+  enableProvisionalDiag$ = this.enableProvisionalDiag.asObservable();
 
   listen(): Observable<any> {
     return this._listners.asObservable();
@@ -2421,6 +2423,14 @@ export class NurseService {
   }
 
 
+  setNCDScreeningProvision(score) {
+    this.temp = score;
+    this.enableProvisionalDiag.next(score);
+  }
+  clearNCDScreeningProvision() {
+    this.temp = false;
+    this.enableProvisionalDiag.next(false);
+  }
 }
 
 

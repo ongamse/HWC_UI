@@ -2047,11 +2047,11 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
       );
       // const historyForm4=<FormGroup>historyForm3.controls[0].["FormGroup"];
       const diagForm3 = <FormGroup>diagForm2.controls[0];
-      if (diagForm3.controls["viewProvisionalDiagnosisProvided"].errors) {
-        required.push(
-          this.current_language_set.DiagnosisDetails.provisionaldiagnosis
-        );
-      }
+      // if (diagForm3.controls["viewProvisionalDiagnosisProvided"].errors) {
+      //   required.push(
+      //     this.current_language_set.DiagnosisDetails.provisionaldiagnosis
+      //   );
+      // }
 
       if (!diagForm3.controls["viewProvisionalDiagnosisProvided"].errors) {
         diagForm2.value.filter((item) => {
@@ -2493,6 +2493,11 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
           let flag = false;
 
           if (temp != undefined && temp != null && temp.length > 0) {
+            if(temp.errors) {
+              required.push(
+            this.current_language_set.casesheet.ncdCondition
+          );
+          }
             temp.forEach((element) => {
               if (element == "Other") flag = true;
             });

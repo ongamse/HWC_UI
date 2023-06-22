@@ -864,7 +864,7 @@
                     "typeofLymphadenopathy": "Type of Lymphadenopathy",
                     "edema": "Edema",
                     "extentofEdema": "Extent of Edema",
-                    "typeofEdema": "Type of Edema",
+                    "typeofEdema": "Type of Edema *",
                     "pitting": "Pitting",
                     "nonPitting": "Non-Pitting"
                 },

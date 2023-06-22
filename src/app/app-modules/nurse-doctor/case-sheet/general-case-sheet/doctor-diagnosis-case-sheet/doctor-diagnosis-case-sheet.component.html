@@ -598,6 +598,18 @@
           <th id="nCDCareConditionTypeOfNCD" > {{current_language_set?.casesheet?.typeOfNcd}}:</th>
           <td> {{ caseRecords && caseRecords.diagnosis && caseRecords.diagnosis.ncdCareType}} </td>
         </tr>
+
+        <tr>
+          <th colspan="4" id="provisionalDiag1"> {{current_language_set?.casesheet?.provisionalDiag}}: </th>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div class="textarea">
+              {{ caseRecords && caseRecords.diagnosis && caseRecords.diagnosis.diagnosisProvided }}
+            </div>
+          </td>
+        </tr>
+        <tr>
         <tr style="display: none;">
           <th colspan="4" id="typeOfComplication"> {{current_language_set?.casesheet?.typeOfComplication}}: </th>
         </tr>

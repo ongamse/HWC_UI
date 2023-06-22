@@ -60,6 +60,7 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
   visitComplaintDet: any;
   ncdTemperature: boolean = false;
   // enableLungAssessment: boolean = false;
+  enableProvisionalDiag: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -84,6 +85,7 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
       this.getNurseMasterData();
     }
     this.getBeneficiaryDetails();
+    this.enableProvisionalDiag = false;
   }
   ngDoCheck() {
     this.assignSelectedLanguage();
@@ -210,10 +212,12 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
           this.benChiefComplaints = visitComplaintDetail.BenChiefComplaints;
           this.ncdTemperature=false;
           // this.enableLungAssessment = false;
+          this.enableProvisionalDiag = false;
           if(this.benChiefComplaints!=undefined && this.benChiefComplaints.length>0)
     {
     for(let i=0;i<this.benChiefComplaints.length;i++)
     {
+      this.enableProvisionalDiag = true;
        if(this.benChiefComplaints[i] !=undefined && 
         this.benChiefComplaints[i] !=null && this.benChiefComplaints[i].chiefComplaint !=undefined && this.benChiefComplaints[i].chiefComplaint !=null && this.benChiefComplaints[i].chiefComplaint.toLowerCase() === "fever")
        {
@@ -242,6 +246,10 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
   // this.nurseService.setEnableLAssessment(true);
   // else
   // this.nurseService.setEnableLAssessment(false);
+  if(this.enableProvisionalDiag)
+  this.nurseService.setNCDScreeningProvision(true);
+  else
+  this.nurseService.setNCDScreeningProvision(false);
       }
     });
   }
@@ -314,9 +322,11 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
     }
     this.ncdTemperature=false;
     // this.enableLungAssessment = false;
+    this.enableProvisionalDiag = false;
     if(this.selectedChiefComplaintList !=null && this.selectedChiefComplaintList !=undefined && this.selectedChiefComplaintList.length >0)
     {
       this.selectedChiefComplaintList.forEach(val=>{
+        this.enableProvisionalDiag = true;
         if(val !=undefined && val !=null && val.chiefComplaint !=undefined && val.chiefComplaint !=null && val.chiefComplaint.toLowerCase() === "fever")
         this.ncdTemperature=true;
         // if(val !=undefined && val !=null && val.chiefComplaint !=undefined && val.chiefComplaint !=null && 
@@ -337,6 +347,11 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
     // this.nurseService.setEnableLAssessment(true);
     // else
     // this.nurseService.setEnableLAssessment(false);
+
+    if(this.enableProvisionalDiag)
+    this.nurseService.setNCDScreeningProvision(true);
+    else
+    this.nurseService.setNCDScreeningProvision(false);
   }
 
   addCheifComplaint() {
@@ -387,9 +402,11 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
       }
       this.ncdTemperature=false;
       // this.enableLungAssessment = false;
+      this.enableProvisionalDiag = false;
     if(this.selectedChiefComplaintList !=null && this.selectedChiefComplaintList !=undefined && this.selectedChiefComplaintList.length >0)
     {
       this.selectedChiefComplaintList.forEach(val=>{
+        this.enableProvisionalDiag = true;
         if(val !=undefined && val !=null && val.chiefComplaint !=undefined && val.chiefComplaint !=null && val.chiefComplaint.toLowerCase() === "fever")
         this.ncdTemperature=true;
         // if(val !=undefined && val !=null && val.chiefComplaint !=undefined && val.chiefComplaint !=null && 
@@ -410,6 +427,10 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
     // this.nurseService.setEnableLAssessment(true);
     // else
     // this.nurseService.setEnableLAssessment(false);
+    if(this.enableProvisionalDiag)
+    this.nurseService.setNCDScreeningProvision(true);
+    else
+    this.nurseService.setNCDScreeningProvision(false);
     });
   }
 

@@ -743,7 +743,7 @@
                     "typeofLymphadenopathy": "Type of Lymphadenopathy",
                     "edema": "Edema",
                     "extentofEdema": "Extent of Edema",
-                    "typeofEdema": "Type of Edema",
+                    "typeofEdema": "Type of Edema *",
                     "pitting": "Pitting",
                     "nonPitting": "Non-Pitting"
                 },
@@ -2068,7 +2068,7 @@
                     "typeofLymphadenopathy": "लिम्फाडेनोपैथी के प्रकार",
                     "edema": "एडेमा",
                     "extentofEdema": "एडेमा की सीमा",
-                    "typeofEdema": "एडेमा के प्रकार",
+                    "typeofEdema": "एडेमा के प्रकार*",
                     "pitting": "दबा हुआ",
                     "nonPitting": "बिना दबाब वाला"
                 },
@@ -3398,7 +3398,7 @@
                     "typeofLymphadenopathy": "লিম্ফএডিন'পেথিৰ প্ৰকাৰ",
                     "edema": "ইডেমা (ফুলা)",
                     "extentofEdema": "ইডেমাৰ প্ৰসাৰ",
-                    "typeofEdema": "ইডেমাৰ প্ৰকাৰ",
+                    "typeofEdema": "ইডেমাৰ প্ৰকাৰ*",
                     "pitting": "Pitting",
                     "nonPitting": "Non-Pitting"
                 },

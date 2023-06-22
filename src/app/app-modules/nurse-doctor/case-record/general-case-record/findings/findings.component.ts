@@ -64,6 +64,7 @@ export class FindingsComponent implements OnInit {
   complaintList: any = [];
   current_language_set: any;
   enableIsHistory: boolean=false;
+  enableProvisionalDiag: boolean = false;
   constructor(
     private fb: FormBuilder,
     private masterdataService: MasterdataService,
@@ -310,12 +311,14 @@ export class FindingsComponent implements OnInit {
       this.generalFindingsForm.controls["complaints"]
     );
     let flag = false;
+    this.enableProvisionalDiag = false;
     if (
       chiefComplaintForm != undefined &&
       chiefComplaintForm.value.length > 0
     ) {
       for (let i = 0; i < chiefComplaintForm.value.length; i++) {
         if (chiefComplaintForm.value[i].chiefComplaint !== null) {
+          this.enableProvisionalDiag = true;
           if (
             chiefComplaintForm.value[i].chiefComplaint.chiefComplaint ===
             "Fever"
@@ -345,6 +348,10 @@ export class FindingsComponent implements OnInit {
     else this.nurseService.setNCDTemp(false);
     if (flag) this.nurseService.setEnableLAssessment(true);
     else this.nurseService.setEnableLAssessment(false);
+    if (this.enableProvisionalDiag) 
+    this.nurseService.setNCDScreeningProvision(true);
+  else 
+    this.nurseService.setNCDScreeningProvision(false);
   }
   validateDuration(formGroup: FormGroup, event?: Event) {
     let duration = null;
