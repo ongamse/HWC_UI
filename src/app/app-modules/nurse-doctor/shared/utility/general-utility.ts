@@ -658,7 +658,7 @@ export class GeneralUtils {
   createNCDCareDiagnosisForm() {
     return this.fb.group({
      // ncdScreeningConditionID: null,
-     ncdScreeningConditionArray: null,
+     ncdScreeningConditionArray: [null, Validators.required],
      ncdScreeningConditionOther:null,
      ncdCareTypeID: null,
      ncdCareType: null,

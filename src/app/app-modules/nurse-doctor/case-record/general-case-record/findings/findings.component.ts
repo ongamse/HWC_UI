@@ -83,6 +83,7 @@ export class FindingsComponent implements OnInit {
     // this.httpServiceService.currentLangugae$.subscribe(response => this.current_language_set = response);
     this.getDoctorMasterData();
     this.getBeneficiaryDetails();
+    this.nurseService.clearNCDScreeningProvision();
   }
 
   ngDoCheck() {

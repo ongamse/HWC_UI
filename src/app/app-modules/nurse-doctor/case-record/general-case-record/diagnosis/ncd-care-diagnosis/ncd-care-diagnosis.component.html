@@ -6,7 +6,7 @@
         class="input-full-width"
         name="ncdScreeningCondition"
         *ngIf="enableNCDCondition"
-        placeholder="{{ current_language_set?.casesheet?.ncdCondition }}"
+        placeholder="{{ current_language_set?.casesheet?.ncdCondition }}*"
         multiple
         (change)="changeNcdScreeningCondition($event.value,$event)"
         [(ngModel)]="temp" [ngModelOptions]="{standalone: true}"

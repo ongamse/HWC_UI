@@ -189,7 +189,7 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
   }
 
   getFormValueChanged() {
-    // this.clearCurrentDetails();
+    this.clearCurrentDetails();
     this.getFormDetails();
   }
   getFormDetails() {
@@ -334,27 +334,52 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
   }
 
   clearCurrentDetails() {
-    this.currentPrescription = {
-      id: null,
-      drugID: null,
-      drugName: null,
-      drugStrength: null,
-      drugUnit: null,
-      quantity: null,
-      formID: null,
-      qtyPrescribed: null,
-      formName: null,
-      route: null,
-      dose: null,
-      frequency: null,
-      duration: null,
-      unit: null,
-      instructions: null,
-      isEDL: false,
-      sctCode: null,
-      sctTerm: null,
-    };
+    // this.currentPrescription = {
+    //   id: null,
+    //   drugID: null,
+    //   drugName: null,
+    //   drugStrength: null,
+    //   drugUnit: null,
+    //   quantity: null,
+    //   formID: null,
+    //   qtyPrescribed: null,
+    //   formName: null,
+    //   route: null,
+    //   dose: null,
+    //   frequency: null,
+    //   duration: null,
+    //   unit: null,
+    //   instructions: null,
+    //   isEDL: false,
+    //   sctCode: null,
+    //   sctTerm: null,
+    // };
     this.tempDrugName = null;
+    this.currentPrescription.dose = null;
+    this.currentPrescription.frequency = null;
+    this.currentPrescription.duration = null;
+    this.currentPrescription.unit = null;
+    this.currentPrescription.qtyPrescribed = null;
+    this.currentPrescription.route = null;
+    this.currentPrescription.instructions = null;
+    
+    this.prescriptionForm.form.markAsUntouched();
+    this.isStockAvalable = "";
+  }
+
+  clearCurrentaddDetails() {
+    
+    this.tempDrugName = null;
+    this.currentPrescription.dose = null;
+    this.currentPrescription.frequency = null;
+    this.currentPrescription.duration = null;
+    this.currentPrescription.unit = null;
+    this.currentPrescription.qtyPrescribed = null;
+    this.currentPrescription.route = null;
+    this.currentPrescription.instructions = null;
+    this.currentPrescription.formName = null;
+
+
     this.prescriptionForm.form.markAsUntouched();
     this.isStockAvalable = "";
   }
@@ -363,7 +388,8 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
     this.addMedicine();
     // this.tempform = null;
     // this.tempDrugName = null
-    this.clearCurrentDetails();
+    // this.clearCurrentDetails();
+    this.clearCurrentaddDetails();
 
     // this.currentPrescription = {
     //   id: null,
@@ -439,6 +465,7 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
     this.currentPrescription.frequency = prescribedDrugs.controls[i].value.frequency;
     this.currentPrescription.duration = prescribedDrugs.controls[i].value.duration;
     this.currentPrescription.unit = prescribedDrugs.controls[i].value.unit;
+    this.currentPrescription.qtyPrescribed = prescribedDrugs.controls[i].value.qtyPrescribed;
     this.currentPrescription.route = prescribedDrugs.controls[i].value.route;
     this.currentPrescription.instructions = prescribedDrugs.controls[i].value.instructions;
     if (id) {

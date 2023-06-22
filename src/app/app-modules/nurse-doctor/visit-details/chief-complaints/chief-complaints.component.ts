@@ -86,6 +86,7 @@ export class ChiefComplaintsComponent implements OnInit, DoCheck {
     }
     this.getBeneficiaryDetails();
     this.enableProvisionalDiag = false;
+    this.nurseService.clearNCDScreeningProvision();
   }
   ngDoCheck() {
     this.assignSelectedLanguage();
