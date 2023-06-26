@@ -2195,7 +2195,7 @@ export class DoctorService {
       diagnosisFormData.ncdCareType = diagnosisFormData.ncdCareType.ncdCareType;
     }
 
-    let diagnosisData = Object.assign({}, diagnosisFormData,diagnosisForm.value, otherDetails);
+    let diagnosisData = Object.assign({}, diagnosisFormData, otherDetails);
     return diagnosisData;
     // let diagnosisFormData = Object.assign(
     //   {},

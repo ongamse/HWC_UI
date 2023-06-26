@@ -83,6 +83,9 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
     if(this.attendantType == "doctor"){
       this.enableNCDCondition= true;
     }
+    if(this.designation == "TC Specialist"){
+      this.enableNCDCondition= false;
+   }
   }
 
   ngDoCheck() {
@@ -129,85 +132,51 @@ export class NcdCareDiagnosisComponent implements OnInit, OnDestroy {
     });
   }
 
-  // diagnosisSubscription: Subscription;
-  // getDiagnosisDetails() {
-  //   this.diagnosisSubscription =
-  //     this.doctorService.populateCaserecordResponse$.subscribe((res) => {
-  //       if (res && res.statusCode == 200 && res.data && res.data.diagnosis) {
-  //         this.patchDiagnosisDetails(res.data.diagnosis);
-  //       }
-  //     });
-  // }
-
-  diagnosisSubscription: any;
+  diagnosisSubscription: Subscription;
   getDiagnosisDetails(beneficiaryRegID, visitID, visitCategory) {
     this.diagnosisSubscription = this.doctorService.getCaseRecordAndReferDetails(beneficiaryRegID, visitID, visitCategory)
       .subscribe(res => {
         if (res && res.statusCode == 200 && res.data && res.data.diagnosis) {
-          this.generalDiagnosisForm.patchValue(res.data.diagnosis);
+          this.patchDiagnosisDetails(res.data.diagnosis);
           if (res.data.diagnosis.provisionalDiagnosisList){
-                this.patchDiagnosisDetails(res.data.diagnosis.provisionalDiagnosisList);
+            this.patchProvisionalDiagnosisDetails(res.data.diagnosis.provisionalDiagnosisList);
+          }
         }
-          
-        }
-      });
+      })
   }
 
+  patchDiagnosisDetails(diagnosis) {
+    console.log("diagnosis", diagnosis);
 
+    // let ncdScreeningCondition = this.ncdCareConditions.filter(item => {
+    //   console.log('item',item);
+    //   return item.screeningCondition == diagnosis.ncdScreeningCondition
+    // });
+    // if (ncdScreeningCondition.length > 0)
+    //   diagnosis.ncdScreeningCondition = ncdScreeningCondition[0];
+    if (
+      diagnosis != undefined &&
+      diagnosis.ncdScreeningConditionArray != undefined &&
+      diagnosis.ncdScreeningConditionArray != null
+    ) {
+      this.temp = diagnosis.ncdScreeningConditionArray;
+    }
+    if (
+      diagnosis != undefined &&
+      diagnosis.ncdScreeningConditionOther != undefined &&
+      diagnosis.ncdScreeningConditionOther != null
+    ) {
+      this.isNcdScreeningConditionOther = true;
+    }
+    let ncdCareType = this.ncdCareTypes.filter((item) => {
+      return item.ncdCareType == diagnosis.ncdCareType;
+    });
+    if (ncdCareType.length > 0) diagnosis.ncdCareType = ncdCareType[0];
 
-  // patchDiagnosisDetails(diagnosis) {
-  //   console.log("diagnosis", diagnosis);
+    this.generalDiagnosisForm.patchValue(diagnosis);
+  }
 
-  //   // let ncdScreeningCondition = this.ncdCareConditions.filter(item => {
-  //   //   console.log('item',item);
-  //   //   return item.screeningCondition == diagnosis.ncdScreeningCondition
-  //   // });
-  //   // if (ncdScreeningCondition.length > 0)
-  //   //   diagnosis.ncdScreeningCondition = ncdScreeningCondition[0];
-  //   if (
-  //     diagnosis != undefined &&
-  //     diagnosis.ncdScreeningConditionArray != undefined &&
-  //     diagnosis.ncdScreeningConditionArray != null
-  //   ) {
-  //     this.temp = diagnosis.ncdScreeningConditionArray;
-  //   }
-  //   if (
-  //     diagnosis != undefined &&
-  //     diagnosis.ncdScreeningConditionOther != undefined &&
-  //     diagnosis.ncdScreeningConditionOther != null
-  //   ) {
-  //     this.isNcdScreeningConditionOther = true;
-  //   }
-  //   let ncdCareType = this.ncdCareTypes.filter((item) => {
-  //     return item.ncdCareType == diagnosis.ncdCareType;
-  //   });
-  //   if (ncdCareType.length > 0) diagnosis.ncdCareType = ncdCareType[0];
-
-  //   this.generalDiagnosisForm.patchValue(diagnosis);
-  // }
-
-  // patchDiagnosisDetails(provisionalDiagnosis) {
-  //   let savedDiagnosisData = provisionalDiagnosis;
-  //   let diagnosisArrayList = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
-  //   console.log("from diagnosis" + provisionalDiagnosis[0].term );
-  //   if(provisionalDiagnosis[0].term != "" && provisionalDiagnosis[0].conceptID != "")
-  //   {
-  //     console.log("from diagnosis second" + provisionalDiagnosis[0].term );
-      
-  //     for (let i = 0; i < savedDiagnosisData.length; i++) {
-
-  //       diagnosisArrayList.at(i).patchValue({
-  //         "viewProvisionalDiagnosisProvided": savedDiagnosisData[i].term,
-  //         "term": savedDiagnosisData[i].term,
-  //         "conceptID": savedDiagnosisData[i].conceptID
-  //       });
-  //       (<FormGroup>diagnosisArrayList.at(i)).controls['viewProvisionalDiagnosisProvided'].disable();
-  //       if (diagnosisArrayList.length < savedDiagnosisData.length)
-  //         this.addDiagnosis();
-  //     }
-  //   }
-  // }
-  patchDiagnosisDetails(provisionalDiagnosis) {
+  patchProvisionalDiagnosisDetails(provisionalDiagnosis) {
     let savedDiagnosisData = provisionalDiagnosis;
     let diagnosisArrayList = this.generalDiagnosisForm.controls['provisionalDiagnosisList'] as FormArray;
     console.log("from diagnosis" + provisionalDiagnosis[0].term );
