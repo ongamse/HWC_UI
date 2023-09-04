@@ -2042,13 +2042,6 @@
          "pleaseperformthenecessaryexaminationstoconfirm.":"Please perform the necessary examinations to confirm.",
          "lungAssessment:":"Lung Assessment:",
          "randomGlucoseTest":"Random Glucose Test",
-
-
-
-
-
-        
-
         "performNecessaryExaminationConfirm": "Please perform the necessary examinations to confirm.",
         "fetosenseDevice": "Fetosense Device",
         "vitalDetails": "Vital Details",
@@ -2083,9 +2076,10 @@
         "mobile": "Mobile",
         "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
         "view": "View",
-        "confirmSubmitBeneficiary": "Please confirm to submit beneficiary to nurse worklist"
-
-    }  
+        "confirmSubmitBeneficiary": "Please confirm to submit beneficiary to nurse worklist",
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
+         
+    }
 
     
 }

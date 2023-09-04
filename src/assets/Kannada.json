@@ -2093,7 +2093,8 @@
         "perDay":"ಪ್ರತಿ ದಿನಕ್ಕೆ",
         "perWeek": "ವಾರಕ್ಕೆ",
         "presentNewbornHealth": "ನವಜಾತ ಶಿಶುವಿನ ಆರೋಗ್ಯ ಸ್ಥಿತಿಯನ್ನು ಪ್ರಸ್ತುತಪಡಿಸಿ",
-        "confirmSubmitBeneficiary": "ನರ್ಸ್ ವರ್ಕ್‌ಲಿಸ್ಟ್‌ಗೆ ಫಲಾನುಭವಿಯನ್ನು ಸಲ್ಲಿಸಲು ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಿ"
+        "confirmSubmitBeneficiary": "ನರ್ಸ್ ವರ್ಕ್‌ಲಿಸ್ಟ್‌ಗೆ ಫಲಾನುಭವಿಯನ್ನು ಸಲ್ಲಿಸಲು ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಿ",
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
 
     }  
 

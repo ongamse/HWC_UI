@@ -2060,7 +2060,8 @@
         "mobile": "Mobile",
         "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
         "view": "View",
-        "confirmSubmitBeneficiary": "অনুগ্ৰহ কৰি নাৰ্চ ৱৰ্কলিস্টত হিতাধিকাৰী জমা দিয়াৰ বিষয়টো নিশ্চিত কৰক"
+        "confirmSubmitBeneficiary": "অনুগ্ৰহ কৰি নাৰ্চ ৱৰ্কলিস্টত হিতাধিকাৰী জমা দিয়াৰ বিষয়টো নিশ্চিত কৰক",
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
 
       
       }
