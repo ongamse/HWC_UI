@@ -2071,7 +2071,8 @@
         "mobile": "Mobile",
         "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
         "view": "View",
-        "confirmSubmitBeneficiary": "कृपया लाभार्थी को नर्स कार्यसूची में जमा करने की पुष्टि करें"
+        "confirmSubmitBeneficiary": "कृपया लाभार्थी को नर्स कार्यसूची में जमा करने की पुष्टि करें",
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
 
       }
 }

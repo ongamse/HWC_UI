@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
 
   userName: any;
   password: any;
+  eSanjeevaniArr: any=[];
   dynamictype = 'password';
   @ViewChild('focus') private elementRef: ElementRef;  
 
@@ -136,12 +137,20 @@ let encriptPassword = this.encrypt(this.Key_IV, this.password)
         if (res.statusCode === 200) {
           if (res.data.previlegeObj && res.data.previlegeObj[0]) {
             localStorage.setItem('loginDataResponse', JSON.stringify(res.data));
-            
             this.getServicesAuthdetails(res.data);
-          } else {
+
+            for(let i=0;i<res.data.previlegeObj[0].roles.length;i++){
+                if(res.data.previlegeObj[0].roles[i].RoleName.toLowerCase() === "nurse"){
+                this.eSanjeevaniArr = res.data.previlegeObj[0].roles[i].isSanjeevani;
+              } 
+            }
+            this.confirmationService.eSanjeevaniFlagArry=this.eSanjeevaniArr;
+          } 
+          else {
             this.confirmationService.alert('Seems you are logged in from somewhere else, Logout from there & try back in.', 'error');
           }
-        } else if (res.statusCode === 5002){
+        }
+         else if (res.statusCode === 5002){
           if(res.errorMessage === 'You are already logged in,please confirm to logout from other device and login again') {
           this.confirmationService.confirm('info', res.errorMessage).subscribe((confirmResponse) => {
             if (confirmResponse){
@@ -177,7 +186,8 @@ let encriptPassword = this.encrypt(this.Key_IV, this.password)
         else {
           this.confirmationService.alert(res.errorMessage, 'error');
         }
-      }, err => {
+      }
+      , err => {
         this.confirmationService.alert(err, 'error');
       });
   }
@@ -189,6 +199,7 @@ let encriptPassword = this.encrypt(this.Key_IV, this.password)
     localStorage.setItem('userName', loginDataResponse.userName);
     localStorage.setItem('username', this.userName);
     localStorage.setItem('fullName', loginDataResponse.fullName);
+    localStorage.setItem('roles', loginDataResponse.previlegeObj[0].roles[0].RoleName);
   
     const services = [];
     loginDataResponse.previlegeObj.map(item => {

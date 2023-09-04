@@ -56,6 +56,7 @@ import { NcdScreeningService } from "../shared/services/ncd-screening.service";
 import { HrpService } from "../shared/services/hrp.service";
 import { FamilyPlanningAndReproductiveComponent } from "../family-planning/family-planning-and-reproductive-details/family-planning-and-reproductive-details.component";
 import { OpenPreviousVisitDetailsComponent } from "app/app-modules/core/components/open-previous-visit-details/open-previous-visit-details.component";
+import { AuthService } from "app/app-modules/core/services";
 
 @Component({
   selector: "app-workarea",
@@ -91,6 +92,7 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
   pregnancyStatus: any;
   primeGravidaStatus: any;
   beneficiary: any;
+  healthDetailsArr: any = [];
   beneficiaryRegID: any;
   visitID: string;
 
@@ -111,9 +113,11 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
 
   doctorFlag: any;
   nurseFlag: any;
+  
   specialistFlag: any;
   patientMedicalForm: FormGroup;
 
+  showESanjeevaniBtn: boolean =false;
   tm: Boolean = false;
   current_language_set: any;
   attendant: any;
@@ -183,7 +187,8 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
     private idrsScoreService: IdrsscoreService,
     private registrarService: RegistrarService,
     private ncdScreeningService: NcdScreeningService,
-    private dialog: MdDialog
+    private dialog: MdDialog,
+    private authService: AuthService,
   ) {}
   isSpecialist: Boolean = false;
   doctorSaveAndTCSave: any;
@@ -192,6 +197,8 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
   isDoctorSave: Boolean = false;
   serviceType: any;
   disableSubmitButton: boolean = false;
+  eSanjeevaniFlagArry:any=[];
+  nurseRole:any ;
   // showProgressBar: Boolean = false;
   ngOnInit() {
     this.nurseService.setUpdateForHrpStatus(false);
@@ -281,6 +288,7 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
     });
     this.setVitalsUpdateButtonValue();
     this.getBeneficiaryDetails();
+    this.getBeneficiaryHealthIDDetails();
     this.getVisitReasonAndCategory();
     this.getVisitType();
     this.getPregnancyStatus();
@@ -4194,11 +4202,36 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
         (beneficiary) => {
           if (beneficiary) {
             this.beneficiary = beneficiary;
+            
             this.beneficiaryAge = beneficiary.ageVal;
-            console.log("beneficiary", beneficiary);
+            this.nurseRole=beneficiary.nurseFlag
+            if(this.nurseRole==1){
+              this.eSanjeevaniFlagArry=this.confirmationService.eSanjeevaniFlagArry;
+            }
+            this.checkNurseFlag();
           }
         }
       );
+  }
+
+  getBeneficiaryHealthIDDetails() {
+    this.route.params.subscribe(param => {
+      console.log("benID",param);
+    let data = {
+      "beneficiaryRegID": param['beneficiaryRegID'],
+      "beneficiaryID": null
+    }
+    this.registrarService.getHealthIdDetails(data)
+      .subscribe((healthIDDetails) => {
+        if (healthIDDetails.statusCode == 200) {
+          console.log("healthIDParth***",healthIDDetails);
+          for(let i=0;i<healthIDDetails.data.BenHealthDetails.length;i++){
+            this.healthDetailsArr.push({"healthIdNumber":healthIDDetails.data.BenHealthDetails[i].healthIdNumber})
+          }
+        }
+        }
+      );
+    });  
   }
 
   visitDetailMasterDataSubscription: any;
@@ -4626,7 +4659,8 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
             this.current_language_set.common.scheduleforTM +
             " " +
             this.serviceType;
-        } else if (
+        } 
+        else if (
           result.tmSlot &&
           result.tmSlot != null &&
           result.tmSlot != undefined
@@ -5083,4 +5117,41 @@ export class WorkareaComponent implements OnInit, CanComponentDeactivate {
         }
       });
     }
+
+    checkNurseFlag(){
+      if(this.eSanjeevaniFlagArry!==undefined && this.eSanjeevaniFlagArry != null && this.eSanjeevaniFlagArry == true){
+        this.showESanjeevaniBtn=true;
+      }
+      else{
+        this.showESanjeevaniBtn=false;
+      }
+    }
+    openEsanjeevaniPortal(){
+      let benRegID= localStorage.getItem("beneficiaryRegID");
+      
+       if(this.healthDetailsArr!=undefined && this.healthDetailsArr.length>0){
+        if(this.healthDetailsArr[0].healthIdNumber !== undefined && this.healthDetailsArr[0].healthIdNumber !== null){
+          this.nurseService.getESanjeevaniDetails(benRegID).subscribe(
+            (response) =>{
+              if(response.statusCode == 200){
+                const url=response.data.response;
+                window.open(url, '_blank');
+             }
+             else {
+              this.confirmationService.alert(response.errorMessage,
+                "error"); 
+            }
+            }  
+        );
+        }
+        else{
+          this.confirmationService.alert(this.current_language_set.noHealthIDForBeneficiary,
+            "error");
+         }
+      }
+      else{
+        this.confirmationService.alert(this.current_language_set.noHealthIDForBeneficiary,
+          "error");
+       }
+  }    
 }

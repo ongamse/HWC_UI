@@ -2296,6 +2296,12 @@ export class NurseService {
       .map((res) => res.json());
   }
 
+  getESanjeevaniDetails(benRegID) {
+    return this.http
+      .get(environment.getESanjeevaniDetailsUrl+ benRegID )
+      .map((res) => res.json());
+  }
+
   setLMPForFetosenseTest(value) {
     this.lmpFetosenseTest = value;
     this.lmpFetosenseTestValue.next(value);

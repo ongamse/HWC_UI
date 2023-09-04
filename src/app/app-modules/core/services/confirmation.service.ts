@@ -28,8 +28,9 @@ import { DOCUMENT } from '@angular/platform-browser';
 @Injectable()
 export class ConfirmationService {
 
-    constructor(private dialog: MdDialog, @Inject(DOCUMENT) doc: any) {
-    }
+    eSanjeevaniFlagArry: any;
+
+    constructor(private dialog: MdDialog, @Inject(DOCUMENT) doc: any) {}
 
     public confirm(title: string, message: string, btnOkText: string = 'OK', btnCancelText: string = 'Cancel'): Observable<boolean> {
         let dialogRef: MdDialogRef<CommonDialogComponent>;

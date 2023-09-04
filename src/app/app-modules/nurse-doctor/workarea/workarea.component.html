@@ -59,6 +59,7 @@
                 </button>
                 <button
                   *ngIf="
+                    !showESanjeevaniBtn &&
                     !isSpecialist &&
                     visitCategory != null &&
                     visitCategory != undefined
@@ -71,6 +72,23 @@
                 >
                   {{ schedulerButton }}
                 </button>
+
+                <button
+                  *ngIf="
+                    showESanjeevaniBtn &&
+                    !isSpecialist &&
+                    visitCategory != null &&
+                    visitCategory != undefined
+                  "
+                  md-raised-button
+                  class="btn-green"
+                  color="primary"
+                  type="button"
+                  (click)="openEsanjeevaniPortal()"
+                >
+                  E-Sanjeevani
+                </button>
+
                 <button
                   *ngIf="isSpecialist"
                   md-raised-button
