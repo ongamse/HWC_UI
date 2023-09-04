@@ -591,7 +591,7 @@ export class TestAndRadiologyComponent implements OnInit {
     this.fetosenseView.push({ name: "Test ID", value: fetosenseDataToshow.testId });
     this.fetosenseView.push({ name: "Device ID", value: fetosenseDataToshow.deviceId });
   }
-  getTestName(fetosenseTestID) {
+  getTestName(foetalMonitorTestId) {
 
   }
   showFetosenseGraph() {
