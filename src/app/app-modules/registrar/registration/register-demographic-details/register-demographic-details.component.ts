@@ -570,7 +570,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
     this.villageList = this.demographicsMaster.otherLoc.districtList[0].villageList;
     if(this.villageList.length == 1){
       this.demographicDetailsForm.patchValue({
-        villageID: this.demographicsMaster.otherLoc.districtList[0].villageList[0].villageid,
+        villageID: this.demographicsMaster.otherLoc.districtList[0].villageList[0].districtBranchID,
         villageName: this.demographicsMaster.otherLoc.districtList[0].villageList[0].villageName,
       });
     }
@@ -957,7 +957,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
   updateVillageName() {
     this.villageList.find((village) => {
       if (
-        village.villageid === this.demographicDetailsForm.value.villageID
+        village.districtBranchID === this.demographicDetailsForm.value.villageID
       ) {
         this.demographicDetailsForm.patchValue({
           villageName: village.villageName,
