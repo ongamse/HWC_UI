@@ -463,12 +463,13 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
     ) {
       this.loadLocalMasterForDemographic();
        this.districtList = this.demographicsMaster.otherLoc.districtList;
+
       // this.districtList = [];
-      this.subDistrictList = [];
-      this.villageList = [];
-      this.emptyDistrict();
-      this.emptyVillage();
-      this.emptySubDistrict();
+      // this.subDistrictList = [];
+      // this.villageList = [];
+      // this.emptyDistrict();
+      // this.emptyVillage();
+      // this.emptySubDistrict();
       // this.onDistrictChange();
       //this.stateChangeOnLoad();
       this.disableDistrict = false;
@@ -514,6 +515,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
     });
 
     this.registrarService.stateIdFamily = this.demographicsMaster.otherLoc.stateID;
+    
 
     // this.demographicDetailsForm.patchValue({
     //   stateID: this.demographicsMaster.otherLoc.stateID,
@@ -527,6 +529,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
    * Load Districts  for New Patient
    */
   loadDistrict() {
+    this.districtList = this.demographicsMaster.otherLoc.districtList;
     // this.districtList = [
     //   {
     //     districtID: this.demographicsMaster.otherLoc.districtList[0].districtID,
@@ -539,6 +542,10 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
     //   districtName:
     //     this.locationData.districtName,
     // });
+    this.demographicDetailsForm.patchValue({
+      districtID: this.demographicsMaster.otherLoc.districtList[0].districtID,
+      districtName: this.demographicsMaster.otherLoc.districtList[0].districtName,
+    });
   }
 
   /**
@@ -547,24 +554,27 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
   loadSubDistrict() {
     this.subDistrictList = [
       {
-        blockID: this.demographicsMaster.otherLoc.blockID,
-        blockName: this.demographicsMaster.otherLoc.blockName,
+        blockID: this.demographicsMaster.otherLoc.districtList[0].blockId,
+        blockName: this.demographicsMaster.otherLoc.districtList[0].blockName,
       },
     ];
-    // this.demographicDetailsForm.patchValue({
-    //   blockID: this.locationData.blockID,
-    //   blockName: this.locationData.blockName,
-    // });
+    this.demographicDetailsForm.patchValue({
+      blockID: this.demographicsMaster.otherLoc.districtList[0].blockId,
+      blockName: this.demographicsMaster.otherLoc.districtList[0].blockName,
+    });
   }
   /**
    * Load Village  for New Patient
    */
   loadVillage() {
-    this.villageList = this.demographicsMaster.villageMaster;
-    this.demographicDetailsForm.patchValue({
-      villageID: null,
-      villageName: null,
-    });
+    this.villageList = this.demographicsMaster.otherLoc.districtList[0].villageList;
+    if(this.villageList.length == 1){
+      this.demographicDetailsForm.patchValue({
+        villageID: this.demographicsMaster.otherLoc.districtList[0].villageList[0].districtBranchID,
+        villageName: this.demographicsMaster.otherLoc.districtList[0].villageList[0].villageName,
+      });
+    }
+    
     // this.demographicDetailsForm.patchValue({
     //   villageID: this.locationData.subDistrictID,
     //   villageName: this.locationData.villageName,
