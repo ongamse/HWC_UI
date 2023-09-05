@@ -237,6 +237,7 @@ export const environment = {
    /**ANC foetalMonitor API URLs */
    savefetosenseTestDetailsUrl: `${TM_API}/foetalMonitor/sendMotherTestDetailsToFoetalMonitor`,
    getPrescribedFetosenseTests: `${TM_API}/foetalMonitor/fetch/foetalMonitorDetails/`,
+   getESanjeevaniDetailsUrl: `${COMMON_API}esanjeevani/getESanjeevaniUrl/`,
 
   /**
    * GENERAL OPD API URLs

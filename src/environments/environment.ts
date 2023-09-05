@@ -52,8 +52,8 @@ const SWYMED_IP = "swymed://14.143.13.109";
 // const SCHEDULER_API = `http://${IP}:8080/apiman-gateway/IEMR/Scheduling/1.0/`;
 
 // Without API MAN Configuration
-const COMMON_API_OPEN = `${commonIP}/commonapi-v1.2/`;
-const COMMON_API = `${commonIP}/commonapi-v1.2/`;
+const COMMON_API_OPEN = `${commonIP}/commonapi-v1.0/`;
+const COMMON_API = `${commonIP}/commonapi-v1.0/`;
 const IDENTITY_API = `${identityIP}/identity-0.0.1/`;
 // const COMMON_API_OPEN = `http://localhost:8080/`;  
 // const COMMON_API = `http://localhost:8080/`;  
@@ -63,7 +63,7 @@ const TM_API = `${tmIP}/hwc-facility-service/`;
 const API104 = `${IP104}/104api-v1.0/`;
 // const TM_API = `http://localhost:8082/`;   
 const MMU_API = `${mmuIP}/mmuapi-v1.0/`;
-const COMMON_API_OPEN_SYNC = `http://${SERVER_IP}:8080/commonapi-v1.2/`;
+const COMMON_API_OPEN_SYNC = `http://${SERVER_IP}:8080/commonapi-v1.0/`;
 const SCHEDULER_API = `${schedulerIP}/schedulerapi-v1.0/`;
 const mmuUICasesheet = "http://localhost:4200/";
 const ADMIN_API = `${adminIP}/adminapi-v1.0`;
@@ -247,6 +247,7 @@ export const environment = {
   /**ANC foetalMonitor API URLs */
   savefetosenseTestDetailsUrl: `${TM_API}/foetalMonitor/sendMotherTestDetailsToFoetalMonitor`,
   getPrescribedFetosenseTests: `${TM_API}/foetalMonitor/fetch/foetalMonitorDetails/`,
+  getESanjeevaniDetailsUrl: `${COMMON_API}esanjeevani/getESanjeevaniUrl/`,
 
 
  

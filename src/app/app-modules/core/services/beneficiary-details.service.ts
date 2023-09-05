@@ -32,6 +32,9 @@ export class BeneficiaryDetailsService {
   beneficiaryDetails = new BehaviorSubject<any>(null);
   beneficiaryDetails$ = this.beneficiaryDetails.asObservable();
 
+  beneficiaryHealthIDDetails = new BehaviorSubject<any>(null);
+  beneficiaryHealthIDDetails$ = this.beneficiaryHealthIDDetails.asObservable();
+
 
   HRPPositive: any="";
 
@@ -58,10 +61,22 @@ export class BeneficiaryDetailsService {
       .map(res => res.json().data);
   }
 
+  getBeneficiaryHealthDetails(healthID: string) {
+    return this.http.post(environment.gethealthIdDetailsUrl, { healthID: healthID })
+    .subscribe(res => {
+      if (res.json().data) {
+        this.beneficiaryHealthIDDetails.next(res.json().data);
+      }
+    }, err => {
+      this.beneficiaryHealthIDDetails.next(null);
+    });
+  }
+
 
 
   reset() {
     this.beneficiaryDetails.next(null);
+    this.beneficiaryHealthIDDetails.next(null);
   }
 
   setHRPPositive() {
