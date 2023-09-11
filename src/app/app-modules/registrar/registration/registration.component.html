@@ -13,6 +13,8 @@
       (click)='confirmFormReset(false)'>{{currentLanguageSet?.common?.search}}</button>
       <button id="moveToPrintHealthIDCard" style="margin: 5px;" md-raised-button color="primary" class="full-width-login background-overall box pull-right m-r-5"
       (click)='printHealthIDCard()'>{{currentLanguageSet?.downloadAbhaCard}}</button>
+      <button id="moveToPrintHealthIDCard" style="margin: 5px;" md-raised-button color="primary" class="full-width-login background-overall box pull-right m-r-5"
+      (click)='generateAbhaCard()'>Generate Abha Card</button>
   </div>
 </div>
 <form [formGroup]='beneficiaryRegistrationForm'>

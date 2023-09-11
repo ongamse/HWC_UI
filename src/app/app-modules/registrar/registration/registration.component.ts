@@ -45,6 +45,8 @@ import { HealthIdDisplayModalComponent } from 'app/app-modules/core/components/h
 import { SetLanguageComponent } from 'app/app-modules/core/components/set-language.component';
 import { ConsentFormComponent } from '../consent-form/consent-form.component';
 import {SearchFamilyComponent} from '../search-family/search-family.component';
+import { GenerateAbhaComponentComponent } from '../generate-abha-component/generate-abha-component.component';
+
 
 @Component({
   selector: 'app-registration',
@@ -98,6 +100,7 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
     private changeDetectorRef: ChangeDetectorRef,
     public httpServiceService: HttpServiceService,
     private dialog: MdDialog,
+    // public dialog: MdDialog,
   ) { }
 
   ngOnInit() {
@@ -1627,6 +1630,8 @@ else
         }
       });
     }
+
+
   
     printHealthIDCard() {
       this.genrateHealthIDCard = true;
@@ -1637,5 +1642,56 @@ else
       this.genrateHealthIDCard = false;
       this.healthIdSearch();
     }
+    
+    // healthIdSearch2(){
+    //   let dialogRef = this.dialog.open(GenerateAbhaComponentComponent, {
+    //     height: '250px',
+    //     width: '420px',
+    //     disableClose: true,
+    //     // data: {
+    //     //   "healthId": "NO",
+    //     //   "generateHealthIDCard": this.genrateHealthIDCard
+    //     // }
+    //   });
+    //   dialogRef.afterClosed().subscribe(result => {
+    //     console.log('result', result)
+    //     if (result) {
+    //       if (result.clearHealthID === true) {
+    //         (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthId'].patchValue(null);
+    //         (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthIdMode'].patchValue(null);
+    //       }
+    //       else {
+    //         (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthId: result.healthIdNumber });
+    //         (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthIdMode: result.healthIdMode });
+    //         (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthId'].disable();
+    //         (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).markAsDirty();
+    //         this.registrarService.changePersonalDetailsData(result)
+    //         // this.disableValidateHealthID = false;
+    //         this.disableGenerateOTP = true;
+            
+    //       }
+    //     }
+    //   });
+    // }
+
+    generateAbhaCard(){
+      let dialogRef = this.dialog.open(GenerateAbhaComponentComponent, {
+        height: '250px',
+        width: '420px',
+        disableClose: true,
+        
+      });
+
+      // dialogRef.afterOpen().subscribe(() => {
+      //   const abhaCardHtml = dialogRef.componentInstance.content.nativeElement.innerHTML;
+      //   console.log(abhaCardHtml);
+      // });
+      // this.healthIdSearch2();
+      // let mdDialogRef = this.dialog.open(GenerateAbhaComponentComponent, {
+        
+      
+    }
+
+    
     
 }

@@ -51,6 +51,8 @@ import { CreateFamilyTaggingComponent } from './family-tagging/create-family-tag
 import { FamilyTaggingDetailsComponent } from './family-tagging/family-tagging-details/family-tagging-details.component';
 import { GenerateMobileOtpGenerationComponent } from './generate-mobile-otp-generation/generate-mobile-otp-generation.component';
 import { SetPasswordForAbhaComponent } from './set-password-for-abha/set-password-for-abha.component';
+import { GenerateAbhaComponentComponent } from './generate-abha-component/generate-abha-component.component';
+
 
 @NgModule({
   imports: [
@@ -65,7 +67,7 @@ import { SetPasswordForAbhaComponent } from './set-password-for-abha/set-passwor
   ],
 
   entryComponents: [SearchDialogComponent,HealthIdOtpGenerationComponent,ConsentFormComponent,SearchFamilyComponent,HealthIdOtpSuccessComponent,HealthIdValidateComponent,QuickSearchComponent,GenerateMobileOtpGenerationComponent,
-    SetPasswordForAbhaComponent,ViewHealthIdCardComponent,EditFamilyTaggingComponent,CreateFamilyTaggingComponent],
+    SetPasswordForAbhaComponent,ViewHealthIdCardComponent,EditFamilyTaggingComponent,CreateFamilyTaggingComponent,GenerateAbhaComponentComponent],
 
   providers: [ 
     RegistrarService ,
@@ -90,7 +92,9 @@ import { SetPasswordForAbhaComponent } from './set-password-for-abha/set-passwor
     SetPasswordForAbhaComponent,
     EditFamilyTaggingComponent,
     CreateFamilyTaggingComponent,
-    FamilyTaggingDetailsComponent
+    FamilyTaggingDetailsComponent,
+    GenerateAbhaComponentComponent,
+    
     
   ],
 })

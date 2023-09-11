@@ -1,0 +1,81 @@
+<!-- <div>
+  <div class="title info">
+    <h4>{{currentLanguageSet?.aBHAValidation}}</h4>
+    <button class="pull-right close-btn" tooltip="{{currentLanguageSet?.common?.close}}" mdDialogClose (click)="closeDialog()" md-icon-button>
+      <md-icon class="md-24">close</md-icon>
+    </button>
+  </div>
+  <div class="overlay" >
+    <div class="overlay-content">
+      <md-spinner></md-spinner>
+    </div>
+  </div>
+  <br>
+  <div class="col-xs-12 col-sm-12" [formGroup]="healthIdValidateForm">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <md-form-field [style.width]="'100%'">
+          <input defaultNull autocomplete="off" autofocus required mdInput type="text" placeholder="{{currentLanguageSet?.enterOTP}}"
+            formControlName="validateotp" minlength="6" maxlength="6"
+            (keypress)="numberOnly($event)" required />
+        </md-form-field>
+
+      </div>
+      <div class="col-sm-12 step-btn m-b-20" style="text-align:right">
+        <button class="full-width-login background-overall" id="cancelButton" type="button" (click)="getHealthIdOtp()">
+          {{currentLanguageSet?.resendOTP}}</button>
+        <button id="submitButton" type="accent" class="full-width-login background-overall button-overall-disabled" [disabled]="!healthIdValidateForm.valid || !(checkOTP())"
+          (click)="enableHealthIDCard === false ? posthealthIDValidationCall() : postHealthIDCardCall()">{{currentLanguageSet?.common?.submit}}</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="title info">
+  <h4>Generate ABHA CARD</h4>
+  <button class="pull-right close-btn"  mdDialogClose (click)="closeDialog()" md-icon-button>
+      <md-icon class="md-24">close</md-icon>
+    </button>
+  </div>
+    <div class="col-xs-12 col-sm-12">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-b-10">
+          <label class="control-label" for="modeofhealthID">Abha Generation Mode*</label>     
+          <md-radio-group >
+            <md-radio-button color="primary" value="MOBILE">mobile</md-radio-button>
+            <md-radio-button color="primary" class="radio-button" value="AADHAR">aadhar</md-radio-button>
+          </md-radio-group>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-10">
+          <md-form-field [style.width]="'100%'">
+            <label class="control-label">Enter Aadhar Number*</label>   
+            <input id="inpHealthID" defaultNull autocomplete="off" formControlName="searchHealth" autofocus mdInput
+              type="text" placeholder="enterABHAOrNumber" required 
+              minlength="4" maxlength="32" />
+          </md-form-field>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="margin-left: 15px;">
+          <button id="searchHealthID"
+            class="pull-right font-regular f-s-18  m-t-8 full-width-search-box background-overall button-overall-disabled">
+            Submit
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
