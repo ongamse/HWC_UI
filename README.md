@@ -37,7 +37,7 @@ This microservice is built on Java, Spring boot framework and MySQL DB.
 * Visual Studio Code Installation
 Angular is a popular web development platform developed and maintained by Google. Angular uses TypeScript as its main programming language. The Visual Studio Code editor supports TypeScript IntelliSense and code navigation out of the box, so you can do Angular development without installing any other extension.
 
-Download visual studio code from the below link: 
+Download Visual Studio Code from the below link: 
 https://code.visualstudio.com/download
 
 Link for installation steps: 
@@ -106,7 +106,7 @@ Note: After changing environment variables, please restart your system and check
 1. Clone HWC-Facility-App from git hub fork branch in your local system using below command:
       git clone <repository-Url>
 
-2. Open hwc-facility-app project code in visual studio code
+2. Open hwc-facility-app project code in Visual Studio Code
 
 3. Navigate to your project folder and execute below command for node_modules installation:
       npm install
