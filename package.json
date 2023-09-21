@@ -89,5 +89,7 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
     "typescript": "^2.7.2"
-  }
+  },
+  "repository": "http://pr293504@10.208.122.87/iemrv1/tm-ui.git",
+  "author": "psharneja <psharneja@gmail.com>"
 }

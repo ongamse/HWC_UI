@@ -123,10 +123,6 @@ Note: After changing environment variables, please restart your system and check
 By default your application will be available at ‘http://localhost:4200/’. You can access it in your browser.
 
 
-
-## Configuration
-The admin module can be configured by editing the config.js file. This file contains all of the settings for the module, such as the database connection string, the user authentication mechanism, and the role hierarchy.
-
 ### Prerequisites 
 * Wildfly (or any compatible app server)
 * Redis
