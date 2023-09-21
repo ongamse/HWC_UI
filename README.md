@@ -99,8 +99,6 @@ C:\Python27
 %AppData%\npm
 C:\Users\ myFolder\AppData\Roaming\npm
 
-
-
 Note: After changing environment variables, please restart your system and check again.
 
 
