@@ -904,7 +904,7 @@ this.confirmationService.alert(this.currentLanguageSet.invalidFileName, 'error')
         }
 
         console.log('technicianForm', JSON.stringify(this.technicianForm.value, null, 4))
-        console.log(JSON.stringify(techForm, null, 4), 'techForm');
+        
         this.labService.saveLabWork(techForm)
           .subscribe(response => {
             console.log(response, 'responseddd')
