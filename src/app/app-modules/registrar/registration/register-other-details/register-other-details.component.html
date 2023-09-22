@@ -236,7 +236,6 @@
                   autocomplete="off"
                   mdInput
                   placeholder="{{currentLanguageSet?.ro?.otherInfo?.govtIDNumber}}"
-                  [value]="(registrarService?.aadharNumberNew !== undefined) ? registrarService?.aadharNumberNew : null "
                   [pattern]="otherDetailsForm.controls.govID.value[i].pattern"
                   [allowText]="otherDetailsForm.controls.govID.value[i].allow"
                   formControlName="idValue"
