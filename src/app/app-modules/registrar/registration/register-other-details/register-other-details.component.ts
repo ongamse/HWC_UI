@@ -136,21 +136,40 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     
     this.registrarService.abhaDetailDetails$.subscribe((result) => {
       if(result === true){
-        this.patchDetails();
-        // let govTypeIDForm : any;
-        // govTypeIDForm = this.otherDetailsForm.get('govID') as FormArray;
-        // govTypeIDForm.value[0].type.patchValue(this.govIDMaster[0].govIdEntityMaster[0].govtIdentityType);
-        
+        this.patchDetails(); 
+      }
+      else if(!result){
+        this.otherDetailsForm.reset();
       }
       
      })
-
     // this.httpServiceService.currentLangugae$.subscribe(response =>this.currentLanguageSet = response);
     //console.log(this.currentLanguageSet);
     //  console.log(this.patientRevisit,'revisit others');
   }
   patchDetails(){
-    this.otherDetailsForm.controls['healthId'].setValue(this.registrarService.abhaGenerateData.healthIdNumber);
+    
+    // this.otherDetailsForm.controls['healthId'].setValue(this.registrarService.abhaGenerateData.healthIdNumber);
+    const id = <FormArray>this.otherDetailsForm.controls["govID"];
+    let govIdValue = this.govIDMaster[0].govIdEntityMaster
+    let aadharId:any;
+    console.log(govIdValue);
+    if(govIdValue !=undefined && govIdValue != null){
+      for(let i = 0;i< govIdValue.length;i++) {
+        if(govIdValue[i].identityType === "Aadhar"){
+          aadharId = govIdValue[i].govtIdentityTypeID
+          break;
+        }
+      }
+    }
+    
+    const formGroupIndexed = <FormGroup>id.at(0);
+    formGroupIndexed.patchValue({
+      type: aadharId,
+      idValue: this.registrarService.aadharNumberNew,
+      allow: this.getAllowedGovChars(aadharId),
+    });
+    // this.loadMasterDataObservable();
     // this.otherDetailsForm.controls.govID.value[0].idValue.setValue(this.registrarService.aadharNumberNew);
   }
 
@@ -173,9 +192,9 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     if (this.patientRevisit && this.revisitDataSubscription) {
       this.revisitDataSubscription.unsubscribe();
     }
-    this.otherDetailsForm.controls.healthId.reset();
-    this.registrarService.abhaGenerateData = undefined;
-    this.registrarService.aadharNumberNew = undefined;
+    this.registrarService.abhaGenerateData = null;
+    this.registrarService.aadharNumberNew = null;
+    this.registrarService.getabhaDetail(false);
 
   }
   alerting(control) {
