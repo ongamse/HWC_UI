@@ -151,7 +151,7 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
   }
 
   setHealthIdAfterGeneration(result) {
-    (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthId: result.healthId });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthId: result.healthIdNumber });
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthIdNumber: result.healthIdNumber });
 
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthId'].disable();
