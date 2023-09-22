@@ -132,6 +132,16 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     this.setErrorMessageForID();
     this.setcheckBoxEnabledByDefault();
     this.loadMasterDataObservable();
+    
+    this.registrarService.abhaDetailDetails$.subscribe((result) => {
+      if(result === true){
+        let govTypeIDForm : any;
+        govTypeIDForm = this.otherDetailsForm.get('govID') as FormArray;
+        govTypeIDForm.value[0].type.patchValue(this.govIDMaster[0].govIdEntityMaster[0].govtIdentityType);
+        
+      }
+      
+     })
 
     // this.httpServiceService.currentLangugae$.subscribe(response =>this.currentLanguageSet = response);
     //console.log(this.currentLanguageSet);
@@ -263,6 +273,8 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
           // console.log(res,'res other')
           this.masterData = Object.assign({}, res);
           this.govIDMaster[0] = Object.assign({}, res);
+          console.log("PK",this.govIDMaster[0])
+          // this.otherDetailsForm.controls['[govID].type'].setValue(this.govIDMaster[0].govIdEntityMaster[0])
           this.govLength = this.masterData.govIdEntityMaster.length;
           this.otherGovLength = this.masterData.otherGovIdEntityMaster.length;
           this.otherGovIDMaster[0] = Object.assign({}, res);

@@ -35,7 +35,8 @@
 <!-- Enter Health ID for search -->
 <div *ngIf="enablehealthIdOTP == 'form'">
   <div class="title info">
-    <h4>{{enableHealthIDCard === false ? currentLanguageSet?.aBHASearch : currentLanguageSet?.downloadAbhaCard}}</h4>
+    <h4>Download and Search Abha Card</h4>
+    <!-- <h4>{{enableHealthIDCard === false ? currentLanguageSet?.aBHASearch : currentLanguageSet?.downloadAbhaCard}}</h4> -->
     <button class="pull-right close-btn" tooltip="{{currentLanguageSet?.common?.close}}" mdDialogClose (click)="closeDialog()" md-icon-button>
       <md-icon class="md-24">close</md-icon>
     </button>
@@ -53,6 +54,7 @@
         <md-radio-group formControlName="modeofhealthID">
           <md-radio-button color="primary" value="MOBILE">{{currentLanguageSet?.mobile}}</md-radio-button>
           <md-radio-button color="primary" class="radio-button" value="AADHAR">{{currentLanguageSet?.aadhar}}</md-radio-button>
+          <md-radio-button color="primary" value="BIOMETRIC">biometric</md-radio-button>
         </md-radio-group>
       </div>     
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-t-10">
@@ -73,6 +75,10 @@
           class="pull-right font-regular f-s-18  m-t-8 full-width-search-box background-overall button-overall-disabled" [disabled]="!healthIdSearchForm.controls.searchHealth.value || !(checkValidHealthID()) || !this.healthIdSearchForm.controls.modeofhealthID.value">
           {{currentLanguageSet?.common?.search}}
         </button>
+        <!-- <button id="searchHealthID" (click)="getHealthIDDetailsToDownload();"
+          class="pull-right font-regular f-s-18  m-t-8 full-width-search-box background-overall button-overall-disabled" [disabled]="!healthIdSearchForm.controls.searchHealth.value || !(checkValidHealthID()) || !this.healthIdSearchForm.controls.modeofhealthID.value">
+          Download
+        </button> -->
       </div>
       </div>
     </div>
