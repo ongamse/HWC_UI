@@ -135,9 +135,10 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     
     this.registrarService.abhaDetailDetails$.subscribe((result) => {
       if(result === true){
-        let govTypeIDForm : any;
-        govTypeIDForm = this.otherDetailsForm.get('govID') as FormArray;
-        govTypeIDForm.value[0].type.patchValue(this.govIDMaster[0].govIdEntityMaster[0].govtIdentityType);
+        this.patchDetails();
+        // let govTypeIDForm : any;
+        // govTypeIDForm = this.otherDetailsForm.get('govID') as FormArray;
+        // govTypeIDForm.value[0].type.patchValue(this.govIDMaster[0].govIdEntityMaster[0].govtIdentityType);
         
       }
       
@@ -146,6 +147,10 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     // this.httpServiceService.currentLangugae$.subscribe(response =>this.currentLanguageSet = response);
     //console.log(this.currentLanguageSet);
     //  console.log(this.patientRevisit,'revisit others');
+  }
+  patchDetails(){
+    this.otherDetailsForm.controls['healthId'].setValue(this.registrarService.abhaGenerateData.healthIdNumber);
+    // this.otherDetailsForm.controls.govID.value[0].idValue.setValue(this.registrarService.aadharNumberNew);
   }
 
   ngDoCheck() {
@@ -167,6 +172,10 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     if (this.patientRevisit && this.revisitDataSubscription) {
       this.revisitDataSubscription.unsubscribe();
     }
+    this.otherDetailsForm.controls.healthId.reset();
+    this.registrarService.abhaGenerateData = undefined;
+    this.registrarService.aadharNumberNew = undefined;
+
   }
   alerting(control) {
     console.log(control, "a");
