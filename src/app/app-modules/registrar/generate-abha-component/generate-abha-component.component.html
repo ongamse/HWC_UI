@@ -11,8 +11,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 p-b-10" >
           <label class="control-label" for="modeofAbhaHealthID">Abha Generation Mode*</label>     
           <md-radio-group formControlName="modeofAbhaHealthID">
-            <md-radio-button color="primary" value="BIOMETRIC">biometric</md-radio-button>
-            <md-radio-button color="primary" class="radio-button" value="AADHAR">aadhar</md-radio-button>
+            <md-radio-button color="primary" value="BIOMETRIC">Biometric</md-radio-button>
+            <md-radio-button color="primary" class="radio-button" value="AADHAR">Aadhar</md-radio-button>
           </md-radio-group>
         </div>
 
@@ -20,8 +20,8 @@
           <md-form-field [style.width]="'100%'">
             <!-- <label class="control-label">Enter Aadhar Number*</label>    -->
             <input  defaultNull autocomplete="off"  autofocus mdInput
-              type="text"  required formControlName="aadharNumber"
-              minlength="4" maxlength="32" placeholder="Enter Aadhar Number" />
+              type="text"  required formControlName="aadharNumber" myMobileNumber
+              minlength="4" maxlength="12" placeholder="Enter Aadhar Number" />
           </md-form-field>
         </div>
 
@@ -32,8 +32,8 @@
           </p> -->
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="margin-left: 15px;">
-          <button (click)="generateABHACard()"
-              class="pull-right font-regular f-s-18  m-t-8 full-width-search-box background-overall button-overall-disabled">
+          <button (click)="generateABHACard()" [disabled]="!abhaGenerateForm.valid"
+              class="pull-right font-regular f-s-18  m-t-8 full-width-search background-overall button-overall-disabled">
                Generate
             </button>
         </div>

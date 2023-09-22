@@ -7,6 +7,7 @@ import { HttpServiceService } from 'app/app-modules/core/services/http-service.s
 import { RegistrarService } from '../shared/services/registrar.service';
 import { RegistrationUtils } from '../shared/utility/registration-utility';
 import { HealthIdOtpGenerationComponent } from '../health-id-otp-generation/health-id-otp-generation.component';
+import { BiometricAuthenticationComponent } from '../biometric-authentication/biometric-authentication.component';
 
 
 
@@ -89,6 +90,16 @@ export class GenerateAbhaComponentComponent implements OnInit {
       this.generateHealthIDCard();
       this.getOTP();
       
+    } else if (this.modeofAbhaHealthID==="BIOMETRIC"){
+      let mdDialogRef: MdDialogRef<BiometricAuthenticationComponent> = this.dialog.open(BiometricAuthenticationComponent,
+        {
+          width:"500px",
+          height:"320px",
+          disableClose: true,
+        }
+      );
+     mdDialogRef.afterClosed().subscribe((res) => {
+     });
     }
     
   }

@@ -46,6 +46,7 @@ import { SetLanguageComponent } from "app/app-modules/core/components/set-langua
 import { HealthIdOtpSuccessComponent } from "../../health-id-otp-generation/health-id-otp-generation.component";
 import { environment } from "environments/environment";
 import { ConsentFormComponent } from "../../consent-form/consent-form.component";
+import { BiometricAuthenticationComponent } from "../../biometric-authentication/biometric-authentication.component";
 @Component({
   selector: "register-other-details",
   templateUrl: "./register-other-details.component.html",
@@ -1354,7 +1355,7 @@ export class HealthIdValidateComponent implements OnInit {
         this.healthIdMode !== undefined &&
         this.healthIdMode !== null &&
         this.healthIdMode === "AADHAR"
-      )
+      ){
         this.healthIdMode = "AADHAAR";
       this.showProgressBar = true;
       let reqObj = {
@@ -1387,6 +1388,19 @@ export class HealthIdValidateComponent implements OnInit {
           this.confirmationValService.alert(this.currentLanguageSet.issueInGettingBeneficiaryABHADetails, "error");
         }
       );
+      } else if (this.healthIdMode !== undefined &&
+        this.healthIdMode !== null &&
+        this.healthIdMode === "BIOMETRIC"){
+          let mdDialogRef: MdDialogRef<BiometricAuthenticationComponent> = this.dialog.open(BiometricAuthenticationComponent,
+            {
+              width:"500px",
+              height:"320px",
+              disableClose: true,
+            }
+          );
+         mdDialogRef.afterClosed().subscribe((res) => {
+         });
+      }
     } else {
       this.showProgressBar = true;
       let reqObj = {
