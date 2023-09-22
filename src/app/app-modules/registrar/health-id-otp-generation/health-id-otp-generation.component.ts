@@ -46,6 +46,7 @@ export class HealthIdOtpGenerationComponent implements OnInit {
   transactionId: any;
   showProgressBar: Boolean = false;
   password: any;
+  aadharNum: any;
   // mobileLinkedOtp: any;
 
   constructor(private fb: FormBuilder,public dialogRef: MdDialogRef<HealthIdOtpGenerationComponent>,
@@ -136,6 +137,10 @@ export class HealthIdOtpGenerationComponent implements OnInit {
       reqObj = {
         'aadhaar': this.data.aadharNumber
       }
+      if(this.data.aadharNumber !== undefined || this.data.aadharNumber !== null){
+        this.aadharNum =  this.data.aadharNumber;
+      }
+      
     }
     this.registrarService.generateOTP(reqObj,this.healthIdMode)
     .subscribe((res) => {
@@ -245,6 +250,9 @@ export class HealthIdOtpGenerationComponent implements OnInit {
       this.registrarService.generateHealthIdWithUID(reqObj)
         .subscribe((res) => {
           if (res.statusCode == 200 && res.data) {
+            this.registrarService.abhaGenerateData = res.data;
+            this.registrarService.aadharNumberNew = this.aadharNum;
+            this.registrarService.getabhaDetail(true);
             let dialogRefSuccess = this.dialog.open(HealthIdOtpSuccessComponent, {
               height: '300px',
               width: '420px',
