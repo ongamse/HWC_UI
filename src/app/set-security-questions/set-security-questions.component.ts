@@ -260,7 +260,7 @@ export class SetSecurityQuestionsComponent implements OnInit {
 
   updatePassword(new_pwd) {
     this.password = this.encrypt(this.Key_IV, new_pwd)
-    this.encryptedConfirmPwd=this.encrypt(this.Key_IV, this.encryptedConfirmPwd)
+    this.encryptedConfirmPwd=this.encrypt(this.Key_IV, this.confirmpwd)
     if (new_pwd === this.confirmpwd) {
       this.authService.saveUserSecurityQuestionsAnswer(this.dataArray).subscribe(
         (response: any) => this.handleQuestionSaveSuccess(response, this.encryptedConfirmPwd),
