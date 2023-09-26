@@ -526,6 +526,8 @@ export const environment = {
     getSnomedCtRecordUrl: `${API104}snomed/getSnomedCTRecord`,
     getCheifComplaintsSymptomsUrl: `${API104}CDSS/Symptoms`,
     getActionMasterUrl: `${TM_API}uptsu/get/action-master`,
-    closeVisitSaveComplaintsUrl: `${TM_API}uptsu/submit/closevisit`
+    closeVisitSaveComplaintsUrl: `${TM_API}uptsu/submit/closevisit`,
+    getDiseaseDataUrls: `${API104}diseaseController/getDiseasesByID`,
+    getDiseaseNamesUrls: `${API104}diseaseController/getAvailableDiseases`,
 
 };

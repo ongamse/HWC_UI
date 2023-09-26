@@ -61,5 +61,13 @@ saveCheifComplaints(reqObject){
     return this.http.post(environment.closeVisitSaveComplaintsUrl, reqObject)
     .map((res) => res.json());
 }
+getDiseaseData(diseaseObj) {
+    return this.http.post(environment.getDiseaseDataUrls, diseaseObj)
+    .map((res) => res.json());
+}
+getDiseaseName() {
+    return this.http.post(environment.getDiseaseNamesUrls, {})
+    .map((res) => res.json());
+}
 
 }

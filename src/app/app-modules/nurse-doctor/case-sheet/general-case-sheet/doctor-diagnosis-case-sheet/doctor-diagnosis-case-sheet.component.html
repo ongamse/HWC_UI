@@ -369,6 +369,47 @@
   </div>
   <!-- End of Chief complaints and description -->
 
+  <!-- CDSS -->
+  <div class="row m-t-10"  >
+    <div class="col-xs-12">
+      <fieldset>
+        <legend>{{current_language_set?.cdss}}:</legend>
+        <table class="table table-no-border casesheet-table" aria-describedby="cdssFormDetails">
+          <div class="col-xs-12">
+            <h4>{{ current_language_set?.presentChiefComplaint }}:</h4>
+          </div>
+          <tr>
+            <th id="presentChiefComplaint"> {{current_language_set?.presentChiefComplaint}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.presentChiefComplaint.presentChiefComplaint }} </td>
+            <th id="provisionalSelectedDiagnosis">{{current_language_set?.provisionalSelectedDiagnosis}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.presentChiefComplaint.selectedDiagnosis }} </td>
+          </tr>
+          <tr>
+            <th id="recommendedAction"> {{current_language_set?.recommendedAction}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.presentChiefComplaint.recommendedActionPc }} </td>
+            <th id="remarks">{{current_language_set?.common?.remarks}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.presentChiefComplaint.remarksPc }} </td>
+          </tr>
+          <div class="col-xs-12">
+            <h4>{{ current_language_set?.nurseData?.chiefComplaintsDetails?.diseaseSummary }}:</h4>
+          </div>
+          <tr>
+            <th id="diseaseSummary"> {{current_language_set?.nurseData?.chiefComplaintsDetails?.diseaseSummary}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.diseaseSummary.diseaseSummary }} </td>
+            <th id="infoGiven">{{current_language_set?.infoGiven}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.diseaseSummary.informationGiven }} </td>
+          </tr>
+          <tr>
+            <th id="recommendedAction"> {{current_language_set?.recommendedAction}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.diseaseSummary.recommendedAction }} </td>
+            <th id="remarks">{{current_language_set?.common?.remarks}}:</th>
+            <td> {{ cdssFormDetails && cdssFormDetails.diseaseSummary.remarks }} </td>
+          </tr>
+          </table>
+      </fieldset>
+
+    </div>
+
   <!-- Clinical Observations -->
   <div class="row m-t-10" *ngIf="printPagePreviewSelect?.caseSheetClinicalObservations">
     <div class="col-xs-12" *ngIf="enableClinicalObv">

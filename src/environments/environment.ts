@@ -28,15 +28,15 @@
 
 
 
-const commonIP = 'http://10.208.122.38:8080';
-const identityIP = 'http://10.208.122.38:8080/';
-const tmIP = 'http://10.208.122.38:8080/';
-const IP104 = 'http://10.208.122.38:8080/';
+const commonIP = 'http://10.208.122.100:8080/';
+const identityIP = 'http://10.208.122.100:8080/';
+const tmIP = 'http://10.208.122.100:8080/';
+const IP104 = 'http://10.208.122.100:8080/';
 // const tmIP = 'http://localhost:8080/';
-const mmuIP = 'http://10.208.122.38:8080/';
-const schedulerIP = 'http://10.208.122.38:8080/';
-const adminIP = 'http://10.208.122.38:8080/';
-const FHIRIP ='http://10.208.122.38:8080/';
+const mmuIP = 'http://10.208.122.100:8080/';
+const schedulerIP = 'http://10.208.122.100:8080/';
+const adminIP = 'http://10.208.122.100:8080/';
+const FHIRIP ='http://10.208.122.100:8080/';
 
 // const SERVER_IP = '10.208.122.38';
 
@@ -57,7 +57,7 @@ const COMMON_API = `${commonIP}/commonapi-v1.0/`;
 const IDENTITY_API = `${identityIP}/identity-0.0.1/`;
 // const COMMON_API_OPEN = `http://localhost:8080/`;  
 // const COMMON_API = `http://localhost:8080/`;  
-const TM_API = `${tmIP}/hwc-facility-service/`;
+const TM_API = `${tmIP}/hwc-facility-service-v1.1/`;
 // const TM_API = `${tmIP}/hwc-facility-service/`;
 
 const API104 = `${IP104}/104api-v1.0/`;
@@ -549,5 +549,7 @@ export const environment = {
     getActionMasterUrl: `${TM_API}uptsu/get/action-master`,
     closeVisitSaveComplaintsUrl: `${TM_API}uptsu/submit/closevisit`,
     getnurse104referredworklisturls: `${TM_API}uptsu/getWorklistByVanID`,
+    getDiseaseDataUrls: `${API104}diseaseController/getDiseasesByID`,
+    getDiseaseNamesUrls: `${API104}diseaseController/getAvailableDiseases`,
 
 };

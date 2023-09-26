@@ -26,6 +26,17 @@
     </md-expansion-panel-header>
     <patient-chief-complaints [mode]="mode" [patientChiefComplaintsForm]='patientVisitForm.controls.patientChiefComplaintsForm'></patient-chief-complaints>
   </md-expansion-panel>
+  
+  <md-expansion-panel *ngIf="visitCategory">
+    <md-expansion-panel-header >
+      <h5> {{currentLanguageSet?.nurseData?.chiefComplaintsDetails?.cdss}}</h5>
+    </md-expansion-panel-header>
+    <h5> {{currentLanguageSet?.previousvisit?.ChiefComplaint104}}</h5>
+    <app-cdss-form  [mode]="mode" [presentChiefComplaintDb]='patientVisitForm.controls.cdssForm.controls.presentChiefComplaintDb'></app-cdss-form>
+    <h5> {{currentLanguageSet?.nurseData?.chiefComplaintsDetails?.diseaseSummary}}</h5>
+    <app-diseaseSummary-form  [mode]="mode" [diseaseSummaryDb]='patientVisitForm.controls.cdssForm.controls.diseaseSummaryDb'></app-diseaseSummary-form>
+  </md-expansion-panel>
+
 
   <md-expansion-panel  *ngIf="((showANCVisit == true || showPNCVisit == true || showOPD == true || showFamilyPlanning == true) && visitReason !=undefined && visitReason !=null && visitReason =='Follow Up') || (hideAll == true ||  showNCDCare)">
     <md-expansion-panel-header>

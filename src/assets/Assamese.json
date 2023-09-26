@@ -359,6 +359,7 @@
         "unitOfDuration": "ইউনিট অব ডিউৰেচন",
         "description": "বর্ণনা",
         "noCheifComplaint": "নার্চ গ্ৰহণ কৰা মূল অভিযোগৰ সংখ্যা",
+        "cdss": "CDSS",
         "selectunitOfDuration": "সময় ব্যাপ্তিৰ একক চয়ন কৰক"
       },
       "adherenceDetails": {
@@ -2060,8 +2061,20 @@
         "mobile": "Mobile",
         "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
         "view": "View",
+        "infoGiven": "Information Given",
         "confirmSubmitBeneficiary": "অনুগ্ৰহ কৰি নাৰ্চ ৱৰ্কলিস্টত হিতাধিকাৰী জমা দিয়াৰ বিষয়টো নিশ্চিত কৰক",
-        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal",
+        "infoGiven": "Information Given",
+        "summary": "Summary",
+        "couldBeDangerousIfTheAnswerIsYesForAnyOneOfTheFollowingQuestions" : "Could be dangerous, if the answer is YES for any one of the following questions",
+        "causes" : "Causes",
+        "doAndDonts": "Do's and Don'ts -",
+        "signsAndSymptoms": "Signs and Symptoms",
+        "medicalAdvice": "Medical Advice - ",
+        "riskFactors": "Risk Factors",
+        "treatment": "Treatment",
+        "selfcare": "Self-Care",
+        "investigations": "Investigations"
 
       
       }

@@ -19,8 +19,8 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see https://www.gnu.org/licenses/.
 */
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MdDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'app/app-modules/core/components/set-language.component';
@@ -32,6 +32,7 @@ import { startWith } from 'rxjs/operators/startWith';
 import { CDSSService } from '../../shared/services/cdss-service';
 import { MasterdataService } from '../../shared/services/masterdata.service';
 import { CdssFormResultPopupComponent } from '../cdss-form-result-popup/cdss-form-result-popup.component';
+import { DoctorService } from '../../shared/services';
 
 @Component({
   selector: 'app-cdss-form',
@@ -42,18 +43,13 @@ export class CdssFormComponent implements OnInit {
   currentLanguageSet: any;
   chiefComplaints: any = [];
   filteredOptions: Observable<string[]>;
-
-  cdssForm = this.fb.group({
-    presentChiefComplaint: null,
-    selectedProvisionalDiagnosis: null,
-    recommendedAction: null,
-    remarks: null,
-    action: null,
-    actionId: null
-  });
+  @Input('presentChiefComplaintDb')
+  cdssForm: FormGroup;
+  @Input('mode')
+  mode: string;
   result: any;
   psd: string;
-  recommendedAction: string;
+  recommendedActionPc: string;
   selectedSymptoms: string;
   actions: any = [];
   sctID_psd: string;
@@ -61,6 +57,13 @@ export class CdssFormComponent implements OnInit {
   actionId: any;
   sctID_pcc: string;
   sctID_pcc_toSave: any;
+  isCdssTrue : boolean = false;
+  showCdssForm : boolean = false;
+  viewMode : boolean = false;
+  selectedProvisionalDiagnosisID: any;
+  disableVisit: boolean = false;
+  presentChiefComplaintID : any;
+  presentChiefComplaintView : any;
   constructor(
     private httpServiceService: HttpServiceService,
     private fb: FormBuilder,
@@ -69,14 +72,19 @@ export class CdssFormComponent implements OnInit {
     private dialog: MdDialog,
     private masterdataService: MasterdataService,
     private router: Router,
-  ) { }
+    private doctorService : DoctorService
+    
+  ) {
+  
+}
 
   ngOnInit() {
+    this.showingCdssForm();
     this.getChiefComplaintSymptoms();
-    this.getActionsMaster();
     this.filteredOptions = this.cdssForm.controls.presentChiefComplaint.valueChanges
     .startWith(null)
     .map((val) => (val ? this.filter(val) : this.chiefComplaints.slice()));
+  
       
   }
 
@@ -90,6 +98,44 @@ export class CdssFormComponent implements OnInit {
   ngDoCheck() {
     this.assignSelectedLanguage();
   }
+
+  showingCdssForm(){
+ if(localStorage.getItem('currentRole') == 'Nurse' || localStorage.getItem('currentRole') == 'Doctor' ){
+  this.showCdssForm = true;
+ }else{
+  this.showCdssForm = false;
+ }
+  }
+  ngOnChanges() {
+    if (this.mode == 'view') {2
+      this.getChiefComplaintSymptoms();
+      let visitID = localStorage.getItem('visitID');
+      let benRegID = localStorage.getItem('beneficiaryRegID');
+      this.getCdssDetails(benRegID, visitID);
+    }
+    if(parseInt(localStorage.getItem("specialistFlag")) == 100)
+    {
+       let visitID = localStorage.getItem('visitID');
+      let benRegID = localStorage.getItem('beneficiaryRegID')
+      this.getCdssDetails(benRegID, visitID);
+    }
+  }
+  getCdssDetails(beneficiaryRegID, visitID) {
+    this.disableVisit=true;
+    this.viewMode = true;
+    this.doctorService.getVisitComplaintDetails(beneficiaryRegID, visitID)
+      .subscribe(value => {
+        if (value != null && value != undefined && value.statusCode == 200 && 
+            value.data != null && value.data != undefined && 
+            value.data.Cdss != null && value.data.Cdss != undefined && 
+            value.data.Cdss.presentChiefComplaint != null && value.data.Cdss.presentChiefComplaint != undefined)
+            this.disableVisit=true;
+            this.viewMode = true;
+          this.cdssForm.patchValue(value.data.Cdss.presentChiefComplaint);
+          this.cdssForm.controls.presentChiefComplaintView.patchValue(value.data.Cdss.presentChiefComplaint.presentChiefComplaint);
+          // this.cdssForm.patchValue({ presentChiefComplaintView : value.data.Cdss.presentChiefComplaint.presentChiefComplaint});
+      });
+  }
   
   assignSelectedLanguage() {
     const getLanguageJson = new SetLanguageComponent(this.httpServiceService);
@@ -97,27 +143,7 @@ export class CdssFormComponent implements OnInit {
     this.currentLanguageSet = getLanguageJson.currentLanguageObject;
   }
 
-  getActionsMaster(){
-    this.cdssService.getActionMaster().subscribe(res => {
-      if(res.statusCode == 200 && res.data){
-        this.actions = res.data;
-      } else {
-        this.confirmationService.alert(res.errorMessage, 'error');
-      }
-    });
-    (err) => {
-      this.confirmationService.alert(err, 'error')
-    }
-  }
 
-  getActionId(){
-    let action = this.cdssForm.controls.action.value;
-    this.actions.filter(item => {
-      if(action === item.name ){
-        this.cdssForm.controls.actionId.patchValue(item.id);
-      }
-    });
-  }
 
   getChiefComplaintSymptoms(){
     let reqObj = {
@@ -160,8 +186,8 @@ export class CdssFormComponent implements OnInit {
       this.getSnomedCTRecord(searchSymptom, "pcc");
     }
     else{
-      this.cdssForm.controls.selectedProvisionalDiagnosis.patchValue(null);
-      this.cdssForm.controls.recommendedAction.patchValue(null);
+      this.cdssForm.controls.selectedDiagnosis.patchValue(null);
+      this.cdssForm.controls.recommendedActionPc.patchValue(null);
       
     }
   }
@@ -190,7 +216,7 @@ export class CdssFormComponent implements OnInit {
         this.result = result;
 
         this.psd = "";
-        this.recommendedAction = "";
+        this.recommendedActionPc = "";
         this.selectedSymptoms = "";
         this.sctID_psd = "";
         this.sctID_psd_toSave = "";
@@ -202,35 +228,37 @@ export class CdssFormComponent implements OnInit {
 
             this.getSnomedCTRecord(result[a].diseases, "psd");
             //  this.psd.slice(0,100);
-            if (!this.recommendedAction.includes(result[a].action)) {
+            if (!this.recommendedActionPc.includes(result[a].action)) {
               recomdAction.push(result[a].action);
             }
-            //  this.recommendedAction.slice(0,100);
+            //  this.recommendedActionPc.slice(0,100);
             for (var k = 0; k < result[a].symptoms.length; k++) {
               this.selectedSymptoms += result[a].symptoms[k] + " ";
             }
           }
           this.psd = (diseaseArr !== undefined && diseaseArr.length > 0) ? diseaseArr.join(",") : "" ;
-          this.recommendedAction =  (recomdAction !== undefined && recomdAction.length > 0) ? recomdAction.join(",") : "";
+          this.recommendedActionPc =  (recomdAction !== undefined && recomdAction.length > 0) ? recomdAction.join(",") : "";
 
-          this.recommendedAction = this.recommendedAction.trim().slice(0, 300);
+          this.recommendedActionPc = this.recommendedActionPc.trim().slice(0, 300);
           this.psd = this.psd.trim().slice(0, 100);
           this.selectedSymptoms = this.selectedSymptoms.trim().slice(0, 300);
           console.log(
             "lengths",
             this.selectedSymptoms.length,
             "/300",
-            this.recommendedAction.length,
+            this.recommendedActionPc.length,
             "/100",
             this.psd.length,
             "/100"
           );
-          this.cdssForm.controls.selectedProvisionalDiagnosis.patchValue(this.psd);
-          this.cdssForm.controls.recommendedAction.patchValue(this.recommendedAction);
+          this.cdssForm.controls.selectedDiagnosis.patchValue(this.psd);
+          this.cdssForm.controls.recommendedActionPc.patchValue(this.recommendedActionPc);
+          this.cdssForm.controls.presentChiefComplaintID.patchValue(this.presentChiefComplaintID);
+          this.cdssForm.controls.selectedProvisionalDiagnosisID.patchValue(this.selectedProvisionalDiagnosisID);
         } else {
           this.cdssForm.reset();
           // this.psd = this.pcc.trim();
-          // this.recommendedAction="";
+          // this.recommendedActionPc="";
         }
       });
 }
@@ -291,11 +319,11 @@ saveData(){
     benCallID: localStorage.getItem('benCallID'),
     parkingPlaceID : JSON.parse(localStorage.getItem('serviceLineDetails')).parkingPlaceID, 
     selecteDiagnosisID: this.sctID_psd_toSave,
-    selecteDiagnosis: this.cdssForm.controls.selectedProvisionalDiagnosis.value,
+    selecteDiagnosis: this.cdssForm.controls.selectedDiagnosis.value,
     presentChiefComplaintID: this.sctID_pcc_toSave,
     presentChiefComplaint: this.cdssForm.controls.presentChiefComplaint.value,
-    recommendedAction : this.cdssForm.controls.recommendedAction.value,
-    remarks: this.cdssForm.controls.remarks.value,
+    recommendedActionPc : this.cdssForm.controls.recommendedActionPc.value,
+    remarksPc: this.cdssForm.controls.remarksPc.value,
     algorithm: this.selectedSymptoms,
     actionId: this.cdssForm.controls.actionId.value,
     action: this.cdssForm.controls.action.value,
@@ -303,8 +331,12 @@ saveData(){
   console.log('formvalue', reqObj);
   this.cdssService.saveCheifComplaints(reqObj).subscribe(res => {
     if(res && res.statusCode == 200){
-      this.confirmationService.alert(this.currentLanguageSet.savedBeneficiaryDetailsSuccessfully, 'Success');
+      if(this.isCdssTrue == true){
       this.router.navigate(["/common/nurse-worklist"]);
+      this.confirmationService.alert(this.currentLanguageSet.savedBeneficiaryDetailsSuccessfully, 'Success');
+      }else{
+        this.confirmationService.alert(this.currentLanguageSet.savedBeneficiaryDetailsSuccessfully, 'Success');
+      }
     } else {
       this.confirmationService.alert(res.errorMessage, 'error');
     }

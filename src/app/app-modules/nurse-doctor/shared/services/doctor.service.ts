@@ -132,6 +132,7 @@ export class DoctorService {
   setPreviousVisitConfirmedDiseases(confirmedDiseases) {
     this.previousVisitConfirmedDiseases.next(confirmedDiseases);
   }
+
   getDoctorWorklist() {
     let vanID = JSON.parse(localStorage.getItem("serviceLineDetails")).vanID;
     let fetchUrl =

@@ -1,0 +1,48 @@
+<div class="title">
+    <h4 md-dialog-title class="f-s-b m-l-15">{{diseaseName | titlecase}}</h4>
+    <button md-icon-button mdDialogClose tooltip="{{currentLanguageSet?.close}}" class="pull-right exit width-20px" style="margin: 7px;" (click)="closeCancelDialog()">
+      <md-icon>close</md-icon>
+    </button>
+  </div>
+  <div class="custom-dialog-content"  style="padding: 20px; max-height: 400px; overflow-y: auto;">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.summary}} <span>{{summary}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.couldBeDangerousIfTheAnswerIsYesForAnyOneOfTheFollowingQuestions}} - </h2>
+      <div style="white-space: pre-line">{{couldbedangerous}}</div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.causes}} - <span>{{causes}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.doAndDonts}} <span>{{dos_donts}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.signsAndSymptoms}} <span>{{symptoms_Signs}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.medicalAdvice}} - <span>{{medicaladvice}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.riskFactors}} - <span>{{riskfactors}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.treatment}} - <span>{{treatment}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.selfcare}} - <span>{{self_care}}</span></h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="sub-header-style">{{currentLanguageSet?.investigations}} - <span>{{investigations}}</span></h2>
+    </div>
+ 
+  
+  <button md-raised-button color="primary" type="button" class="pull-right p-l-r-25" style="margin: 10px;"
+  (click)="closeCancelDialog()">{{currentLanguageSet?.common?.cancel}}</button>
+  
+  <button md-raised-button color="primary" style="margin: 10px;"
+            type="button" class="pull-right p-l-r-25 m-r-10"
+            (click)="closeDialog()">{{currentLanguageSet?.common?.ok}}</button>
+          </div>
+        
