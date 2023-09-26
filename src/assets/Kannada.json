@@ -362,6 +362,8 @@
                 "unitOfDuration": "ಅವಧಿಯ ಘಟಕ",
                 "description": "ವಿವರಣೆ",
                 "noCheifComplaint": "ಮುಖ್ಯ ದೂರು ಇಲ್ಲ ನರ್ಸ್ ವಶಪಡಿಸಿಕೊಂಡರು",
+                "cdss": "CDSS",
+                "diseaseSummary": "Disease Summary",
                 "selectunitOfDuration": "ಅವಧಿಯ ಘಟಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
             },
             "adherenceDetails": {
@@ -2092,10 +2094,20 @@
         "swollen": "ಊದಿಕೊಂಡ",
         "perDay":"ಪ್ರತಿ ದಿನಕ್ಕೆ",
         "perWeek": "ವಾರಕ್ಕೆ",
+        "infoGiven": "Information Given",
         "presentNewbornHealth": "ನವಜಾತ ಶಿಶುವಿನ ಆರೋಗ್ಯ ಸ್ಥಿತಿಯನ್ನು ಪ್ರಸ್ತುತಪಡಿಸಿ",
         "confirmSubmitBeneficiary": "ನರ್ಸ್ ವರ್ಕ್‌ಲಿಸ್ಟ್‌ಗೆ ಫಲಾನುಭವಿಯನ್ನು ಸಲ್ಲಿಸಲು ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಿ",
-        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
-
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal",
+        "summary" : "Summary",
+        "couldBeDangerousIfTheAnswerIsYesForAnyOneOfTheFollowingQuestions" : "Could be dangerous, if the answer is YES for any one of the following questions",
+        "causes" : "Causes",
+        "doAndDonts": "Do's and Don'ts -",
+        "signsAndSymptoms": "Signs and Symptoms",
+        "medicalAdvice": "Medical Advice - ",
+        "riskFactors": "Risk Factors",
+        "treatment": "Treatment",
+        "selfcare": "Self-Care",
+        "investigations": "Investigations"
     }  
 
     

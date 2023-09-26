@@ -570,6 +570,11 @@ export class NurseService {
           patientVisitForm.controls.patientAdherenceForm.value,
           benVisitID
         ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+          
+        ),
         investigation: this.postInvestigationForm(
           patientVisitForm.controls.patientInvestigationsForm.value,
           benVisitID
@@ -577,6 +582,7 @@ export class NurseService {
       };
     }
     if (visitCategory == "General OPD") {
+      console.log(patientVisitForm.controls.cdssForm , "cdssForm");
       return {
         visitDetails: this.postPatientVisitDetails(
           patientVisitForm.controls.patientVisitDetailsForm.value,
@@ -589,6 +595,11 @@ export class NurseService {
         adherence: this.postAdherenceForm(
           patientVisitForm.controls.patientAdherenceForm.value,
           benVisitID
+        ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+          
         ),
       };
     }
@@ -606,6 +617,11 @@ export class NurseService {
           patientVisitForm.controls.patientAdherenceForm.value,
           benVisitID
         ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+          
+        ),
       };
     }
     if (visitCategory == "FP & Contraceptive Services") {
@@ -622,6 +638,11 @@ export class NurseService {
           patientVisitForm.controls.patientAdherenceForm.value,
           benVisitID
         ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+          
+        ),
       };
     }
     if (visitCategory.toLowerCase() == "neonatal and infant health care services") {
@@ -633,6 +654,11 @@ export class NurseService {
         chiefComplaints: this.postCheifComplaintForm(
           patientVisitForm.controls.patientChiefComplaintsForm.value.complaints,
           benVisitID
+        ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+          
         ),
       };
     }
@@ -646,6 +672,11 @@ export class NurseService {
         chiefComplaints: this.postCheifComplaintForm(
           patientVisitForm.controls.patientChiefComplaintsForm.value.complaints,
           benVisitID
+        ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+          
         ),
       };
     }
@@ -663,6 +694,11 @@ export class NurseService {
           patientVisitForm.controls.patientInvestigationsForm.value,
           benVisitID
         ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+
+        ),
       };
     }
     if (visitCategory == "COVID-19 Screening") {
@@ -674,6 +710,11 @@ export class NurseService {
         covidDetails: this.postCovidForm(
           patientVisitForm.controls.patientCovidForm.value,
           benVisitID
+        ),
+        cdss: this.postCdssForm(
+          patientVisitForm.controls.cdssForm.value,
+          benVisitID
+
         ),
       };
     }
@@ -689,12 +730,22 @@ export class NurseService {
               .complaints,
             benVisitID
           ),
+          cdss: this.postCdssForm(
+            patientVisitForm.controls.cdssForm.value,
+            benVisitID
+
+          ),
         };
       } else {
         return {
           visitDetails: this.postPatientVisitDetails(
             patientVisitForm.controls.patientVisitDetailsForm.value,
             patientVisitForm.controls.patientFileUploadDetailsForm.value
+          ),
+          cdss: this.postCdssForm(
+            patientVisitForm.controls.cdssForm.value,
+            benVisitID
+
           ),
         };
       }
@@ -740,7 +791,17 @@ export class NurseService {
     // console.log('adherenceForm', JSON.stringify(adherenceForm, null, 4));
     return adherenceForm;
   }
-
+ 
+  postCdssForm(cdssForm, benVisitID){
+    let nurseCdssForm = Object.assign({}, cdssForm, {
+      beneficiaryRegID: localStorage.getItem("beneficiaryRegID"),
+      benVisitID: benVisitID,
+      providerServiceMapID: localStorage.getItem("providerServiceID"),
+      createdBy: localStorage.getItem("userName"),
+    });
+  
+    return nurseCdssForm;
+  }
   postInvestigationForm(patientInvestigationsForm, benVisitID) {
     let investigationsForm = Object.assign({}, patientInvestigationsForm, {
       beneficiaryRegID: localStorage.getItem("beneficiaryRegID"),

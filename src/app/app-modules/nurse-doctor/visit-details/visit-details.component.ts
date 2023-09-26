@@ -61,6 +61,7 @@ export class VisitDetailsComponent implements OnInit {
   visitReason: any;
   idrsOrCbac: any;
   enableCBACForm: boolean = false;
+  isCdssVitals : boolean = false;
   enablingCBACSectionSubscription: Subscription
 
   constructor(
@@ -85,7 +86,6 @@ export class VisitDetailsComponent implements OnInit {
       }
    });
 
-   
     this.getVisitCategory();
     this.getVisitReason();
     // this.httpServiceService.currentLangugae$.subscribe(response =>this.currentLanguageSet = response);
@@ -94,6 +94,7 @@ export class VisitDetailsComponent implements OnInit {
     let visitCategory = localStorage.getItem('visitCat');    
     localStorage.setItem('visitCategory',visitCategory)
     }
+    
   }
 
   ngDoCheck() {

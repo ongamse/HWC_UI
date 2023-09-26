@@ -22,6 +22,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CdssFormComponent } from './cdss-form.component';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('CdssFormComponent', () => {
   let component: CdssFormComponent;
@@ -29,6 +30,7 @@ describe('CdssFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ CdssFormComponent ]
     })
     .compileComponents();

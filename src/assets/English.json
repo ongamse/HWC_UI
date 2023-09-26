@@ -363,7 +363,9 @@
                 "unitOfDuration": "Unit Of Duration",
                 "description": "Description",
                 "noCheifComplaint": "No chief complaint captured by nurse",
-                "selectunitOfDuration": "Select Unit Of Duration"
+                "selectunitOfDuration": "Select Unit Of Duration",
+                "cdss": "CDSS",
+                "diseaseSummary": "Disease Summary"
             },
             "adherenceDetails": {
                 "adherence": "Adherence",
@@ -2077,7 +2079,18 @@
         "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
         "view": "View",
         "confirmSubmitBeneficiary": "Please confirm to submit beneficiary to nurse worklist",
-        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal",
+        "infoGiven": "Information Given",
+        "summary": "Summary",
+        "couldBeDangerousIfTheAnswerIsYesForAnyOneOfTheFollowingQuestions" : "Could be dangerous, if the answer is YES for any one of the following questions",
+        "causes" : "Causes",
+        "doAndDonts": "Do's and Don'ts -",
+        "signsAndSymptoms": "Signs and Symptoms",
+        "medicalAdvice": "Medical Advice - ",
+        "riskFactors": "Risk Factors",
+        "treatment": "Treatment",
+        "selfcare": "Self-Care",
+        "investigations": "Investigations"
          
     }
 

@@ -356,6 +356,8 @@
         "unitOfDuration": "अवधि की इकाई",
         "description": "विवरण",
         "noCheifComplaint": "नर्स द्वारा कब्जा की गई कोई मुख्य शिकायत नहीं",
+        "cdss": "CDSS",
+        "diseaseSummary": "Disease Summary",
         "selectunitOfDuration": "अवधि की इकाई का चयन करें"
       },
       "adherenceDetails": {
@@ -2071,8 +2073,19 @@
         "mobile": "Mobile",
         "ageOnlyBeSetBetweenTodayTo": "Age can only be set between Today to",
         "view": "View",
+        "infoGiven": "Information Given",
         "confirmSubmitBeneficiary": "कृपया लाभार्थी को नर्स कार्यसूची में जमा करने की पुष्टि करें",
-        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal"
+        "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal",
+        "summary": "Summary",
+        "couldBeDangerousIfTheAnswerIsYesForAnyOneOfTheFollowingQuestions" : "Could be dangerous, if the answer is YES for any one of the following questions",
+        "causes" : "Causes",
+        "doAndDonts": "Do's and Don'ts -",
+        "signsAndSymptoms": "Signs and Symptoms",
+        "medicalAdvice": "Medical Advice - ",
+        "riskFactors": "Risk Factors",
+        "treatment": "Treatment",
+        "selfcare": "Self-Care",
+        "investigations": "Investigations"
 
       }
 }

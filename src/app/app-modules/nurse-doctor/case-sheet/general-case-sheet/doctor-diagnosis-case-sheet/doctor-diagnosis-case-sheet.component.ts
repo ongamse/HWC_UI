@@ -105,6 +105,7 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
   confirmScreeningArray=[];
   followUpCaseTreatment: any;
   counsellingProvidedDetails: any;
+  cdssFormDetails: any;
   currentVitalsCasesheet: any;
   visitDetailsCasesheet: any;
   severityValue: any;
@@ -435,6 +436,12 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
       this.casesheetData.doctorData.diagnosis.counsellingProvided !== null){
       this.counsellingProvidedDetails = this.casesheetData.doctorData.diagnosis.counsellingProvided;
      }
+
+     if (this.casesheetData.nurseData.cdss !== undefined && 
+     this.casesheetData.nurseData.cdss !== null && this.casesheetData.nurseData.cdss.presentChiefComplaint !== undefined && 
+     this.casesheetData.nurseData.cdss.presentChiefComplaint !== null && this.casesheetData.nurseData.cdss.diseaseSummary !== undefined && this.casesheetData.nurseData.cdss.diseaseSummary !== null){
+     this.cdssFormDetails = this.casesheetData.nurseData.cdss;
+    }
 
   this.downloadSign();
   this.getVaccinationTypeAndDoseMaster();

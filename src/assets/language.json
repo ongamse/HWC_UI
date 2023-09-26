@@ -3984,6 +3984,7 @@
         "max20CharectorsAllowed": "Maximum 20 characters are allowed",
         "enterMin3CharactersAndSearch":"Enter min 3 characters and search",
         "cdss":"CDSS",
+        "diseaseSummary": "Disease Summary",
         "voice_chat": "voice_chat",
         "SBP": "Sbp",
         "DBP": "Dbp",
@@ -4064,9 +4065,19 @@
          "ThispatientissuspectedtohavethefollowinghealthconditionsasperthepreliminaryscreeningdonebytheASHA:":"This patient is <strong>suspected </strong> to have the following health conditions as per the preliminary screening done by the ASHA:",
          "pleaseperformthenecessaryexaminationstoconfirm.":"Please perform the necessary examinations to confirm.",
          "lungAssessment:":"Lung Assessment:",
-         "randomGlucoseTest":"Random Glucose Test"
-
-        
+         "randomGlucoseTest":"Random Glucose Test",
+         "noHealthIDForBeneficiary": "HealthId not found for beneficiary, cannot route to E-Sanjeevani portal",
+        "infoGiven": "Information Given",
+        "summary": "Summary",
+        "couldBeDangerousIfTheAnswerIsYesForAnyOneOfTheFollowingQuestions" : "Could be dangerous, if the answer is YES for any one of the following questions",
+        "causes" : "Causes",
+        "doAndDonts": "Do's and Don'ts -",
+        "signsAndSymptoms": "Signs and Symptoms",
+        "medicalAdvice": "Medical Advice - ",
+        "riskFactors": "Risk Factors",
+        "treatment": "Treatment",
+        "selfcare": "Self-Care",
+        "investigations": "Investigations"
 
     }
 }

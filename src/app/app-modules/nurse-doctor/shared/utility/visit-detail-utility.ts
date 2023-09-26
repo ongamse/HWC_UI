@@ -31,6 +31,7 @@ export class VisitDetailUtils {
       patientChiefComplaintsForm: this.createANCPatientChiefComplaintArrayForm(diasableFlag),
       patientAdherenceForm: this.createPatientAdherenceForm(diasableFlag),
       patientInvestigationsForm: this.createPatientInvestigationsForm(diasableFlag),
+      cdssForm : this.createCdssForm(),
       // patientSymptomsForm: this.createPatientSymptomsForm(diasableFlag),
       // patientTravelHistoryForm: this.createPatientTravelHistoryForm(diasableFlag),
       // patientContactHistoryForm: this.createPatientContactHistoryForm(diasableFlag),   
@@ -283,5 +284,35 @@ export class VisitDetailUtils {
   cbacForgetnearones: { value: null, disabled: disableFlag },
   totalScore: 0
     })
+}
+createCdssForm(disableFlag: boolean = false){
+  return this.fb.group({
+    presentChiefComplaintDb : this.createPresentCheifComplaint(),
+    diseaseSummaryDb : this.createDiseaseSummary(),
+    providerServiceMapID : null,
+    vanID:JSON.parse(localStorage.getItem('serviceLineDetails')).vanID,
+    parkingPlaceID :JSON.parse(localStorage.getItem('serviceLineDetails')).parkingPlaceID
+  })
+}
+createPresentCheifComplaint(){
+  return this.fb.group({
+    presentChiefComplaint: null,
+    presentChiefComplaintID: null,
+    selectedDiagnosis: null,
+    selectedProvisionalDiagnosisID: null,
+    recommendedActionPc:null,
+    remarksPc: null,
+    presentChiefComplaintView : null
+  })
+}
+createDiseaseSummary(){
+  return this.fb.group({
+    diseaseSummary: null,
+    diseasesummaryID: null,
+    recommendedAction: null,
+    remarks: null,
+    informationGiven : null,
+    diseaseSummaryView :null
+  });
 }
 }
