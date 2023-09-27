@@ -1,0 +1,149 @@
+<form [formGroup]="cdssForm" autocomplete="off">
+  <div class="row m-t-20">
+    <div class="col-xs-12 col-sm-6 col-md-4 m-t-7">
+      <md2-autocomplete
+        class="m-b-20"
+        [items]="chiefComplaints"
+        [style.width]="'100%'"
+        item-text="chiefComplaint"
+        placeholder="{{ currentLanguageSet?.presentChiefComplaint }} *"
+        [readonly]="(cdssForm.controls.selectedProvisionalDiagnosis.value !== undefined && cdssForm.controls.selectedProvisionalDiagnosis.value !== null && cdssForm.controls.selectedProvisionalDiagnosis.value !== '')"
+        formControlName="presentChiefComplaint"
+        (change)="getQuestions(cdssForm.controls.presentChiefComplaint.value)"
+        (keyup.enter)="getQuestions(cdssForm.controls.presentChiefComplaint.value)"
+      >
+      </md2-autocomplete>
+      <md-hint>
+        <span *ngIf="cdssForm.controls.presentChiefComplaint.dirty && cdssForm.controls.presentChiefComplaint.untouched">{{ currentLanguageSet?.max20CharectorsAllowed }}</span>
+      </md-hint>
+    </div>
+    
+    <!-- <div
+      class="col-xs-12 col-sm-6 col-md-3 col-lg-3 m-t--10"
+    >
+      <md-input-container
+        [style.width]="'100%'"
+        class='m-t-10'
+      >
+        <input
+          maxlength="20"
+          mdInput
+          presentChiefComplaintValidator 
+          placeholder="{{ currentLanguageSet?.presentChiefComplaint }} *"
+          name="presentChiefComplaint"
+          formControlName="presentChiefComplaint"
+        />
+        <md-hint>
+          <span *ngIf="cdssForm.controls.presentChiefComplaint.dirty && cdssForm.controls.presentChiefComplaint.untouched">{{
+            currentLanguageSet?.max20
+          }}</span>
+        </md-hint>
+      </md-input-container>
+      <md2-autocomplete
+        class="m-b-20"
+        [items]="chiefCompliants"
+        [style.width]="'100%'"
+        item-text="chiefCompliants"
+        item-value="chiefCompliants"
+        placeholder="{{ currentLanguageSet?.presentChiefComplaint }} *"
+        [readonly]="(cdssForm.controls.selectedProvisionalDiagnosis.value !== undefined && cdssForm.controls.selectedProvisionalDiagnosis.value !== null && cdssForm.controls.selectedProvisionalDiagnosis.value !== '')"
+      >
+      </md2-autocomplete>
+    </div> -->
+
+    <div
+    class="col-xs-12 col-sm-6 col-md-4"
+    
+  >
+    <md-input-container [style.width]="'100%'">
+      <textarea
+        mdInput
+        textAreaValidator 
+        placeholder="{{
+          currentLanguageSet?.provisionalSelectedDiagnosis
+        }}"
+        rows="2"
+        name="psd"
+        required
+        minlength="4"
+        formControlName="selectedProvisionalDiagnosis"
+        maxlength="200"
+        readonly
+      ></textarea>
+      <!-- <md-hint>
+        <div *ngIf="psdT.hasError('minlength')">
+          {{ currentLanguageSet?.atLeastFourCharactersPlease }}
+        </div>
+        <div *ngIf="psdT.hasError('maxlength')">
+          {{ currentLanguageSet?.max100 }}
+        </div>
+      </md-hint> -->
+    </md-input-container>
+  </div>
+    <!-- <div  class="clearfix visible-sm"></div> -->
+    <div
+      class="col-xs-12 col-sm-6 col-md-4"
+      
+    >
+      <md-input-container [style.width]="'100%'">
+        <textarea
+          mdInput
+          textAreaValidator 
+          placeholder="{{ currentLanguageSet?.recommendedAction }}"
+          rows="2"
+          name="recommendedAction"
+          required
+          formControlName="recommendedAction"
+        ></textarea>
+      </md-input-container>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 m-t-10">
+      <md-input-container appName [style.width]="'100%'">
+        <textarea
+          mdInput
+          placeholder="{{ currentLanguageSet?.common?.remarks }}"
+          maxlength="300"
+          minlength="3"
+          required
+          name="remarks"
+          formControlName="remarks"
+        ></textarea>
+        <md-hint>
+          <span
+            *ngIf="cdssForm.controls.remarks.errors && cdssForm.controls.remarks.touched"
+            class="error_text"
+            >{{ currentLanguageSet?.enteratLeast3Characters }}</span
+          >
+          <span *ngIf="cdssForm.controls.remarks.dirty && cdssForm.controls.remarks.untouched">{{
+            currentLanguageSet?.max300CharectorsAllowed
+          }}</span>
+        </md-hint>
+      </md-input-container>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 m-t-6" style="margin-top: 28px;">
+      <md-select  
+      [style.width]="'100%'"
+      placeholder="{{currentLanguageSet?.action}}" 
+      name="action" 
+      required
+      formControlName="action"
+      (change)="getActionId()"
+      >
+      <md-option
+      *ngFor="let item of actions"
+      [value]="item.name"
+      > {{ item.name }}
+      </md-option>
+      </md-select>
+    </div>
+  </div>
+</form>
+<div class="row m-t-20" style="margin-bottom:30px;">
+  <div class="col-sm-12 step-btn" style="text-align: right">
+    <button md-raised-button color="primary" class="button-reset-disabled" (click)="resetForm()">{{currentLanguageSet?.common?.clear}}</button>
+    <button [disabled]="cdssForm.invalid" class="btn-green button-submit-disabled" color='primary'  md-raised-button (click)="saveData()">{{currentLanguageSet?.common?.submit}}</button>
+</div>
+</div>

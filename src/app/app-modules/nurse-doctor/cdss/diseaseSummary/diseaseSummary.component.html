@@ -1,14 +1,13 @@
 <form [formGroup]="DiseaseSummaryForm" autocomplete="off">
     <div class="row m-t-20">
-    <div class="col-xs-12 col-sm-6 col-md-4"  *ngIf="!viewMode">
+    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-top: -8px;"  *ngIf="!viewMode">
         <md2-autocomplete
-        m
-        class="m-b-20"
+        m 
         [items]="diseaseNames"
         [style.width]="'100%'"
         item-text="diseaseNames"
         item-value="diseaseNames"
-        class="pccStyle"
+        class="dropdownValueSubVisitCategory"
         formControlName="diseaseSummary"
         name="diseaseSummary"
         placeholder="{{ currentLanguageSet?.nurseData?.chiefComplaintsDetails?.diseaseSummary
@@ -34,8 +33,7 @@
   </md-input-container>
   </div>
     <div
-    class="col-xs-12 col-sm-6 col-md-4 m-t-7"
-  >
+    class="col-xs-12 col-sm-6 col-md-4 m-t-7" style="margin-bottom: 5px;">
     <md-input-container [style.width]="'100%'">
       <textarea
         mdInput
@@ -71,7 +69,7 @@
 
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4 m-t-10">
-    <md-input-container appName [style.width]="'100%'">
+    <md-input-container appName [style.width]="'100%'" style="margin-bottom: 10px;">
       <textarea
         mdInput
         placeholder="{{ currentLanguageSet?.common?.remarks }}"

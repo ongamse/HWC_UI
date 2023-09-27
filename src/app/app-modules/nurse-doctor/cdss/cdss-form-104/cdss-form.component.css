@@ -1,0 +1,25 @@
+.pccStyle {
+    /*border-bottom: 1px solid #ccc;*/
+    margin-top: 40px;
+  }
+  
+  .md2-autocomplete-trigger {
+    font-weight: bolder !important;
+    border-bottom: 1px solid #336CFB !important;
+  }
+  
+  tfoot>tr>td {
+    border-top: none!important;
+  }
+  .input-full-width {
+    width: 100%;
+  }
+  .scrolldiv{ 
+    width: 450px; height: 100px; 
+    overflow-x: hidden; overflow-y: auto; 
+    padding: 0px 10px 10px 0px; }
+
+    .button-submit-disabled[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      }
