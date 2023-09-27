@@ -2,8 +2,8 @@
     <div class="row m-t-20">
     <div class="col-xs-12 col-sm-6 col-md-4" style="margin-top: -8px;"  *ngIf="!viewMode">
         <md2-autocomplete
-        m 
         [items]="diseaseNames"
+        style="margin-top: 28px;"
         [style.width]="'100%'"
         item-text="diseaseNames"
         item-value="diseaseNames"
@@ -54,8 +54,9 @@
   class="col-xs-12 col-sm-6 col-md-4"
   
 >
-  <md-input-container [style.width]="'100%'">
+  <md-input-container style="margin-top: 6px;" [style.width]="'100%'">
     <textarea
+     
       mdInput
       textAreaValidator 
       placeholder="{{ currentLanguageSet?.recommendedAction }}"
