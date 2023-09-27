@@ -170,6 +170,7 @@ import { Referred104BeneficiaryDetailsComponent } from './cdss/referred-104-bene
 import { CDSSService } from './shared/services/cdss-service';
 import { DiseaseFormComponent } from './cdss/diseaseSummary/diseaseSummary.component';
 import { ViewDiseaseSummaryDetailsComponent } from './cdss/viewDiseaseSummaryDetails/viewDiseaseSummaryDet.component';
+import { Cdss104FormComponent } from './cdss/cdss-form-104/cdss-form.component';
 
 
 
@@ -310,6 +311,7 @@ import { ViewDiseaseSummaryDetailsComponent } from './cdss/viewDiseaseSummaryDet
     Referred104CdssDetailsComponent,
     CdssFormComponent,
     DiseaseFormComponent,
+    Cdss104FormComponent,
     ViewDiseaseSummaryDetailsComponent,
     CdssFormResultPopupComponent,
     Referred104BeneficiaryDetailsComponent

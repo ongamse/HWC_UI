@@ -21,6 +21,11 @@
     padding: 5px;
 }
 
+.col-xs-12{
+padding: 30px;
+}
+
+
 .table {
     margin-bottom: 0px;
 }

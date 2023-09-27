@@ -56,6 +56,7 @@
   
   .md2-autocomplete-trigger {
     font-weight: bolder !important;
+    border-bottom: 1px solid #336CFB !important;
   }
   
   tfoot>tr>td {
