@@ -86,6 +86,6 @@
     "tslint": "~5.3.2",
     "typescript": "^2.7.2"
   },
-  "repository": "https://github.com/PSMRI/HWC-UI"
+  "repository": "https://github.com/PSMRI/HWC-UI.git"
   
 }
