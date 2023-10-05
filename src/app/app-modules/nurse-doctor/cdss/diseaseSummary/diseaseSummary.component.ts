@@ -169,16 +169,34 @@ export class DiseaseFormComponent implements OnInit {
     }
   }
   getDiseaseSummaryDet(beneficiaryRegID, visitID) {
-    this.viewMode = true;
-    this.doctorService.getVisitComplaintDetails(beneficiaryRegID, visitID)
-      .subscribe(value => {
-        if (value != null && value != undefined && value.statusCode == 200 && 
-          value.data != null && value.data != undefined && value.data.Cdss.diseaseSummary != null && 
-          value.data.Cdss.diseaseSummary != undefined)
-          this.DiseaseSummaryForm.patchValue(value.data.Cdss.diseaseSummary);
-          this.DiseaseSummaryForm.controls.diseaseSummaryView.patchValue(value.data.Cdss.diseaseSummary.diseaseSummary);
-          this.disableVisit = true;
-      });
+    let visitCategory = localStorage.getItem('visitCategory');    
+    if(visitCategory == "General OPD (QC)"){
+      this.disableVisit=true;
+      this.viewMode = true;
+      this.doctorService.getVisitComplaintDetails(beneficiaryRegID, visitID)
+        .subscribe(value => {
+          if (value != null && value != undefined && value.statusCode == 200 && 
+              value.data != null && value.data != undefined && 
+              value.data.cdss != null && value.data.cdss != undefined )
+              this.disableVisit=true;
+              this.viewMode = true;
+            this.DiseaseSummaryForm.patchValue(value.data.cdss);
+            this.DiseaseSummaryForm.controls.diseaseSummaryView.patchValue(value.data.cdss.diseaseSummary);
+            // this.cdssForm.patchValue({ presentChiefComplaintView : value.data.Cdss.presentChiefComplaint.presentChiefComplaint});
+        });
+    }else{
+      this.viewMode = true;
+      this.doctorService.getVisitComplaintDetails(beneficiaryRegID, visitID)
+        .subscribe(value => {
+          if (value != null && value != undefined && value.statusCode == 200 && 
+            value.data != null && value.data != undefined && value.data.Cdss.diseaseSummary != null && 
+            value.data.Cdss.diseaseSummary != undefined)
+            this.DiseaseSummaryForm.patchValue(value.data.Cdss.diseaseSummary);
+            this.DiseaseSummaryForm.controls.diseaseSummaryView.patchValue(value.data.Cdss.diseaseSummary.diseaseSummary);
+            this.disableVisit = true;
+        });
+    }
+   
   }
 getDiseaseNames(){
   this.cdssService.getDiseaseName().subscribe(res => {
