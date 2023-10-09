@@ -1,8 +1,8 @@
 /*
-* AMRIT – Accessible Medical Records via Integrated Technology
-* Integrated EHR (Electronic Health Records) Solution
+* AMRIT – Accessible Medical Records via Integrated Technology 
+* Integrated EHR (Electronic Health Records) Solution 
 *
-* Copyright (C) "Piramal Swasthya Management and Research Institute"
+* Copyright (C) "Piramal Swasthya Management and Research Institute" 
 *
 * This file is part of AMRIT.
 *
@@ -25,16 +25,24 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 
+
+
+
 const commonIP = 'http://10.208.122.100:8080/';
 const identityIP = 'http://10.208.122.100:8080/';
 const tmIP = 'http://10.208.122.100:8080/';
 const IP104 = 'http://10.208.122.100:8080/';
+// const tmIP = 'http://localhost:8080/';
 const mmuIP = 'http://10.208.122.100:8080/';
 const schedulerIP = 'http://10.208.122.100:8080/';
 const adminIP = 'http://10.208.122.100:8080/';
 const FHIRIP ='http://10.208.122.100:8080/';
+
+// const SERVER_IP = '10.208.122.38';
+
 const SERVER_IP = "10.208.122.39";
-const SWYMED_IP = "14.143.13.109";
+
+const SWYMED_IP = "swymed://14.143.13.109";
 
 // With API MAN Configuration
 // const COMMON_API_OPEN = `http://${IP}:8080/apiman-gateway/IEMR/Common/open/`;
@@ -47,22 +55,22 @@ const SWYMED_IP = "14.143.13.109";
 const COMMON_API_OPEN = `${commonIP}/commonapi-v1.0/`;
 const COMMON_API = `${commonIP}/commonapi-v1.0/`;
 const IDENTITY_API = `${identityIP}/identity-0.0.1/`;
-// const COMMON_API_OPEN = `http://localhost:8080/`;
-// const COMMON_API = `http://localhost:8080/`;
+// const COMMON_API_OPEN = `http://localhost:8080/`;  
+// const COMMON_API = `http://localhost:8080/`;  
 const TM_API = `${tmIP}/hwc-facility-service-v1.1/`;
 // const TM_API = `${tmIP}/hwc-facility-service/`;
 
 const API104 = `${IP104}/104api-v1.0/`;
-// const TM_API = `http://localhost:8082/`;
+// const TM_API = `http://localhost:8082/`;   
 const MMU_API = `${mmuIP}/mmuapi-v1.0/`;
 const COMMON_API_OPEN_SYNC = `http://${SERVER_IP}:8080/commonapi-v1.0/`;
 const SCHEDULER_API = `${schedulerIP}/schedulerapi-v1.0/`;
 const mmuUICasesheet = "http://localhost:4200/";
 const ADMIN_API = `${adminIP}/adminapi-v1.0`;
 
-const biologicalScreeningDeviceAPI = `${ADMIN_API}/diagnostics/biologicalScreeningDevice`;
+const biologicalScreeningDeviceAPI = `${ADMIN_API}/diagnostics/biologicalScreeningDevice`; 
 
-const FHIR_API = `${FHIRIP}/fhirapi-v1.0/`;
+ const FHIR_API = `${FHIRIP}/fhirapi-v1.0/`;
 
 export const environment = {
   production: false,
@@ -241,9 +249,9 @@ export const environment = {
   getESanjeevaniDetailsUrl: `${COMMON_API}esanjeevani/getESanjeevaniUrl/`,
 
 
-
+ 
   previousVisitDataUrl:`${TM_API}common/getBenSymptomaticQuestionnaireDetails`,
-
+  
   /**
    * GENERAL OPD API URLs
    */
@@ -273,7 +281,7 @@ export const environment = {
   getNCDCareVisitDetailsUrl: `${TM_API}NCDCare/getBenVisitDetailsFrmNurseNCDCare`,
   getNCDCareHistoryDetailsUrl: `${TM_API}NCDCare/getBenNCDCareHistoryDetails`,
   getNCDCareVitalDetailsUrl: `${TM_API}NCDCare/getBenVitalDetailsFrmNurseNCDCare`,
-
+  
 
   /**
    * Covid-19 API Urls
@@ -373,7 +381,7 @@ export const environment = {
   cancelBeneficiaryTCRequestUrl: `${TM_API}tc/cancel/benTCRequest`,
   scheduleTCUrl: `${TM_API}tc/create/benTCRequestWithVisitCode`,
   beneficiaryTCRequestStatusUrl: `${TM_API}tc/check/benTCRequestStatus`,
-  swymedUrl: `swymed://${SWYMED_IP}`,
+  swymedUrl: `${SWYMED_IP}`,
   saveSpecialistCancerObservationUrl: `${TM_API}CS-cancerScreening/update/doctorData`,
   getSwymedMailLoginUrl: `${TM_API}videoConsultation/login/`,
   invokeSwymedCallUrl: `${TM_API}videoConsultation/call/`,
@@ -445,7 +453,7 @@ export const environment = {
 
   /*Get patient higher health facility previous clinical records */
   higherHealthFacilityPreviousVisitDeatilsUrl: `${FHIR_API}higher/health/facility/get/clinical/data`,
-
+  
   /*Calculate BMI for minors */
   calculateBmiStatus:  `${TM_API}common/calculateBMIStatus`,
 
@@ -497,7 +505,7 @@ export const environment = {
     saveDoctorFamilyPlanningDetails: `${TM_API}family-planning/save-family-planning-doctor-data`,
     getFamilyPlanningDoctorDetails: `${TM_API}family-planning/getBenCaseRecordFromDoctor`,
     updateFamilyPlanningDoctorDetails: `${TM_API}family-planning/update/doctorData`,
-
+    
     /* Neonatal And Infant Services Urls*/
     saveNurseNeonatalAndInfantDetails: `${TM_API}neonatal-infant-services/save/nurseData`,
     getBirthImmunizationHistoryDetailsUrl: `${TM_API}neonatal-infant-services/getBenHistoryDetails`,
@@ -527,7 +535,7 @@ export const environment = {
     updateBirthAndImmunizationHistoryDataUrl: `${TM_API}/child-adolescent-care/update/BirthAndImmunizationHistoryScreen`,
     getBirthImmunizationHistoryDataUrl: `${TM_API}/child-adolescent-care/getBenHistoryDetails`,
 
-    /* SWAASA Urls*/
+    /* SWAASA Urls*/ 
     getResultStatusURL: `${COMMON_API}lungAssessment/startAssesment`,
     getAssessmentUrl: `${COMMON_API}lungAssessment/getAssesment`,
     getAssessmentIdUrl: `${COMMON_API}lungAssessment/getAssesmentDetails`,

@@ -53,20 +53,20 @@ https://github.com/coreybutler/nvm-windows/releases
 Steps to download nvm and node: https://dev.to/skaytech/how-to-install-node-version-manager-nvm-for-windows-10-4nbi
 
 Install Node.js using below command:
-`nvm install 8.9.0`
+nvm install 8.9.0
 
 Check Node.js version:
-`node --version`
+node --version
 
 Check npm version:
-`npm --version`
+npm --version
 
 Using the below command to specify the version of npm that you wish to use. In our case, since we have only one version installed. Let's go with that.
- `nvm use 8.9.0`
+ nvm use 8.9.0
 
 * Angular CLI Installation
 Angular CLI is a command line tool for Angular. You can install it globally using npm with the following command:
-`npm install -g @angular/cli@1.7.0`
+npm install -g @angular/cli@1.7.0
 
 * Python Installation [ If you face any Python related error during node_modules installation]
 Download Python 2.7.12
@@ -101,21 +101,21 @@ C:\Users\ myFolder\AppData\Roaming\npm
 
 Note: After changing environment variables, please restart your system and check again.
 
+
 * Steps to clone and setup HWC-Facility-APP:
-1. Clone HWC-Facility-App from GitHub fork branch in your local system using below command:
-      `git clone <repository-url>`
+1. Clone HWC-Facility-App from git hub fork branch in your local system using below command:
+      git clone <repository-Url>
 
 2. Open hwc-facility-app project code in Visual Studio Code
 
 3. Navigate to your project folder and execute below command for node_modules installation:
-      `npm install`
+      npm install
 
-4. If you face any error related to ng2-smart-table, execute below command:
-      `npm install ng2-smart-table@1.2.1`
+4. If you face any error related to ng2-smart-table, execute below command: 
 
-5. Copy environment configuration. `cp src/environments/environment.ts src/environments/environment.local.ts`. Edit the endpoints, ports and IPs as per your local running services.
+      npm install ng2-smart-table@1.2.1
 
-6. Once node module is installed successfully, then run the project using below command:
+5. Once node module is installed successfully, then run the project using below command:
       ng serve
 
 By default your application will be available at ‘http://localhost:4200/’. You can access it in your browser.

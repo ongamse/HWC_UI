@@ -19,30 +19,48 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see https://www.gnu.org/licenses/.
 */
-module.exports = function(grunt) {
+// ./main.js
+const {app, BrowserWindow} = require('electron')
 
-  grunt.loadNpmTasks('grunt-war');
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    war: {
-      target: {
-        options: {
-          war_dist_folder: 'target',
-          /* Folder where to generate the WAR. */
-          war_name: 'tmui-v1.0',
-          /* The name fo the WAR file (.war will be the extension) */
-          webxml_display_name: 'tmui-v1.0',
-        },
-        files: [{
-          expand: true,
-          cwd: 'dist',
-          src: ['**'],
-          dest: ''
-        }]
-      }
-    }
+let win = null;
+
+app.on('ready', function () {
+
+  // Initialize the window to our specified dimensions
+  win = new BrowserWindow({
+    width: 1000,
+    height: 600,
+    backgroundColor: '#ffffff',
+    icon: `file://src/assets/images/MMULOGO.png`
   });
 
-  grunt.registerTask('default', ['war']);
-};
+  // Specify entry point
+  win.loadURL('http://localhost:4200');
+
+  // Show dev tools
+  // Remove this line before distributing
+  // win.webContents.openDevTools()
+
+  // Remove window once app is closed
+  win.on('closed', function () {
+    win = null;
+  });
+
+});
+
+app.on('activate', () => {
+  if (win === null) {
+    createWindow()
+  }
+})
+
+
+app.on('browser-window-created',function(e,window) {
+window.setMenu(null);
+});
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
