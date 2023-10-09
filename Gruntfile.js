@@ -1,8 +1,8 @@
 /*
-* AMRIT – Accessible Medical Records via Integrated Technology 
-* Integrated EHR (Electronic Health Records) Solution 
+* AMRIT – Accessible Medical Records via Integrated Technology
+* Integrated EHR (Electronic Health Records) Solution
 *
-* Copyright (C) "Piramal Swasthya Management and Research Institute" 
+* Copyright (C) "Piramal Swasthya Management and Research Institute"
 *
 * This file is part of AMRIT.
 *
@@ -20,19 +20,15 @@
 * along with this program.  If not, see https://www.gnu.org/licenses/.
 */
 module.exports = function(grunt) {
-
   grunt.loadNpmTasks('grunt-war');
-  // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     war: {
       target: {
         options: {
           war_dist_folder: 'target',
-          /* Folder where to generate the WAR. */
-          war_name: 'tmui-v1.0',
-          /* The name fo the WAR file (.war will be the extension) */
-          webxml_display_name: 'tmui-v1.0',
+          war_name: 'hwcui',
+          webxml_display_name: 'hwcui',
         },
         files: [{
           expand: true,
