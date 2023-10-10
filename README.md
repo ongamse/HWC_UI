@@ -30,7 +30,7 @@ This microservice is built on Java, Spring boot framework and MySQL DB.
 * HWC-API module should be running
 * JDK 1.8
 * Maven 
-* Nodejs
+* Nodejs v8.9.0
 
 
 ## Installation
@@ -121,10 +121,18 @@ Note: After changing environment variables, please restart your system and check
 By default your application will be available at ‘http://localhost:4200/’. You can access it in your browser.
 
 
-### Prerequisites 
-* Wildfly (or any compatible app server)
-* Redis
-* MySQL Database
+### Building war files
+
+1. To build deployable war files
+```bash
+mvn -B package --file pom.xml -P <profile_name>
+```
+
+The available profiles include dev, local, test, and ci.
+Refer to `src/environments/environment.ci.template` file and ensure that the right environment varaibles are set for the build.
+
+Packing with `ci` profile calls `build-ci` script in `package.json`.
+It creates a `environment.ci.ts` file with all environment variables used in the generared build.
 
 ## Integrations
 * Video Consultation

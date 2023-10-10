@@ -45,6 +45,12 @@
 				<environment>test</environment>
 			</properties>
 		</profile>
+    <profile>
+      <id>ci</id>
+      <properties>
+        <environment>ci</environment>
+      </properties>
+    </profile>
 	</profiles>
 
 	<!-- we could create individual properties similar to variables -->
@@ -53,6 +59,7 @@
 		<final-name>hwcui</final-name>
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+    <environment>${ENV_VAR}</environment>
 		<hostname-dev>10.208.122.32</hostname-dev>
 		<port-dev>9990</port-dev>
 		<hostname-local>localhost</hostname-local>
@@ -108,7 +115,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>npm-run-build-ci</id>
+						<id>npm-run-build</id>
 						<phase>compile</phase>
 						<goals>
 							<goal>exec</goal>
@@ -174,7 +181,7 @@
 				<version>1.8</version>
 				<executions>
 					<execution>
-						<id>properties-updated 1</id>
+						<id>properties-updated</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>run</goal>

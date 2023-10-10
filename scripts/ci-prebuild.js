@@ -39,6 +39,7 @@ const environmentTemplate = fs.readFileSync(
 
 const defaultEnvValues = {
   COMMON_API_BASE: '',
+  COMMON_API_OPEN_SYNC: '',
   IDENTITY_API_BASE: '',
   TM_API_BASE: '',
   HELPLINE104_API_BASE: '',
