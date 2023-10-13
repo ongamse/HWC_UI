@@ -164,6 +164,7 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     }
     
     const formGroupIndexed = <FormGroup>id.at(0);
+    this.filtergovIDs(aadharId,0);
     formGroupIndexed.patchValue({
       type: aadharId,
       idValue: this.registrarService.aadharNumberNew,
