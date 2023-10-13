@@ -46,6 +46,7 @@ import { SetLanguageComponent } from "app/app-modules/core/components/set-langua
 import { HealthIdOtpSuccessComponent } from "../../health-id-otp-generation/health-id-otp-generation.component";
 import { environment } from "environments/environment";
 import { ConsentFormComponent } from "../../consent-form/consent-form.component";
+import { BiometricAuthenticationComponent } from "../../biometric-authentication/biometric-authentication.component";
 @Component({
   selector: "register-other-details",
   templateUrl: "./register-other-details.component.html",
@@ -132,10 +133,45 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     this.setErrorMessageForID();
     this.setcheckBoxEnabledByDefault();
     this.loadMasterDataObservable();
-
+    
+    this.registrarService.abhaDetailDetails$.subscribe((result) => {
+      if(result === true){
+        this.patchDetails(); 
+      }
+      else if(!result){
+        this.otherDetailsForm.reset();
+      }
+      
+     })
     // this.httpServiceService.currentLangugae$.subscribe(response =>this.currentLanguageSet = response);
     //console.log(this.currentLanguageSet);
     //  console.log(this.patientRevisit,'revisit others');
+  }
+  patchDetails(){
+    
+    // this.otherDetailsForm.controls['healthId'].setValue(this.registrarService.abhaGenerateData.healthIdNumber);
+    const id = <FormArray>this.otherDetailsForm.controls["govID"];
+    let govIdValue = this.govIDMaster[0].govIdEntityMaster
+    let aadharId:any;
+    console.log(govIdValue);
+    if(govIdValue !=undefined && govIdValue != null){
+      for(let i = 0;i< govIdValue.length;i++) {
+        if(govIdValue[i].identityType === "Aadhar"){
+          aadharId = govIdValue[i].govtIdentityTypeID
+          break;
+        }
+      }
+    }
+    
+    const formGroupIndexed = <FormGroup>id.at(0);
+    this.filtergovIDs(aadharId,0);
+    formGroupIndexed.patchValue({
+      type: aadharId,
+      idValue: this.registrarService.aadharNumberNew,
+      allow: this.getAllowedGovChars(aadharId),
+    });
+    // this.loadMasterDataObservable();
+    // this.otherDetailsForm.controls.govID.value[0].idValue.setValue(this.registrarService.aadharNumberNew);
   }
 
   ngDoCheck() {
@@ -157,6 +193,10 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
     if (this.patientRevisit && this.revisitDataSubscription) {
       this.revisitDataSubscription.unsubscribe();
     }
+    this.registrarService.abhaGenerateData = null;
+    this.registrarService.aadharNumberNew = null;
+    this.registrarService.getabhaDetail(false);
+
   }
   alerting(control) {
     console.log(control, "a");
@@ -263,6 +303,8 @@ export class RegisterOtherDetailsComponent implements OnInit, OnDestroy {
           // console.log(res,'res other')
           this.masterData = Object.assign({}, res);
           this.govIDMaster[0] = Object.assign({}, res);
+          console.log("PK",this.govIDMaster[0])
+          // this.otherDetailsForm.controls['[govID].type'].setValue(this.govIDMaster[0].govIdEntityMaster[0])
           this.govLength = this.masterData.govIdEntityMaster.length;
           this.otherGovLength = this.masterData.otherGovIdEntityMaster.length;
           this.otherGovIDMaster[0] = Object.assign({}, res);
@@ -1314,7 +1356,7 @@ export class HealthIdValidateComponent implements OnInit {
         this.healthIdMode !== undefined &&
         this.healthIdMode !== null &&
         this.healthIdMode === "AADHAR"
-      )
+      ){
         this.healthIdMode = "AADHAAR";
       this.showProgressBar = true;
       let reqObj = {
@@ -1347,6 +1389,19 @@ export class HealthIdValidateComponent implements OnInit {
           this.confirmationValService.alert(this.currentLanguageSet.issueInGettingBeneficiaryABHADetails, "error");
         }
       );
+      } else if (this.healthIdMode !== undefined &&
+        this.healthIdMode !== null &&
+        this.healthIdMode === "BIOMETRIC"){
+          let mdDialogRef: MdDialogRef<BiometricAuthenticationComponent> = this.dialog.open(BiometricAuthenticationComponent,
+            {
+              width:"500px",
+              height:"320px",
+              disableClose: true,
+            }
+          );
+         mdDialogRef.afterClosed().subscribe((res) => {
+         });
+      }
     } else {
       this.showProgressBar = true;
       let reqObj = {

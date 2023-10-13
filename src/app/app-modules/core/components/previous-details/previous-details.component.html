@@ -15,7 +15,7 @@
       <table aria-describedby="title" [md2Data]="filteredDataList" #md2="md2DataTable" [rowsPerPage]="5" [activePage]="1" class="table table-striped">
         <thead>
           <tr class="column">
-            <th id="sno">SNo</th>
+            <th id="sno">{{current_language_set?.coreComponents?.sno}}</th>
             <th *ngFor="let column of columnList" id="columnName">{{ column.columnName }}</th>
           </tr>
         </thead>

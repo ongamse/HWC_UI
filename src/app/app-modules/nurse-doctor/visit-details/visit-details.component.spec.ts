@@ -23,7 +23,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MaterialModule } from '../../core/material.module';
 
 import { VisitDetailUtils } from '../shared/utility';
@@ -33,6 +33,7 @@ import { DoctorService } from '../shared/services';
 import { DoctorServiceStub } from '../shared/mocks/doctor-service-stub';
 
 import { VisitDetailsComponent } from './visit-details.component';
+import { CdssFormComponent } from '../cdss/cdss-form/cdss-form.component';
 
 describe('VisitDetailsComponent', () => {
   let component: VisitDetailsComponent;
@@ -42,13 +43,14 @@ describe('VisitDetailsComponent', () => {
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, ReactiveFormsModule, MaterialModule],
+      imports: [BrowserAnimationsModule, ReactiveFormsModule, MaterialModule,CdssFormComponent],
       declarations: [VisitDetailsComponent],
+      schemas: [NO_ERRORS_SCHEMA],
       providers: [
         ConfirmationService,
         { provide: DoctorService, useClass: DoctorServiceStub }
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      
     }).compileComponents();
   }));
 

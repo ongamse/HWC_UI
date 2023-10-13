@@ -421,7 +421,7 @@ export class ObstetricExaminationComponent implements OnInit {
         'testTime':todayDate,
         'motherLMPDate':newLmpDate,
         'motherName':this.beneficiary.beneficiaryName,
-        'fetosenseTestId':testId,
+        'foetalMonitorTestId':testId,
         'testName':testName,
         'vanID' : JSON.parse(localStorage.getItem('serviceLineDetails')).vanID,
         'ProviderServiceMapID':parseInt(localStorage.getItem('providerServiceID')),
@@ -484,7 +484,7 @@ export class ObstetricExaminationComponent implements OnInit {
 
   checkTestPrescribed(testValue) {
 
-   return this.prescribedTestArray.some((item) => item.fetosenseTestId === testValue)
+   return this.prescribedTestArray.some((item) => item.foetalMonitorTestId === testValue)
 
   }
 

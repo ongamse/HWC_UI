@@ -562,7 +562,7 @@
           </div>
           
         <div class="clearfix"></div>
-        <div class="col-xs-12 col-sm-6 col-md-3 box">
+        <div class="col-xs-12 col-sm-6 col-md-3 box" [hidden]="true">
           <md-form-field class="input-full-width">
             <input   maxlength="100" mdInput placeholder="{{currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctCode}}" [style.width]="'100%'" formControlName="snomedCode" readonly >
           </md-form-field>

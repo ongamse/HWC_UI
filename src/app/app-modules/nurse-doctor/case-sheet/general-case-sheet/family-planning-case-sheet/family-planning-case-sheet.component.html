@@ -9,7 +9,7 @@
     <div class="row m-t-10">
         <div class="col-xs-12">
             <fieldset>
-                <legend>Family Planning and Reproductive Details:</legend>
+                <legend>{{currentLanguageSet?.familyPlanningAndReproductiveDetails}}</legend>
                 <table class="table table-no-border casesheet-table" aria-describedby="familyPlanningTable">
                 <tbody>
                     <tr>
@@ -159,7 +159,7 @@
     <div class="row m-t-10">
         <div class="col-xs-12">
             <fieldset>
-                <legend>IEC And Counselling Details:</legend>
+                <legend>{{currentLanguageSet?.iecAndCounsellingDetails}}</legend>
                 <table class="table table-no-border casesheet-table" aria-describedby="iecCounsellingTable">
                     <tbody>
                         <tr>
@@ -203,7 +203,7 @@
     <div class="row m-t-10" *ngIf="enableFPDetails">
         <div class="col-xs-12">
             <fieldset>
-                <legend>Dispensation Details:</legend>
+                <legend>{{currentLanguageSet?.dispensationDetails}}</legend>
                 <table class="table table-no-border casesheet-table" aria-describedby="dispensationDetailsTable">
                     <tbody>
                         <tr>

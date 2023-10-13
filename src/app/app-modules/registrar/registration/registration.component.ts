@@ -45,6 +45,8 @@ import { HealthIdDisplayModalComponent } from 'app/app-modules/core/components/h
 import { SetLanguageComponent } from 'app/app-modules/core/components/set-language.component';
 import { ConsentFormComponent } from '../consent-form/consent-form.component';
 import {SearchFamilyComponent} from '../search-family/search-family.component';
+import { GenerateAbhaComponentComponent } from '../generate-abha-component/generate-abha-component.component';
+
 
 @Component({
   selector: 'app-registration',
@@ -98,6 +100,7 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
     private changeDetectorRef: ChangeDetectorRef,
     public httpServiceService: HttpServiceService,
     private dialog: MdDialog,
+    // public dialog: MdDialog,
   ) { }
 
   ngOnInit() {
@@ -148,7 +151,7 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
   }
 
   setHealthIdAfterGeneration(result) {
-    (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthId: result.healthId });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthId: result.healthIdNumber });
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthIdNumber: result.healthIdNumber });
 
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthId'].disable();
@@ -1542,9 +1545,6 @@ else
       
       }
     
-     
-      
-
   })
   }
 
@@ -1600,7 +1600,7 @@ else
     healthIdSearch(){
       let dialogRef = this.dialog.open(HealthIdValidateComponent, {
         height: '250px',
-        width: '420px',
+        width: '450px',
         disableClose: true,
         data: {
           "healthId": "NO",
@@ -1608,7 +1608,7 @@ else
         }
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('result', result)
+
         if (result) {
           if (result.clearHealthID === true) {
             (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthId'].patchValue(null);
@@ -1627,15 +1627,30 @@ else
         }
       });
     }
+
+
   
     printHealthIDCard() {
       this.genrateHealthIDCard = true;
       this.healthIdSearch();
     }
 
-    openHealthIDSearch() {
-      this.genrateHealthIDCard = false;
-      this.healthIdSearch();
+    // openHealthIDSearch() {
+    //   this.genrateHealthIDCard = false;
+    //   this.healthIdSearch();
+    // }
+    
+  
+    generateAbhaCard(){
+      let dialogRef = this.dialog.open(GenerateAbhaComponentComponent, {
+        height: '250px',
+        width: '420px',
+        disableClose: true,
+        
+      });
+      
     }
+
+    
     
 }

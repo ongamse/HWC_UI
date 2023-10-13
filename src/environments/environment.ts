@@ -28,15 +28,15 @@
 
 
 
-const commonIP = 'http://10.208.122.38:8080';
-const identityIP = 'http://10.208.122.38:8080/';
-const tmIP = 'http://10.208.122.38:8080/';
-const IP104 = 'http://10.208.122.38:8080/';
+const commonIP = 'http://10.208.122.100:8080/';
+const identityIP = 'http://10.208.122.100:8080/';
+const tmIP = 'http://10.208.122.100:8080/';
+const IP104 = 'http://10.208.122.100:8080/';
 // const tmIP = 'http://localhost:8080/';
-const mmuIP = 'http://10.208.122.38:8080/';
-const schedulerIP = 'http://10.208.122.38:8080/';
-const adminIP = 'http://10.208.122.38:8080/';
-const FHIRIP ='http://10.208.122.38:8080/';
+const mmuIP = 'http://10.208.122.100:8080/';
+const schedulerIP = 'http://10.208.122.100:8080/';
+const adminIP = 'http://10.208.122.100:8080/';
+const FHIRIP ='http://10.208.122.100:8080/';
 
 // const SERVER_IP = '10.208.122.38';
 
@@ -52,27 +52,26 @@ const SWYMED_IP = "swymed://14.143.13.109";
 // const SCHEDULER_API = `http://${IP}:8080/apiman-gateway/IEMR/Scheduling/1.0/`;
 
 // Without API MAN Configuration
-const COMMON_API_OPEN = `${commonIP}/commonapi-v1.2/`;
-const COMMON_API = `${commonIP}/commonapi-v1.2/`;
+const COMMON_API_OPEN = `${commonIP}/commonapi-v1.0/`;
+const COMMON_API = `${commonIP}/commonapi-v1.0/`;
 const IDENTITY_API = `${identityIP}/identity-0.0.1/`;
 // const COMMON_API_OPEN = `http://localhost:8080/`;  
 // const COMMON_API = `http://localhost:8080/`;  
-const TM_API = `${tmIP}/hwc-facility-service/`;
+const TM_API = `${tmIP}/hwc-facility-service-v1.1/`;
 // const TM_API = `${tmIP}/hwc-facility-service/`;
 
 const API104 = `${IP104}/104api-v1.0/`;
 // const TM_API = `http://localhost:8082/`;   
 const MMU_API = `${mmuIP}/mmuapi-v1.0/`;
-const COMMON_API_OPEN_SYNC = `http://${SERVER_IP}:8080/commonapi-v1.2/`;
+const COMMON_API_OPEN_SYNC = `http://${SERVER_IP}:8080/commonapi-v1.0/`;
 const SCHEDULER_API = `${schedulerIP}/schedulerapi-v1.0/`;
 const mmuUICasesheet = "http://localhost:4200/";
 const ADMIN_API = `${adminIP}/adminapi-v1.0`;
 
-const IOT_API = 'http://localhost:8085/ezdx-hub-connect-srv';
+const biologicalScreeningDeviceAPI = `${ADMIN_API}/diagnostics/biologicalScreeningDevice`; 
 
  const FHIR_API = `${FHIRIP}/fhirapi-v1.0/`;
-//const FHIR_API = `http://localhost:8080/`;http://14.98.169.68:8080/
-// 
+
 export const environment = {
   production: false,
   app: `MMU`,
@@ -244,9 +243,10 @@ export const environment = {
   updateANCHistoryDetailsUrl: `${TM_API}ANC/update/historyScreen`,
   updateANCExaminationDetailsUrl: `${TM_API}ANC/update/examinationScreen`,
 
-  /**ANC Fetosense API URLs */
-  savefetosenseTestDetailsUrl: `${TM_API}/fetosense/sendMotherTestDetailsToFetosense`,
-  getPrescribedFetosenseTests: `${TM_API}/fetosense/fetch/fetosenseDetails/`,
+  /**ANC foetalMonitor API URLs */
+  savefetosenseTestDetailsUrl: `${TM_API}/foetalMonitor/sendMotherTestDetailsToFoetalMonitor`,
+  getPrescribedFetosenseTests: `${TM_API}/foetalMonitor/fetch/foetalMonitorDetails/`,
+  getESanjeevaniDetailsUrl: `${COMMON_API}esanjeevani/getESanjeevaniUrl/`,
 
 
  
@@ -356,7 +356,7 @@ export const environment = {
   previousImmunizationServiceDataUrl: `${TM_API}common/getBenImmunizationServiceHistory`,
   /* */
   archivedReportsUrl: `${TM_API}labTechnician/get/labResultForVisitcode`,
-  ReportsBase64Url: `${TM_API}fetosense/fetch/reportGraphBase64`,
+  ReportsBase64Url: `${TM_API}foetalMonitor/fetch/reportGraphBase64`,
   previousMMUHistoryUrl: `${MMU_API}common/getBeneficiaryCaseSheetHistory`,
   previousTMHistoryUrl: `${TM_API}common/getBeneficiaryCaseSheetHistory`,
   previousMCTSHistoryUrl: `${COMMON_API}mctsOutboundHistoryController/getMctsCallHistory`,
@@ -400,11 +400,11 @@ export const environment = {
   //file upload
   saveFile: `${COMMON_API}kmfilemanager/addFile`,
   viewFileData: `${TM_API}common/getKMFile`,
-  ioturl: `${IOT_API}`,
-  deviceStatusurl: `${IOT_API}/api/v1/bluetooth/hub/connection_status`,
-  deviceDisconnectUrl:`${IOT_API}/api/v1/bluetooth/hub/disconnect`,
-  deviceBluetoothurl: `${IOT_API}/api/v1/bluetooth/service_discovery`,
-  connectdeviceBluetoothurl: `${IOT_API}/api/v1/bluetooth/hub_connection`,
+  ioturl: `${biologicalScreeningDeviceAPI}`,
+  deviceStatusurl: `${biologicalScreeningDeviceAPI}/api/v1/bluetooth/hub/connection_status`,
+  deviceDisconnectUrl:`${biologicalScreeningDeviceAPI}/api/v1/bluetooth/hub/disconnect`,
+  deviceBluetoothurl: `${biologicalScreeningDeviceAPI}/api/v1/bluetooth/service_discovery`,
+  connectdeviceBluetoothurl: `${biologicalScreeningDeviceAPI}/api/v1/bluetooth/hub_connection`,
 
   startWeighturl: "/api/v1/physical_tests/weight",
   startTempurl: "/api/v1/physical_tests/temperature",
@@ -536,9 +536,9 @@ export const environment = {
     getBirthImmunizationHistoryDataUrl: `${TM_API}/child-adolescent-care/getBenHistoryDetails`,
 
     /* SWAASA Urls*/ 
-    getResultStatusURL: `${COMMON_API}swaasa/startAssesment`,
-    getAssessmentUrl: `${COMMON_API}swaasa/getAssesment`,
-    getAssessmentIdUrl: `${COMMON_API}swaasa/getAssesmentDetails`,
+    getResultStatusURL: `${COMMON_API}lungAssessment/startAssesment`,
+    getAssessmentUrl: `${COMMON_API}lungAssessment/getAssesment`,
+    getAssessmentIdUrl: `${COMMON_API}lungAssessment/getAssesmentDetails`,
 
     /* CDSS Urls */
     getCdssQuestionsUrl: `${API104}CDSS/getQuestions`,
@@ -548,5 +548,7 @@ export const environment = {
     getActionMasterUrl: `${TM_API}uptsu/get/action-master`,
     closeVisitSaveComplaintsUrl: `${TM_API}uptsu/submit/closevisit`,
     getnurse104referredworklisturls: `${TM_API}uptsu/getWorklistByVanID`,
+    getDiseaseDataUrls: `${API104}diseaseController/getDiseasesByID`,
+    getDiseaseNamesUrls: `${API104}diseaseController/getAvailableDiseases`,
 
 };

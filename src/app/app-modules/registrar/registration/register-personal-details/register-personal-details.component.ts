@@ -579,8 +579,12 @@ export class RegisterPersonalDetailsComponent implements OnInit {
         valueEntered > this.ageLimit &&
         this.personalDetailsForm.value.ageUnit == "Years"
       ) {
+        // this.confirmationService.alert(
+        //   `Age can only be set between Today to ${this.ageLimit} Years`,
+        //   "info"
+        // );
         this.confirmationService.alert(
-          `Age can only be set between Today to ${this.ageLimit} Years`,
+          this.current_language_set.alerts.info.ageRestriction,
           "info"
         );
         this.personalDetailsForm.patchValue({ age: null });

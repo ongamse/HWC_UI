@@ -1,9 +1,7 @@
 <!--Birth and Immunization history starts-->
 <div class="container">
   <div class="row col-xs-12">
-    <h2 class="text-center">
-      Birth & Immunization History
-    </h2>
+    <h2 class="text-center">{{ currentLanguageSet?.birthImmunizationHistory }}</h2>
     <hr />
   </div>
 
@@ -11,7 +9,7 @@
   <div class="row m-t-10">
     <div class="col-xs-12">
       <fieldset>
-        <legend>{{currentLanguageSet?.infantBirthDetails}}:</legend>
+        <legend>{{ currentLanguageSet?.infantBirthDetails }}</legend>
         <table class="table table-no-border casesheet-table" aria-describedby="infantBirthDetailsTable">
           <tbody>
             <tr *ngIf="visitCategory?.toLowerCase() == 'childhood & adolescent healthcare services'">
@@ -131,12 +129,12 @@
               </tr>
               <tr>
                 <th id="vaccine">
-                  Vaccine Name:
+                  {{currentLanguageSet?.vaccineName}}
                 </th>
                 <td>{{ immunization.vaccine !== '' ? immunization.vaccine : 'NA' }}</td>
 
                 <th id="vaccinationReceivedAt">
-                  Vaccination Recevied At:
+                  {{currentLanguageSet?.vaccinationReceviedAt}}
                 </th>
                 <td>{{ immunization.vaccinationReceivedAt !== undefined ? immunization.vaccinationReceivedAt : 'NA' }}</td>
               </tr>
@@ -154,7 +152,7 @@
 <div class="container">
   <div class="row col-xs-12">
     <h2 class="text-center">
-      Immunization Services
+      {{currentLanguageSet?.immunizationServices}}
     </h2>
     <hr />
   </div>
@@ -191,25 +189,25 @@
             <ng-container *ngFor="let vaccine of serviceVaccinetaken">
               <tr>
                 <th id="vaccineName">
-                  Vaccine Name:
+                  {{currentLanguageSet?.vaccineName}}
                 </th>
                 <td>{{ vaccine.vaccine }}</td>
                 <th id="vaccineDose">
-                  Vaccine Dose:
+                  {{currentLanguageSet?.vaccineDose}}
                 </th>
                 <td>{{ vaccine.vaccineDose }}</td>
                 <th id="siteOfInjection">
-                  Site Of Injection:
+                  {{currentLanguageSet?.siteOfInjection}}
                 </th>
                 <td>{{ vaccine.siteOfInjection }}</td>
               </tr>
               <tr>
                 <th id="route">
-                  Route:
+                  {{currentLanguageSet?.Prescription?.Route}}
                 </th>
                 <td>{{ vaccine.route }}</td>
                 <th id="batchNo">
-                  Batch No:
+                  {{currentLanguageSet?.batchNo}}
                 </th>
                 <td>{{ vaccine.batchNo }}</td>
               </tr>
@@ -228,7 +226,8 @@
 <div class="container">
   <div class="row col-xs-12">
     <h2 class="text-center">
-      Follow up For Immunization
+      
+      {{currentLanguageSet?.alerts?.followUpImmunization}}
     </h2>
     <hr />
     <div class="col-xs-12">

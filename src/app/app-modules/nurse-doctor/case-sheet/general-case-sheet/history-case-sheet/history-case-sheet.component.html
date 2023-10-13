@@ -149,8 +149,8 @@
               {{ current_language_set?.common?.disease }}
             </th>
             <th style="width: 40%" id="fMembers">{{current_language_set?.historyData?.cancerScreeningHistory?.familyMedical?.familyMembers}}</th>
-            <th style="width: 15%" id="sCode">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctCode}}</th>
-            <th style="width: 15%" id="sterm">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctTerm}}</th>
+            <!-- <th style="width: 15%" id="sCode">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctCode}}</th> -->
+            <!-- <th style="width: 15%" id="sterm">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctTerm}}</th> -->
           </tr>
         </thead>
         <tbody
@@ -253,7 +253,7 @@
                   ?.otherVaccineName
               }}
             </th>
-            <th id="sctCode">
+            <!-- <th id="sctCode">
               {{
                 current_language_set?.historyData?.opd_NCD_PNCHistory
                   ?.otherVaccine?.sctCode
@@ -264,7 +264,7 @@
                 current_language_set?.historyData?.opd_NCD_PNCHistory
                   ?.otherVaccine?.sctTerm
               }}
-            </th>
+            </th> -->
             <th id="ageatReceived">
               {{
                 current_language_set?.historyData?.opd_NCD_PNCHistory
@@ -300,8 +300,8 @@
           <td style="width: 10px">{{ i + 1 }}</td>
             <td>{{ childOptionalVaccine.vaccineName }}</td>
             <td>{{ childOptionalVaccine.otherVaccineName }}</td>
-            <td>{{ childOptionalVaccine.sctCode }}</td>
-            <td>{{ childOptionalVaccine.sctTerm }}</td>
+            <!-- <td>{{ childOptionalVaccine.sctCode }}</td>
+            <td>{{ childOptionalVaccine.sctTerm }}</td> -->
             <td>{{ childOptionalVaccine.actualReceivingAge }}</td>
             <td>{{ childOptionalVaccine.receivedFacilityName }}</td>
           </tr>
@@ -791,7 +791,7 @@
                   ?.immunization?.Vaccines
               }}:
             </th>
-            <th id="sctCode">
+            <!-- <th id="sctCode">
               {{
                 current_language_set?.historyData?.opd_NCD_PNCHistory
                   ?.immunization?.sctCode
@@ -802,7 +802,7 @@
                 current_language_set?.historyData?.opd_NCD_PNCHistory
                   ?.immunization?.sctTerm
               }}:
-            </th>
+            </th> -->
             <th id="Status">
               {{
                 current_language_set?.historyData?.opd_NCD_PNCHistory
@@ -834,8 +834,8 @@
             </tr>
             <tr *ngFor="let vaccine of immunization?.vaccines">
               <td>{{ vaccine.vaccine }}</td>
-              <td>{{ vaccine.sctCode }}</td>
-              <td>{{ vaccine.sctTerm }}</td>
+              <!-- <td>{{ vaccine.sctCode }}</td>
+              <td>{{ vaccine.sctTerm }}</td> -->
               <td>
                 <md-checkbox [checked]="vaccine.status" disabled></md-checkbox>
               </td>
@@ -938,8 +938,8 @@
                   ?.allergenName
               }}
             </th>
-            <th style="width: 20%" id="sCode">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctCode}}</th>
-            <th style="width: 20%" id="sTerm">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctTerm}}</th>
+            <!-- <th style="width: 20%" id="sCode">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctCode}}</th>
+            <th style="width: 20%" id="sTerm">{{current_language_set?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctTerm}}</th> -->
             <th style="width: 40%" id="">
               {{
                 current_language_set?.historyData?.ancHistory
@@ -962,9 +962,9 @@
           >
             <td>{{ i + 1 }}</td>
             <td>{{ allergy.allergyType }}</td>
-            <td>{{allergy.snomedTerm}}</td>
+            <!-- <td>{{allergy.snomedTerm}}</td>
             <td>{{allergy.snomedCode}}</td>
-            <td>{{allergy.snomedTerm}}</td>
+            <td>{{allergy.snomedTerm}}</td> -->
             <td>{{ allergy.allergicReactionType }}</td>
           </tr>
         </tbody>

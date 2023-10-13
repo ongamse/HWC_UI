@@ -6,9 +6,9 @@
         <!-- <md-card class="min-height: 240px"> -->
           <div class="row m-t-20 min-height: 240px">
               <ul class="list-unstyled list-inline text-center" *ngFor="let service of servicesList">
-                 <label>Welcome</label>
+                 <label>{{ currentLanguageSet?.welcome }}</label>
                  <label style="font-size: 18px; font-weight: 550">&nbsp;{{this.fullName}}</label>
-                  <div class="note">Click on service to proceed</div>
+                  <div class="note">{{ currentLanguageSet?.clickonServiceToProceed }}</div>
                     <li class="width310px" (click)="selectService(service)">
                       <div  style="margin-top: 30px">
                         <ul class="list-unstyled text-center p-t-15">

@@ -59,6 +59,7 @@
                 </button>
                 <button
                   *ngIf="
+                    !showESanjeevaniBtn &&
                     !isSpecialist &&
                     visitCategory != null &&
                     visitCategory != undefined
@@ -71,6 +72,23 @@
                 >
                   {{ schedulerButton }}
                 </button>
+
+                <button
+                  *ngIf="
+                    showESanjeevaniBtn &&
+                    !isSpecialist &&
+                    visitCategory != null &&
+                    visitCategory != undefined
+                  "
+                  md-raised-button
+                  class="btn-green"
+                  color="primary"
+                  type="button"
+                  (click)="openEsanjeevaniPortal()"
+                >
+                  E-Sanjeevani
+                </button>
+
                 <button
                   *ngIf="isSpecialist"
                   md-raised-button
@@ -649,7 +667,7 @@
           </md-step>
 
           <md-step *ngIf="showFollowUpImmunization" label="Follow Up for Immunization">
-            <ng-template mdStepLabel>Follow Up for Immunization</ng-template>
+            <ng-template mdStepLabel>{{current_language_set?.alerts?.followUpImmunization}}</ng-template>
             <app-follow-up-for-immunization [followUpImmunizationMode]="followUpImmunizationMode" [visitCategory]="visitCategory"
             [patientFollowUpImmunizationForm]="patientMedicalForm.controls.patientFollowUpImmunizationForm" ></app-follow-up-for-immunization>
             <div class="row m-t-20">

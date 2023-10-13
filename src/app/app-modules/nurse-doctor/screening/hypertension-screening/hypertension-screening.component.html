@@ -32,7 +32,7 @@
           [checked]="isHypertensionSuspected"
           (change)="markAsUnsuspected($event.checked)"
           ></md-checkbox>
-          <label style="color: grey; margin-bottom: 15px">Mark as suspected</label>
+          <label style="color: grey; margin-bottom: 15px">{{ currentLanguageSet?.MarkAsSuspected }}</label>
       </div>
     </div>
     <div class="row m-t-5">
@@ -282,7 +282,7 @@
           [disabled]="disableStatusButton"
           color="primary"
         >
-          Find Status
+        {{ currentLanguageSet?.findStatus }}
         </button>
       </div>
     </div>

@@ -25,16 +25,16 @@
             {{ currentLanguageSet?.previousvisit?.visitcodemmu }}
           </th>
           <th style="width: 15%" id="vitalDetails">
-            Vital Details
+            {{currentLanguageSet?.vitalDetails}}
           </th>
-          <th style="width: 15%" id="diagnosis">
-            Diagnosis
+          <th style="width: 20%" id="diagnosis">
+            {{currentLanguageSet?.diagnosis}}
           </th>
           <th style="width: 30%" id="investigations">
-            Investigations
+            {{currentLanguageSet?.nurseData?.investigationsDetails?.investigations}}
           </th>
           <th style="width: 30%" id="presciption" >
-            prescription
+            {{currentLanguageSet?.casesheet?.prescribe}}
           </th>
           
         </tr>
@@ -108,7 +108,7 @@
                       <ng-container *ngIf="visit.benPreviousData.nurseData.vitals.benAnthropometryDetail">
                         <tr>
                           <th>
-                            Height :
+                            {{ currentLanguageSet?.vitalsDetails?.AnthropometryDataANC_OPD_NCD_PNC?.height }} :
                           </th>
                           <td>
                             {{ visit.benPreviousData?.nurseData?.vitals?.benAnthropometryDetail?.height_cm || 'NA' }}
@@ -116,7 +116,7 @@
                         </tr>
                         <tr>
                           <th>
-                            Weight : 
+                            {{ currentLanguageSet?.vitalsDetails?.AnthropometryDataANC_OPD_NCD_PNC?.weight }} : 
                           </th>
                           <td>
                             {{ visit.benPreviousData?.nurseData?.vitals?.benAnthropometryDetail?.weight_Kg || 'NA' }}
@@ -124,7 +124,7 @@
                         </tr>
                         <tr>
                           <th>
-                            BMI : 
+                            {{ currentLanguageSet?.vitalsDetails?.AnthropometryDataANC_OPD_NCD_PNC?.BMI }} : 
                           </th>
                           <td>
                             {{ visit.benPreviousData?.nurseData?.vitals?.benAnthropometryDetail?.bMI || 'NA' }}
@@ -132,7 +132,7 @@
                         </tr>
                         <tr>
                           <th>
-                            Temperature (F) : 
+                            {{ currentLanguageSet?.vitalsDetails?.vitalsDataANC_OPD_NCD_PNC?.temperature }} : 
                           </th>
                           <td>
                             {{ visit.benPreviousData?.nurseData?.vitals?.benAnthropometryDetail?.temperature || 'NA' }}
@@ -140,7 +140,7 @@
                         </tr>
                         <tr>
                           <th>
-                            Pulse Rate (bpm) : 
+                            {{ currentLanguageSet?.vitalsDetails?.vitalsDataANC_OPD_NCD_PNC?.pulseRate }} : 
                           </th>
                           <td>
                             {{ visit.benPreviousData?.nurseData?.vitals?.benAnthropometryDetail?.pulseRate || 'NA' }}
@@ -154,7 +154,7 @@
               </td>
               <td
                 style="
-                  width: 110px;
+                  width: 120px;
                   word-break: normal;
                   vertical-align: middle;
                 "
@@ -166,23 +166,23 @@
                       <ng-container *ngIf="visit.benPreviousData.doctorData.diagnosis">
                         <tr>
                           <th>
-                            Diagnosis Provided :
+                            {{ currentLanguageSet?.diagnosisProvided }} :
                           </th>
                           <td>
                             {{ visit.benPreviousData?.doctorData?.diagnosis?.diagnosisProvided || 'NA' }}
                           </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <th>
                             SCT code : 
                           </th>
                           <td>
                             {{ visit.benPreviousData?.doctorData?.diagnosis?.diagnosisProvided_SCTCode || 'NA' }}
                           </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <th>
-                            Provisional Diagnosis List : 
+                            {{ currentLanguageSet?.provisionalDiagnosisList }} : 
                           </th>
                           <td>
                             <ng-container *ngIf="visit.benPreviousData?.doctorData?.diagnosis?.provisionalDiagnosisList" >
@@ -223,7 +223,7 @@
                           
                         </th> -->
                         <ng-container *ngFor="let component of investigation.componentList">
-                              <li>Component Name : {{ component?.componentName || '-' }}, Test Result : {{ component?.testResultValue || '-' }} {{ component.testResultUnit }}</li>
+                              <li>{{ currentLanguageSet?.casesheet?.componentName }} : {{ component?.componentName || '-' }}, {{ currentLanguageSet?.casesheet?.testResult }} : {{ component?.testResultValue || '-' }} {{ component.testResultUnit }}</li>
                             <!-- <td>
                               {{ component?.componentName || '-' }}
                             </td>
@@ -263,9 +263,9 @@
                         <!-- </th> -->
                         <!-- <td> -->
                           <ng-container>
-                              <li>Dose : {{ presciption.dose || '-' }}</li> 
-                              <li>Frequency : {{ presciption.frequency || '-' }}</li> 
-                              <li>Duration : {{ presciption.duration || '-' }} - {{ presciption.unit || '-' }}</li>
+                              <li>{{ currentLanguageSet?.casesheet?.dose }} : {{ presciption.dose || '-' }}</li> 
+                              <li>{{ currentLanguageSet?.casesheet?.freq }} : {{ presciption.frequency || '-' }}</li> 
+                              <li>{{ currentLanguageSet?.DurationData?.duration }} : {{ presciption.duration || '-' }} - {{ presciption.unit || '-' }}</li>
                             <!-- <td>
                               
                             </td> -->
@@ -340,7 +340,16 @@
         </ng-container>
       </tbody>
       <tfoot>
-        <tr *ngIf="previousVisitData?.length > 0">
+        
+        <tr>
+          <td colspan="2">
+            <div class="totalCount" *ngIf="previousHistoryPagedList?.length > 0">
+              {{ currentLanguageSet?.common?.totalCount }} :
+              {{ previousHistoryPagedList.length }}
+            </div>
+          </td>
+        </tr>
+        <!-- <tr *ngIf="previousVisitData?.length > 0">
           <td colspan="2">
             <div class="totalCount">
               {{ currentLanguageSet?.common?.totalCount }} :
@@ -362,8 +371,8 @@
               firstText="&laquo;"
               lastText="&raquo;"
             ></pagination>
-          </td>
-        </tr>
+          </td> -->
+        <!-- </tr>  -->
       </tfoot>
     </table>
     </div>

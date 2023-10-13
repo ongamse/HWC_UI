@@ -15,7 +15,7 @@
 >
   <div class="col-xs-12">
     <fieldset>
-      <legend>Screening</legend>
+      <legend>{{ currentLanguageSet?.idrs?.screening }}:</legend>
 
       <div>
         <strong>{{ currentLanguageSet?.cbacScore }}:</strong>
@@ -37,19 +37,19 @@
         </th>
         <div class="btn-group">
           <button md-raised-button disabled *ngIf="diabetesConfirmed">
-            Diabetes Mellitus
+            {{ currentLanguageSet?.diabetesMellitus }}:
           </button>
           <button md-raised-button disabled *ngIf="hypertensionConfirmed">
-            Hypertension
+            {{ currentLanguageSet?.hypertension }}:
           </button>
           <button md-raised-button disabled *ngIf="breastCancerConfirmed">
-            Breast cancer
+            {{ currentLanguageSet?.breastCancer }}:
           </button>
           <button md-raised-button disabled *ngIf="oralCancerConfirmed">
-            Oral cancer
+            {{ currentLanguageSet?.oralCancer }}:
           </button>
           <button md-raised-button disabled *ngIf="cervicalCancerConfirmed">
-            Cervical cancer
+            {{ currentLanguageSet?.cervicalCancer }}:
           </button>
         </div>
       </div>
@@ -69,26 +69,26 @@
           "
         >
             <button md-raised-button disabled *ngIf="diabetesConfirmed === false && diabetesSuspected === true">
-              Diabetes Mellitus
+              {{ currentLanguageSet?.diabetesMellitus }}:
             </button>
             <button md-raised-button disabled *ngIf="hypertensionConfirmed === false && hypertensionSuspected === true">
-              Hypertension
+              {{ currentLanguageSet?.hypertension }}:
             </button>
             <button md-raised-button disabled *ngIf="breastCancerConfirmed === false && breastSuspected === true">
-              Breast cancer
+              {{ currentLanguageSet?.breastCancer }}:
             </button>
             <button md-raised-button disabled *ngIf="oralCancerConfirmed === false && oralSuspected === true">
-              Oral cancer
+              {{ currentLanguageSet?.oralCancer }}:
             </button>
             <button md-raised-button disabled *ngIf="cervicalCancerConfirmed === false && cervicalSuspected === true">
-              Cervical cancer
+              {{ currentLanguageSet?.cervicalCancer }}:
             </button>
         </div>
       </div>
       <!-- Diabetes Screening Starts-->
       <div class="row m-t-10" *ngIf="enableDiabetesForm">
         <div class="col-xs-12">
-          <h4>Diabetes Screening:</h4>
+          <h4>{{ currentLanguageSet?.diabetesScreening }}:</h4>
         </div>
         <div class="col-xs-12">
           <table
@@ -117,7 +117,7 @@
       <!-- Hypertension Screening Starts-->
       <div class="row m-t-10" *ngIf="enableHypertensionForm">
         <div class="col-xs-12">
-          <h4>Hypertension Screening:</h4>
+          <h4>{{ diabetesCasesheet?.hypertensionScreening }}:</h4>
         </div>
         <div class="col-xs-12">
           <table
@@ -164,7 +164,7 @@
       <!-- Oral Cancer Screening Starts-->
       <div class="row m-t-10" *ngIf="enableOralForm">
         <div class="col-xs-12">
-          <h4>Oral Cancer Screening:</h4>
+          <h4>{{ currentLanguageSet?.oralCancerScreening }}:</h4>
         </div>
         <div class="col-xs-12">
           <table
@@ -209,7 +209,7 @@
       <!-- Breast Cancer Screening Starts-->
       <div class="row m-t-10" *ngIf="enableBreastForm">
         <div class="col-xs-12">
-          <h4>Breast Cancer Screening:</h4>
+          <h4>{{ currentLanguageSet?.breastCancerScreening }}:</h4>
         </div>
         <div class="col-xs-12">
           <table
@@ -242,7 +242,7 @@
       <!-- Cervical Cancer Screening Starts-->
       <div class="row m-t-10" *ngIf="enableCervicalForm">
         <div class="col-xs-12">
-          <h4>Cervical Cancer Screening:</h4>
+          <h4>{{ currentLanguageSet?.cervicalCancerScreening }}:</h4>
         </div>
         <div class="col-xs-12">
           <table

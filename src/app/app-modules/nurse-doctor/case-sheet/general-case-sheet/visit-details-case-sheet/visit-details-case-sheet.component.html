@@ -2,7 +2,7 @@
 <div class="row m-t-10" *ngIf="visitDetailsCasesheet?.visitReason == 'Follow Up' || (ncdVisitDetails?.VisitReason == 'Follow Up' && visitCategory === 'NCD care')">
     <div class="col-xs-12">
         <fieldset>
-            <legend>Visit Details:</legend>
+            <legend>{{currentLanguageSet?.nurseData?.visitDetails}}:</legend>
                 <table class="table table-no-border casesheet-table" aria-describedby="visitDetailsTbl">
                     <tr *ngIf="visitDetailsCasesheet?.visitReason == 'Follow Up' && visitCategory === 'FP & Contraceptive Services'">
                     <th id="visitReason">

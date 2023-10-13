@@ -301,9 +301,9 @@ export class EditFamilyTaggingComponent implements OnInit {
       });
       if(familymembers.includes("Self") && typeOfRelation[0].benRelationshipType.toLowerCase() === "self" && 
       this.selectedMembersList.length > 0 && headName.trim().toLowerCase() !== this.selectedMembersList[0].memberName.trim().toLowerCase())
-          this.confirmationService.alert("Head of the Family is already present. Please, remove the existing head to continue", "Info");
+          this.confirmationService.alert(this.currentLanguageSet.HeadOfTheFamilyAlreadyPresentRemoveExistingAndContinue, "Info");
           else if (familymembers.includes("Self") && typeOfRelation[0].benRelationshipType.toLowerCase() === "self" && this.selectedMembersList.length == 0){
-            this.confirmationService.alert("Head of the Family is already present. Please, remove the existing head.", "Info");
+            this.confirmationService.alert(this.currentLanguageSet.HeadOfTheFamilyAlreadyPresentRemoveExisting, "Info");
           }
      else {
 

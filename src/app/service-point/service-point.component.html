@@ -16,39 +16,40 @@
             <!-- </div> -->
             <!-- <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"> -->
               <!-- <div class="select-container"> -->
-              
+<!--               
                 <md-select [style.width]=" '100%' " class="alignField"
                   placeholder="{{current_language_set?.ro?.locInfo?.state}}" [(ngModel)]="stateID" name="stateID" stateID="ngModel" [required]="true" (change)="fetchDistrictsOnStateSelection(stateID)">
                   <md-option *ngFor="let state of statesList" [value]="state.stateID" (click)="setStateName(state.stateName)">{{state.stateName }}
                   </md-option>
-                </md-select>
+                </md-select> -->
+
               <!-- </div> -->
               <!-- <div class="select-container"> -->
-                <md-select [style.width]=" '100%' " class="alignField"
+                <!-- <md-select [style.width]=" '100%' " class="alignField"
                   placeholder="{{current_language_set?.ro?.locInfo?.district_Town_City}}" [(ngModel)]="districtID" name="districtID" districtID="ngModel"   [required]="true" (change)="fetchSubDistrictsOnDistrictSelection(districtID)">
                   <md-option *ngFor="let district of districtList" [value]="district" >{{district.districtName }}
                   </md-option>
-                </md-select>
+                </md-select> -->
               <!-- </div> -->
               <!-- <div class="select-container"> -->
-                <md-select [style.width]=" '100%' " class="alignField"
+                <!-- <md-select [style.width]=" '100%' " class="alignField"
                   placeholder={{current_language_set?.ro?.locInfo?.taluk}} [(ngModel)]="blockID" name="blockID" blockID="ngModel" [required]="true" (change)="onSubDistrictChange(blockID)">
                   <md-option *ngFor="let taluk of subDistrictList" [value]="taluk" >{{taluk.blockName }}
                   </md-option>
-                </md-select>
+                </md-select> -->
               <!-- </div> -->
               <!-- <div class="select-container"> -->
-                <md-select [style.width]=" '100%' " class="alignField"
+                <!-- <md-select [style.width]=" '100%' " class="alignField"
                   placeholder="{{current_language_set?.ro?.locInfo?.street}}" [(ngModel)]="districtBranchID" name="districtBranchID" districtBranchID="ngModel" [required]="true" >
                   <md-option *ngFor="let street of villageList" [value]="street" >{{street.villageName }}
                   </md-option>
-                </md-select>
+                </md-select> -->
               <!-- </div> -->
             </div>
                     
             <md-card-actions align="center">
               <button md-raised-button color="primary" class="pull-right p-l-r-38 font-regular f-s-18 button-overall-disabled"
-              [disabled]="!f.valid" (click)="saveLocationDataToStorage()"
+              [disabled]="!f.valid" (click)="getDemographics()"
                 >{{current_language_set?.spoke_selection?.continue}}</button>
             </md-card-actions>
           </form>

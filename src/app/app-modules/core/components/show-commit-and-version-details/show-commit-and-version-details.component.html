@@ -1,5 +1,5 @@
 <div class="row title">
-  <h4>Version Details</h4>
+  <h4>{{ currentLanguageSet?.versionDetails }}</h4>
   <button class="pull-right exit" [mdDialogClose]="true" md-icon-button>
     <md-icon class="md-24">close</md-icon>
   </button>
@@ -11,18 +11,18 @@
         <thead>
           <tr>
             <th id="empty"></th>
-            <th id="api">API</th>
-            <th id="ui">UI</th>
+            <th id="api">{{ currentLanguageSet?.api }}</th>
+            <th id="ui">{{ currentLanguageSet?.ui }}</th>
           </tr>
         </thead>
         <tbody>
           <tr class="table-hover">
-            <th id="vesrion">Version</th>
+            <th id="vesrion">{{ currentLanguageSet?.version }}</th>
             <td> {{input.commitDetailsAPI.version}}</td>
             <td>{{input.commitDetailsUI.version}} </td>
           </tr>
           <tr class="table-hover">
-            <th id="commit">Commit</th>
+            <th id="commit">{{ currentLanguageSet?.commit }}</th>
             <td> {{input.commitDetailsAPI.commit}}</td>
             <td>{{input.commitDetailsUI.commit}} </td>
           </tr>

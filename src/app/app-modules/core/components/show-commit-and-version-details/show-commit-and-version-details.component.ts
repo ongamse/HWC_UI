@@ -21,6 +21,8 @@
 */
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { HttpServiceService } from '../../services/http-service.service';
+import { SetLanguageComponent } from '../set-language.component';
 
 @Component({
   selector: 'app-show-commit-and-version-details',
@@ -28,13 +30,21 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./show-commit-and-version-details.component.css']
 })
 export class ShowCommitAndVersionDetailsComponent implements OnInit {
-
+  currentLanguageSet: any;
   constructor(@Inject(MD_DIALOG_DATA) public input: any,
-    public dialogRef: MdDialogRef<ShowCommitAndVersionDetailsComponent>,) { }
+    public dialogRef: MdDialogRef<ShowCommitAndVersionDetailsComponent>,
+    public httpServiceService: HttpServiceService) { }
 
   ngOnInit() {
+    this.assignSelectedLanguage();
     console.log('input',this.input);
     
+  }
+
+  assignSelectedLanguage() {
+    const getLanguageJson = new SetLanguageComponent(this.httpServiceService);
+    getLanguageJson.setLanguage();
+    this.currentLanguageSet = getLanguageJson.currentLanguageObject;
   }
 
 }

@@ -1,0 +1,95 @@
+<form [formGroup]="DiseaseSummaryForm" autocomplete="off">
+    <div class="row m-t-20">
+    <div class="col-xs-12 col-sm-6 col-md-4" style="margin-top: -8px;"  *ngIf="!viewMode">
+        <md2-autocomplete
+        [items]="diseaseNames"
+        style="margin-top: 28px;"
+        [style.width]="'100%'"
+        item-text="diseaseNames"
+        item-value="diseaseNames"
+        class="dropdownValueSubVisitCategory"
+        formControlName="diseaseSummary"
+        name="diseaseSummary"
+        placeholder="{{ currentLanguageSet?.nurseData?.chiefComplaintsDetails?.diseaseSummary
+         }} "
+        (change)="showDiseaseSummary(DiseaseSummaryForm.controls.diseaseSummary.value)"
+        (keyup.enter)="showDiseaseSummary(DiseaseSummaryForm.controls.diseaseSummary.value)"
+        [readonly]="(informationGiven !== undefined && informationGiven !== null && informationGiven !== '')"
+       
+      >
+      </md2-autocomplete>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 m-t-7" *ngIf="viewMode">
+    <md-input-container [style.width]="'100%'">
+      <textarea
+      mdInput
+      textAreaValidator 
+      placeholder="{{
+        currentLanguageSet?.nurseData?.chiefComplaintsDetails?.diseaseSummary
+      }}"
+      formControlName="diseaseSummaryView"
+     [readonly]="viewMode"
+    ></textarea>
+  </md-input-container>
+  </div>
+    <div
+    class="col-xs-12 col-sm-6 col-md-4 m-t-7" style="margin-bottom: 5px;">
+    <md-input-container [style.width]="'100%'">
+      <textarea
+        mdInput
+        textAreaValidator 
+        placeholder="{{ currentLanguageSet?.infoGiven }}"
+        rows="2"
+        [style.width]="'100%'"
+        formControlName ="informationGiven"
+        name="informationGiven"
+        minlength="4"
+        maxlength="100"
+        readonly
+        [readonly]="viewMode"
+      ></textarea>
+    </md-input-container>
+  </div>
+  <div
+  class="col-xs-12 col-sm-6 col-md-4"
+  
+>
+  <md-input-container style="margin-top: 6px;" [style.width]="'100%'">
+    <textarea
+     
+      mdInput
+      textAreaValidator 
+      placeholder="{{ currentLanguageSet?.recommendedAction }}"
+      rows="2"
+      name="recommendedAction"
+      formControlName="recommendedAction"
+     [readonly]="viewMode"
+    ></textarea>
+  </md-input-container>
+</div>
+
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-4 m-t-10">
+    <md-input-container appName [style.width]="'100%'" style="margin-bottom: 10px;">
+      <textarea
+        mdInput
+        placeholder="{{ currentLanguageSet?.common?.remarks }}"
+        maxlength="300"
+        minlength="3"
+        name="remarks"
+        formControlName="remarks"
+       [readonly]="viewMode"
+      ></textarea>
+      <md-hint>
+        <span
+          *ngIf="DiseaseSummaryForm.controls.remarks.errors && DiseaseSummaryForm.controls.remarks.touched"
+          class="error_text"
+          >{{ currentLanguageSet?.enteratLeast3Characters }}</span
+        >
+        <span *ngIf="DiseaseSummaryForm.controls.remarks.dirty && DiseaseSummaryForm.controls.remarks.untouched">{{
+          currentLanguageSet?.max300CharectorsAllowed
+        }}</span>
+      </md-hint>
+    </md-input-container>
+  </div>
+</form>

@@ -49,7 +49,7 @@ export class RedirFallbackComponent implements OnInit, AfterViewInit {
     }
   ngAfterViewInit() {
     Promise.resolve(null).then(() => {
-      this.confirmationService.alert(this.current_language_set !== undefined ? this.current_language_set.alerts.info.IssuesinConnectingtoInventory : 'Issues in connecting to Inventory, try again later', 'error');
+      this.confirmationService.alert(this.current_language_set !== undefined ? this.current_language_set.alerts.info.IssuesinConnectingtoInventory : this.current_language_set.alerts.info.IssuesinConnectingtoInventory, 'error');
       this.router.navigate(['/pharmacist/pharmacist-worklist'])
     }
     );

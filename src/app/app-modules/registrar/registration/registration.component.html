@@ -7,12 +7,14 @@
       (click)="NavigateToFamilyTagging()">{{currentLanguageSet?.familyTagging}}</button>
       <button md-raised-button style="margin: 5px;" *ngIf="patientRevisit" class="full-width-login background-overall box pull-right m-r-5" id="viewHealthID" type="accent"
       (click)="viewHealthIdData()">{{currentLanguageSet?.aBHADetails}}</button>
-      <button *ngIf="!patientRevisit" id="healthIDSearch" style="margin: 5px;" md-raised-button class="full-width-abha background-overall box pull-right m-r-5"
-      (click)='openHealthIDSearch()'>{{currentLanguageSet?.aBHASearch}}</button>
+      <!-- <button *ngIf="!patientRevisit" id="healthIDSearch" style="margin: 5px;" md-raised-button class="full-width-abha background-overall box pull-right m-r-5"
+      (click)='openHealthIDSearch()'>{{currentLanguageSet?.aBHASearch}}</button> -->
     <button md-raised-button id="moveToSearch" style="margin: 5px;" class="full-width-search background-overall box pull-right m-r-5"
       (click)='confirmFormReset(false)'>{{currentLanguageSet?.common?.search}}</button>
       <button id="moveToPrintHealthIDCard" style="margin: 5px;" md-raised-button color="primary" class="full-width-login background-overall box pull-right m-r-5"
       (click)='printHealthIDCard()'>{{currentLanguageSet?.downloadAbhaCard}}</button>
+      <button id="moveToPrintHealthIDCard" style="margin: 5px;" md-raised-button color="primary" class="full-width-login background-overall box pull-right m-r-5"
+      (click)='generateAbhaCard()'>Generate Abha Card</button>
   </div>
 </div>
 <form [formGroup]='beneficiaryRegistrationForm'>
@@ -47,9 +49,9 @@
 
 <div class="row m-t-20" style="margin-bottom:30px;">
   <div class="col-sm-12 step-btn m-b-20" style="text-align: right;">
-    <button md-raised-button id="generateOtpButton" class="btn-green full-width-abha background-overall box button-overall-disabled" type="accent"
+    <!-- <button md-raised-button id="generateOtpButton" class="btn-green full-width-abha background-overall box button-overall-disabled" type="accent"
     [disabled]="disableGenerateOTP" (click)="generateABHACard()">
-    {{currentLanguageSet?.generateABHA}}</button>
+    {{currentLanguageSet?.generateABHA}}</button> -->
     <button md-raised-button id="cancelButton" class="full-width-search button-reset box" *ngIf="patientRevisit" type="button"
       (click)="cancelBeneficiaryChanges()">{{currentLanguageSet?.common?.cancel}}</button>
     <button md-raised-button id="resetButton" class="full-width-search button-reset box" *ngIf="!patientRevisit" type="reset"

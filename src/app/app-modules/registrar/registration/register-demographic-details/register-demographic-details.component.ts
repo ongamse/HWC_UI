@@ -88,7 +88,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.abhaSearchResponse = null;
     this.assignSelectedLanguage();
-    this.locationData = JSON.parse(localStorage.getItem('locationData'));
+    //this.locationData = JSON.parse(localStorage.getItem('locationData'));
     this.loadMasterDataObservable();
 
     if (this.patientRevisit) {
@@ -462,7 +462,8 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
       this.demographicsMaster.servicePointName
     ) {
       this.loadLocalMasterForDemographic();
-      // this.districtList = this.demographicsMaster.otherLoc.districtList;
+       this.districtList = this.demographicsMaster.otherLoc.districtList;
+
       // this.districtList = [];
       this.subDistrictList = [];
       this.villageList = [];
@@ -470,7 +471,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
       this.emptyVillage();
       this.emptySubDistrict();
       // this.onDistrictChange();
-      this.stateChangeOnLoad();
+      //this.stateChangeOnLoad();
       this.disableDistrict = false;
 
     } else if (
@@ -509,11 +510,12 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
   loadState() {
     this.statesList = this.demographicsMaster.stateMaster;
      this.demographicDetailsForm.patchValue({
-      stateID: this.locationData.stateID,
-      stateName: this.locationData.stateName
+      stateID: this.demographicsMaster.otherLoc.stateID,
+      stateName: this.demographicsMaster.otherLoc.stateName,
     });
 
-    this.registrarService.stateIdFamily = this.locationData.stateID;
+    this.registrarService.stateIdFamily = this.demographicsMaster.otherLoc.stateID;
+    
 
     // this.demographicDetailsForm.patchValue({
     //   stateID: this.demographicsMaster.otherLoc.stateID,

@@ -168,6 +168,10 @@ import { CdssFormComponent } from './cdss/cdss-form/cdss-form.component';
 import { CdssFormResultPopupComponent } from './cdss/cdss-form-result-popup/cdss-form-result-popup.component';
 import { Referred104BeneficiaryDetailsComponent } from './cdss/referred-104-beneficiary-details/referred-104-beneficiary-details.component';
 import { CDSSService } from './shared/services/cdss-service';
+import { DiseaseFormComponent } from './cdss/diseaseSummary/diseaseSummary.component';
+import { ViewDiseaseSummaryDetailsComponent } from './cdss/viewDiseaseSummaryDetails/viewDiseaseSummaryDet.component';
+import { Cdss104FormComponent } from './cdss/cdss-form-104/cdss-form.component';
+
 
 
 @NgModule({
@@ -306,12 +310,15 @@ import { CDSSService } from './shared/services/cdss-service';
     Referred104WorkareaComponent,
     Referred104CdssDetailsComponent,
     CdssFormComponent,
+    DiseaseFormComponent,
+    Cdss104FormComponent,
+    ViewDiseaseSummaryDetailsComponent,
     CdssFormResultPopupComponent,
     Referred104BeneficiaryDetailsComponent
 ],
 
 
   providers: [NurseService, DoctorService, MasterdataService, WorkareaCanActivate, LabService,IdrsscoreService,RegistrarService,TestInVitalsService,FamilyTaggingService, NcdScreeningService, CDSSService],
-  entryComponents: [PrintPageSelectComponent, ViewTestReportComponent, BeneficiaryMctsCallHistoryComponent, SchedulerComponent, CdssFormResultPopupComponent]
+  entryComponents: [PrintPageSelectComponent, ViewTestReportComponent, BeneficiaryMctsCallHistoryComponent, SchedulerComponent, CdssFormResultPopupComponent,ViewDiseaseSummaryDetailsComponent]
 })
 export class NurseDoctorModule { }

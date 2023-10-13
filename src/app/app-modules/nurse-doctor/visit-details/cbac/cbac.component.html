@@ -29,7 +29,7 @@
           <ng-container>
             <tr>
               <td>1.</td>
-              <td class="onHover">What is your age?</td>
+              <td class="onHover">{{currentLanguageSet?.whatIsYourAge}}</td>
               <td>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
                 <md-select  [style.width]="'100%'"  name="cbacAge" class="answer"
@@ -42,7 +42,7 @@
 
             <tr>
               <td>2.</td>
-              <td class="onHover">Do you smoke or consume smokeless products such as gutka or khaini?</td>
+              <td class="onHover">{{currentLanguageSet?.doYouSmokeOrConsumeSmokelessProductsSuchAsGutkaOrKhaini}}</td>
               <td>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
                 <md-select   [style.width]="'100%'"  name="cbacConsumeGutka" class="answer"
@@ -55,7 +55,7 @@
 
             <tr>
               <td>3.</td>
-              <td class="onHover">Do you consume alchohol daily?</td>
+              <td class="onHover">{{currentLanguageSet?.doYouConsumeAlchoholDaily}}</td>
               <td>
                 <md-radio-group formControlName="cbacAlcohol" class="radioButton" name="cbacAlcohol" (change)="calculatecbacAlcohol()">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -68,7 +68,7 @@
 
             <tr>
               <td>4.</td>
-              <td class="onHover">Measurement of waist</td>
+              <td class="onHover">{{currentLanguageSet?.measurementOfWaist}}</td>
               <td *ngIf="beneficiaryGender === 'male'">
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
                 <md-select  [style.width]="'100%'"  name="cbacWaistMale" class="answer"
@@ -90,7 +90,7 @@
 
             <tr>
               <td>5.</td>
-              <td class="onHover">Do you undertake any physical activities for minimum of 150 minutes in a week?</td>
+              <td class="onHover">{{currentLanguageSet?.doYouUndertakeAnyPhysicalActivitiesForMinimumOf150MinutesInaWeek}}</td>
               <td>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 box">
                 <md-select   [style.width]="'100%'"  name="cbacPhysicalActivity" class="answer"
@@ -103,7 +103,7 @@
 
             <tr>
               <td>6.</td>
-              <td class="onHover">Do you have a family history (any one of your parents or siblings) of high blood pressure, diabetes and heart disease?</td>
+              <td class="onHover">{{currentLanguageSet?.doYouHaveaFamilyHistoryOfHighBloodPressureDiabetesAndHeartDisease}}</td>
               <td>
                 <md-radio-group formControlName="cbacFamilyHistoryBpdiabetes" class="radioButton" name="cbacFamilyHistoryBpdiabetes" (change)="calculateCbacFamilyHistoryBpdiabetes()">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -139,7 +139,7 @@
           <ng-container>
             <tr>
               <td>1.</td>
-              <td class="onHover">Shortness of Breath</td>
+              <td class="onHover">{{currentLanguageSet?.ExaminationData?.cancerScreeningExamination?.symptoms?.shortnessofbreath}}</td>
               <td>
                 <md-radio-group formControlName="cbacShortnessBreath"  name="cbacShortnessBreath">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -152,7 +152,7 @@
 
             <tr>
               <td>2.</td>
-              <td class="onHover">Coughing more than 2 weeks</td>
+              <td class="onHover">{{currentLanguageSet?.coughingMoreThan2Weeks}}</td>
               <td>
                 <md-radio-group formControlName="cbacCough2weeks"  name="cbacCough2weeks">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -165,7 +165,7 @@
 
             <tr>
               <td>3.</td>
-              <td class="onHover">Blood in Sputum</td>
+              <td class="onHover">{{currentLanguageSet?.ExaminationData?.cancerScreeningExamination?.symptoms?.bloodinsputum}}</td>
               <td>
                 <md-radio-group formControlName="cbacBloodsputum"  name="cbacBloodsputum">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -178,7 +178,7 @@
 
             <tr>
               <td>4.</td>
-              <td class="onHover">Fever for > 2 weeks</td>
+              <td class="onHover">{{currentLanguageSet?.feverFor2Weeks}}</td>
               <td>
                 <md-radio-group formControlName="cbacFever2weeks"  name="cbacFever2weeks">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -191,7 +191,7 @@
 
             <tr>
               <td>5.</td>
-              <td class="onHover">Loss of Weight</td>
+              <td class="onHover">{{currentLanguageSet?.lossOfWeight}}</td>
               <td>
                 <md-radio-group formControlName="cbacWeightLoss"  name="cbacWeightLoss">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -204,7 +204,7 @@
 
             <tr>
               <td>6.</td>
-              <td class="onHover">Night Sweats</td>
+              <td class="onHover">{{ currentLanguageSet?.nightSweats }}</td>
               <td>
                 <md-radio-group formControlName="cbacNightSweats"  name="cbacNightSweats">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -217,7 +217,7 @@
 
             <tr>
               <td>7.</td>
-              <td class="onHover">Are you taking currently Anti-TB Drugs</td>
+              <td class="onHover">{{ currentLanguageSet?.areYouTakingCurrentlyAnti }}</td>
               <td>
                 <md-radio-group formControlName="cbacAntiTBDrugs"  name="cbacAntiTBDrugs">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -230,7 +230,7 @@
 
             <tr>
               <td>8.</td>
-              <td class="onHover">Anyone in family currently suffering from TB</td>
+              <td class="onHover">{{currentLanguageSet?.anyoneInFamilyCurrentlySufferingFromTB}}</td>
               <td>
                 <md-radio-group formControlName="cbacTb"  name="cbacTb">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -243,7 +243,7 @@
 
             <tr>
               <td>9.</td>
-              <td class="onHover">History of TB</td>
+              <td class="onHover">{{currentLanguageSet?.historyOfTB}}</td>
               <td>
                 <md-radio-group formControlName="cbacTBHistory"  name="cbacTBHistory">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -256,7 +256,7 @@
 
             <tr>
               <td>10.</td>
-              <td class="onHover">Recurrent Ulceration on palm or sole</td>
+              <td class="onHover">{{currentLanguageSet?.recurrentUlcerationOnPalmOrSole}}</td>
               <td>
                 <md-radio-group formControlName="cbacUlceration"  name="cbacUlceration">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -269,7 +269,7 @@
 
             <tr>
               <td>11.</td>
-              <td class="onHover">Recurrent Tingling on palms or soles</td>
+              <td class="onHover">{{currentLanguageSet?.recurrentTinglingonPalmsorSoles}}</td>
               <td>
                 <md-radio-group formControlName="cbacRecurrentTingling"  name="cbacRecurrentTingling">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -282,7 +282,7 @@
 
             <tr>
               <td>12.</td>
-              <td class="onHover">History of Fits</td>
+              <td class="onHover">{{currentLanguageSet?.historyofFits}}</td>
               <td>
                 <md-radio-group formControlName="cbacFitsHistory"  name="cbacFitsHistory">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -295,7 +295,7 @@
 
             <tr>
               <td>13.</td>
-              <td class="onHover">Difficulty in Opening mouth</td>
+              <td class="onHover">{{currentLanguageSet?.difficultyInOpeningMouth}}</td>
               <td>
                 <md-radio-group formControlName="cbacMouthopeningDifficulty"  name="cbacMouthopeningDifficulty">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -308,7 +308,7 @@
 
             <tr>
               <td>14.</td>
-              <td class="onHover">Any ulcers in mouth that has not healed  in two weeks</td>
+              <td class="onHover">{{currentLanguageSet?.anyUlcersInMouthThatHasNotHealedInTwoWeeks}}</td>
               <td>
                 <md-radio-group formControlName="cbacMouthUlcers"  name="cbacMouthUlcers">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -321,7 +321,7 @@
 
             <tr>
               <td>15.</td>
-              <td class="onHover">Any growth in mouth that has not healed in two weeks</td>
+              <td class="onHover">{{currentLanguageSet?.anyGrowthInMouthThatHasNotHealedIntWoweeks}}</td>
               <td>
                 <md-radio-group formControlName="cbacMouthUlcersGrowth"  name="cbacMouthUlcersGrowth">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -334,7 +334,7 @@
 
             <tr>
               <td>16.</td>
-              <td class="onHover">Any red or white patch in mouth that has not healed in two weeks</td>
+              <td class="onHover">{{currentLanguageSet?.AnyRedorWhitePatchinMouthThatHasNotHealedInTwoweeks}}</td>
               <td>
                 <md-radio-group formControlName="cbacMouthredpatch"  name="cbacMouthredpatch">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -347,7 +347,7 @@
 
             <tr>
               <td>17.</td>
-              <td class="onHover">Pain while chewing</td>
+              <td class="onHover">{{currentLanguageSet?.painWhileChewing}}</td>
               <td>
                 <md-radio-group formControlName="cbacPainchewing"  name="cbacPainchewing">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -360,7 +360,7 @@
 
             <tr>
               <td>18.</td>
-              <td class="onHover">Any change in the tone of your voice</td>
+              <td class="onHover">{{currentLanguageSet?.anyChangeInTheToneOfYourVoice}}</td>
               <td>
                 <md-radio-group formControlName="cbacTonechange"  name="cbacTonechange">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -373,7 +373,7 @@
 
             <tr>
               <td>19.</td>
-              <td class="onHover">Any hypopigmented patch(es) or discolored lesion(s) with loss of sensation</td>
+              <td class="onHover">{{currentLanguageSet?.anyHypopigmentedPatchorDiscoloredLesionWithLossOfSensation}}</td>
               <td>
                 <md-radio-group formControlName="cbacHypopigmentedpatches" name="cbacHypopigmentedpatches">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -386,7 +386,7 @@
 
             <tr>
               <td>20.</td>
-              <td class="onHover">Any thickened skin</td>
+              <td class="onHover">{{currentLanguageSet?.anyThickenedSkin}}</td>
               <td>
                 <md-radio-group formControlName="cbacThickenedskin"  name="cbacThickenedskin">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -399,7 +399,7 @@
 
             <tr>
               <td>21.</td>
-              <td class="onHover">Any nodules on skin</td>
+              <td class="onHover">{{currentLanguageSet?.anyNodulesOnSkin}}</td>
               <td>
                 <md-radio-group formControlName="cbacNodulesonskin"  name="cbacNodulesonskin">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -412,7 +412,7 @@
 
             <tr>
               <td>22.</td>
-              <td class="onHover">Recurrent numbness on palm(s) or sole(s)</td>
+              <td class="onHover">{{currentLanguageSet?.recurrentNumbnessOnPalmorSole}}</td>
               <td>
                 <md-radio-group formControlName="cbacRecurrentNumbness"  name="cbacRecurrentNumbness">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -426,7 +426,7 @@
 
             <tr>
               <td>23.</td>
-              <td class="onHover">Cloudy or blurred vision</td>
+              <td class="onHover">{{currentLanguageSet?.cloudyOrBlurredVision}}</td>
               <td>
                 <md-radio-group formControlName="cbacBlurredVision"  name="cbacBlurredVision">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -439,7 +439,7 @@
 
             <tr>
               <td>24.</td>
-              <td class="onHover">Difficulty in reading</td>
+              <td class="onHover">{{currentLanguageSet?.difficultyInReading}}</td>
               <td>
                 <md-radio-group formControlName="cbacDifficultyreading"  name="cbacDifficultyreading">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -452,7 +452,7 @@
 
             <tr>
               <td>25.</td>
-              <td class="onHover">Redness in eyes lasting for more than a week</td>
+              <td class="onHover">{{currentLanguageSet?.rednessInEyesLastingForMoreThanaWeek}}</td>
               <td>
                 <md-radio-group formControlName="cbacRednessPain"  name="cbacRednessPain">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -465,7 +465,7 @@
 
             <tr>
               <td>26.</td>
-              <td class="onHover">Difficulty in hearing</td>
+              <td class="onHover">{{currentLanguageSet?.difficultyInHearing}}</td>
               <td>
                 <md-radio-group formControlName="cbacDifficultyHearing"  name="cbacDifficultyHearing">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -478,7 +478,7 @@
 
             <tr>
               <td>27.</td>
-              <td class="onHover">Clawing of fingers in hand(s) or feet</td>
+              <td class="onHover">{{currentLanguageSet?.clawingOfFingersInHandOrFeet}}</td>
               <td>
                 <md-radio-group formControlName="cbacClawingfingers"  name="cbacClawingfingers">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -491,7 +491,7 @@
 
             <tr>
               <td>28.</td>
-              <td class="onHover">Tingling or Numbness in hands or and or feet</td>
+              <td class="onHover">{{currentLanguageSet?.tinglingorNumbnessinHandsorAndorFeet}}</td>
               <td>
                 <md-radio-group formControlName="cbacHandTingling"  name="cbacHandTingling">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -504,7 +504,7 @@
 
             <tr>
               <td>29.</td>
-              <td class="onHover">Inability to close eyelid</td>
+              <td class="onHover">{{currentLanguageSet?.inabilitytoCloseEyelid}}</td>
               <td>
                 <md-radio-group formControlName="cbacInabilityCloseeyelid"  name="cbacInabilityCloseeyelid">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -517,7 +517,7 @@
 
             <tr>
               <td>30.</td>
-              <td class="onHover">Difficulty in holding objects with fingers</td>
+              <td class="onHover">{{currentLanguageSet?.difficultyInHoldingObjectsWithFingers}}</td>
               <td>
                 <md-radio-group formControlName="cbacDifficultHoldingObjects"  name="cbacDifficultHoldingObjects">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -530,7 +530,7 @@
 
             <tr>
               <td>31.</td>
-              <td class="onHover">Weakness in feet that causes difficulty in walking</td>
+              <td class="onHover">{{currentLanguageSet?.weaknessinFeetThatCausesDifficultyInWalking}}</td>
               <td>
                 <md-radio-group formControlName="cbacFeetweakness"  name="cbacFeetweakness">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -543,7 +543,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender' ">
               <td>32.</td>
-              <td class="onHover">Lump in the breast</td>
+              <td class="onHover">{{currentLanguageSet?.lumpintheBreast}}</td>
               <td>
                 <md-radio-group formControlName="cbacLumpBreast"  name="cbacLumpBreast">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -556,7 +556,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>33.</td>
-              <td class="onHover">Blood-stained discharge from the nipple</td>
+              <td class="onHover">{{currentLanguageSet?.bloodStainedDischargeFromTheNipple}}</td>
               <td>
                 <md-radio-group formControlName="cbacBloodnippleDischarge"  name="cbacBloodnippleDischarge">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -569,7 +569,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>34.</td>
-              <td class="onHover">Change in shape and size of breast</td>
+              <td class="onHover">{{currentLanguageSet?.ExaminationData?.cancerScreeningExamination?.symptoms?.changeinshapeandsizeofbreasts}}</td>
               <td>
                 <md-radio-group formControlName="cbacBreastsizechange"  name="cbacBreastsizechange">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -582,7 +582,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>35.</td>
-              <td class="onHover">Bleeding between periods</td>
+              <td class="onHover">{{currentLanguageSet?.bleedingBetweenPeriods}}</td>
               <td>
                 <md-radio-group formControlName="cbacBleedingPeriods"  name="cbacBleedingPeriods">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -595,7 +595,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>36.</td>
-              <td class="onHover">Bleeding after menopause</td>
+              <td class="onHover">{{currentLanguageSet?.bleedingAfterMenopause}}</td>
               <td>
                 <md-radio-group formControlName="cbacBleedingMenopause"  name="cbacBleedingMenopause">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -608,7 +608,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>37.</td>
-              <td class="onHover">Bleeding after intercourse</td>
+              <td class="onHover">{{currentLanguageSet?.bleedingAfterIntercourse}}</td>
               <td>
                 <md-radio-group formControlName="cbacBleedingIntercourse"  name="cbacBleedingIntercourse">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -621,7 +621,7 @@
 
             <tr *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">
               <td>38.</td>
-              <td class="onHover">Foul smell vaginal discharge</td>
+              <td class="onHover">{{currentLanguageSet?.foulSmellVaginalDischarge}}</td>
               <td>
                 <md-radio-group formControlName="cbacVaginalDischarge"  name="cbacVaginalDischarge">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -635,7 +635,7 @@
             <tr *ngIf="beneficiaryAge >= 60">
               <td *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">39.</td>
               <td *ngIf="beneficiaryGender === 'male'">32.</td>
-              <td class="onHover">Feeling Unsteady while standing or walking</td>
+              <td class="onHover">{{currentLanguageSet?.feelingUnsteadyWhileStandingorWalking}}</td>
               <td>
                 <md-radio-group formControlName="cbacFeelingUnsteady"  name="cbacFeelingUnsteady">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -649,7 +649,7 @@
             <tr *ngIf="beneficiaryAge >= 60">
               <td *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">40.</td>
               <td *ngIf="beneficiaryGender === 'male'">33.</td>
-              <td class="onHover">Suffering from any disability that restricts movement</td>
+              <td class="onHover">{{currentLanguageSet?.sufferingFromAnyDisabilityThatRestrictsMovement}}</td>
               <td>
                 <md-radio-group formControlName="cbacPhysicalDisabilitySuffering"  name="cbacPhysicalDisabilitySuffering">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -663,7 +663,7 @@
             <tr *ngIf="beneficiaryAge >= 60">
               <td *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">41.</td>
               <td *ngIf="beneficiaryGender === 'male'">34.</td>
-              <td class="onHover">Needing helping from others to perform everyday activities such as eating ,getting dressed grooming,bathing,walking, or using toilet</td>
+              <td class="onHover">{{currentLanguageSet?.Needinghelpingfromotherstoperformeverydayactivitiessuchaseatinggettingdressedgroomingbathingwalkingorusingtoilet}}</td>
               <td>
                 <md-radio-group formControlName="cbacNeedhelpEverydayActivities"  name="cbacNeedhelpEverydayActivities">
                   <md-radio-button color='primary' class="radio-button" value="yes" 
@@ -677,7 +677,7 @@
             <tr *ngIf="beneficiaryAge >= 60">
               <td *ngIf="beneficiaryGender === 'female' || beneficiaryGender === 'transgender'">42.</td>
               <td *ngIf="beneficiaryGender === 'male'">35.</td>
-              <td class="onHover">Forgetting names of your nears ones or your home address</td>
+              <td class="onHover">{{currentLanguageSet?.forgettingNamesofYourNearsOnesOrYourHomeAddress}}</td>
               <td>
                 <md-radio-group formControlName="cbacForgetnearones"  name="cbacForgetnearones">
                   <md-radio-button color='primary' class="radio-button" value="yes" 

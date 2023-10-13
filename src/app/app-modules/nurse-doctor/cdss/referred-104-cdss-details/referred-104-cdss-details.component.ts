@@ -19,18 +19,29 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see https://www.gnu.org/licenses/.
 */
-import { Component, OnInit } from '@angular/core';
+import { SetLanguageComponent } from 'app/app-modules/core/components/set-language.component';
 
+import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-referred-104-cdss-details',
   templateUrl: './referred-104-cdss-details.component.html',
   styleUrls: ['./referred-104-cdss-details.component.css']
 })
 export class Referred104CdssDetailsComponent implements OnInit {
+  
+  currentLanguageSet: any;
 
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor() { 
+    
+    }
+
+    ngOnInit() {
+    }
+  
+
+
+  
+
 
 }

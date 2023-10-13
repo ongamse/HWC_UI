@@ -21,6 +21,8 @@
 */
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
+import { HttpServiceService } from '../../services/http-service.service';
+import { SetLanguageComponent } from '../set-language.component';
 
 @Component({
   selector: 'app-common-dialog',
@@ -51,6 +53,7 @@ export class CommonDialogComponent implements OnInit {
   public choice: boolean;
   public values: any;
   public selectedValue: any;
+  currentLanguageSet: any;
   // Choose from Radio Button Ends
 
   // selectable
@@ -61,10 +64,24 @@ export class CommonDialogComponent implements OnInit {
   public confirmCBAC:boolean;
   public confirmCareContext:boolean;
   public cbacData:any=[];
-  constructor(public dialogRef: MdDialogRef<CommonDialogComponent>) { }
+  constructor(public dialogRef: MdDialogRef<CommonDialogComponent>,
+    public httpServiceService: HttpServiceService) { }
 
+  // ngOnInit() {
+  // }
   ngOnInit() {
+    this.assignSelectedLanguage();
   }
+  ngDoCheck() {
+    this.assignSelectedLanguage();
+  }
+
+  assignSelectedLanguage() {
+    const getLanguageJson = new SetLanguageComponent(this.httpServiceService);
+    getLanguageJson.setLanguage();
+    this.currentLanguageSet = getLanguageJson.currentLanguageObject;
+    }
+
 
   Confirm() {
     this.cancelEvent.emit(null);

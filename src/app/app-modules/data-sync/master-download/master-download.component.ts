@@ -125,7 +125,7 @@ export class MasterDownloadComponent implements OnInit {
               this.failedMasterList.pop();
             this.showProgressBar = false;
             clearInterval(this.intervalref);
-            this.confirmationService.alert("Master download finished");
+            this.confirmationService.alert(this.current_language_set.alerts.info.masterFinished);
           }
         } else {
           this.showProgressBar = false;

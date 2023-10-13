@@ -31,6 +31,8 @@ import { SetLanguageComponent } from 'app/app-modules/core/components/set-langua
 })
 export class RedirInComponent implements OnInit {
     current_language_set: any;
+    lang: any;
+    language_file_path: any = "./assets/";
     constructor(private router: Router,
         private route: ActivatedRoute,
         private confirmationService: ConfirmationService, 
@@ -62,14 +64,91 @@ export class RedirInComponent implements OnInit {
             resolve = params['resolve'] === 'undefined' ? undefined : params['resolve'];
             language = params['currentLanguage'] === 'undefined' ? undefined : params['currentLanguage'];
         });
-        console.log('resolve', resolve)
+        sessionStorage.setItem('setLanguage', language)
+        this.lang = sessionStorage.getItem('setLanguage');
+
+   
+
+    if (this.lang != undefined) {
+
+      this.httpServiceService
+
+        .getLanguage(this.language_file_path + this.lang + ".json")
+
+        .subscribe(
+
+          response => {
+
+            if (response) {
+
+              this.current_language_set = response[this.lang]; 
+              console.log('resolve', resolve)
         
 
         if (resolve) {
-            this.confirmationService.alert("Item Dispensed", 'info');
+            // if(this.current_language_set !== undefined)
+            this.confirmationService.alert(this.current_language_set.itemDispensed, 'info');
         }
-        sessionStorage.setItem('setLanguage', language)
+        
+        this.router.navigate(['/pharmacist/pharmacist-worklist']);           
+
+             
+
+            } else {
+
+              console.log(
+
+                this.current_language_set.alerts.info.comingUpWithThisLang +
+
+                  " " +
+
+                  this.lang
+
+              );
+
+            }
+
+          },
+
+          error => {
+
+            console.log(
+
+              this.current_language_set.alerts.info.comingUpWithThisLang +
+
+                " " +
+
+                this.lang
+
+            );
+
+          }
+
+        );
+
+    }else{
+
+      this.httpServiceService.currentLangugae$.subscribe(
+
+        response => {this.current_language_set = response;
+            console.log('resolve', resolve)
+        
+
+        if (resolve) {
+            // if(this.current_language_set !== undefined)
+            this.confirmationService.alert(this.current_language_set.itemDispensed, 'info');
+        }
+        
         this.router.navigate(['/pharmacist/pharmacist-worklist']);
+        }
+
+      );
+
+    }
+        // const getLanguageJson = new SetLanguageComponent(this.httpServiceService);
+        // getLanguageJson.setLanguage();
+        // this.current_language_set = getLanguageJson.currentLanguageObject;
+        
        
 
     }

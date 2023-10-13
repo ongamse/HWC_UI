@@ -5,7 +5,7 @@
       <tr>
         <th class="col-xs-3" id="age">{{currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.immunization?.age}}</th>
         <th class="col-xs-3" id="Vaccines">{{currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.immunization?.Vaccines}}</th>
-        <th class="col-xs-3" id="sctCode">{{currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctCode}}</th>
+        <!-- <th class="col-xs-3" id="sctCode">{{currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.otherVaccine?.sctCode}}</th> -->
         <th class="col-xs-3" id="Status">{{currentLanguageSet?.historyData?.opd_NCD_PNCHistory?.immunization?.Status}}</th>
       </tr>
     </thead>
@@ -44,7 +44,7 @@
             >
               <ng-container [formGroupName]="j" *ngIf="vaccines.value.hide === false">
                 <td>{{ vaccines.value.vaccine }}</td>
-                <td>{{ vaccines.value.sctCode }}</td>
+                <!-- <td>{{ vaccines.value.sctCode }}</td> -->
                 <td>
                   <md-checkbox
                     color="primary"

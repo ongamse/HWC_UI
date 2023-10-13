@@ -58,6 +58,14 @@ export class RegistrarService {
 
   enablingDispense: boolean = false;
 
+  abhaGenerateData: any ;
+  aadharNumberNew: any;
+
+  abhaDetail: any= null ;
+  abhaDetailData = new BehaviorSubject<any>(this.abhaDetail);
+  abhaDetailDetails$ = this.abhaDetailData.asObservable();
+
+
   enableDispenseDetail = new BehaviorSubject<boolean>(this.enablingDispense);
   enablingDispense$ = this.enableDispenseDetail.asObservable();
 
@@ -78,6 +86,11 @@ export class RegistrarService {
   getBenFamilyDetails(benFamilyDetails){
     this.benFamilyDet = benFamilyDetails;
     this.benfamilyData.next(benFamilyDetails);
+  }
+
+  getabhaDetail(abhaDetailDetails){
+    this.abhaDetail = abhaDetailDetails;
+    this.abhaDetailData.next(this.abhaDetail);
   }
   // getBenFamilyDetails(value){
   //  this.benFamilyDetails = value;

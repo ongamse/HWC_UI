@@ -114,12 +114,12 @@
 
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 m-t-5 pull-right">
       <div class="btn-group" *ngFor="let value of fetosenseTestMaster">
-        <button md-raised-button color="primary" [id]=value.fetosenseTestId class="button-overall-disabled" [disabled]="checkTestPrescribed(value.fetosenseTestId)" (click)="sendTestDetails(value.fetosenseTestId,value.testName)">{{value.testName}}</button> 
+        <button md-raised-button color="primary" [id]=value.foetalMonitorTestId class="button-overall-disabled" [disabled]="checkTestPrescribed(value.foetalMonitorTestId)" (click)="sendTestDetails(value.foetalMonitorTestId,value.testName)">{{value.testName}}</button> 
       </div>
   
     <div *ngFor="let value of fetosenseTestMaster">
       <p  style="text-align: left;color: green;">
-       <strong>{{checkTestPrescribed(value.fetosenseTestId)===true?"* " + value.testName + current_language_set?.testIsPrescribed :""}}</strong>
+       <strong>{{checkTestPrescribed(value.foetalMonitorTestId)===true?"* " + value.testName + current_language_set?.testIsPrescribed :""}}</strong>
       </p>
     </div>
   </div>

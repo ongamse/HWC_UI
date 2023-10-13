@@ -31,7 +31,7 @@
           (change)="markAsUnsuspected($event.checked)"
         ></md-checkbox>
         <label style="color: grey; margin-bottom: 15px"
-          >Mark as suspected</label
+          >{{ currentLanguageSet?.MarkAsSuspected }}</label
         >
       </div>
     </div>
@@ -82,7 +82,7 @@
             <span class="glyphicon glyphicon-scale"></span>
           </button>
           <md-error *ngIf="disableFindStatuButton === true">
-            <p>*Range: 10-600 mg/dl</p>
+            <p>currentLanguageSet?.rangeDL</p>
           </md-error>
         </md-form-field>
       </div>
@@ -113,7 +113,7 @@
           [disabled]="disableFindStatuButton"
           color="primary"
         >
-          Find Status
+        {{ currentLanguageSet?.findStatus }}
         </button>
       </div>
     </div>

@@ -115,7 +115,7 @@
 
             <section formArrayName="radiologyForm" class="container-fluid" style="min-height:400px;">
               <section class="row" style="margin:20px;">
-                <div class="col-md-6 col-lg-6" style="margin-top:10px;"
+                <div style="min-width: 55%;" class="col-md-6 col-lg-7" style="margin-top:10px;"
                   *ngFor="let procedure of radiologyForm?.controls; let m=index; let isLast=last">
                   <ng-container [formGroupName]="m">
                     <md-card class="radio_newCard" style="height:280px;">

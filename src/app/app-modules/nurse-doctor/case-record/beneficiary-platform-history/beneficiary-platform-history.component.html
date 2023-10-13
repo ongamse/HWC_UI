@@ -713,7 +713,7 @@
                         <ng-container *ngIf="visit.benPreviousData.nurseData.vitals.benAnthropometryDetail && visit.benPreviousData.nurseData.vitals.benPhysicalVitalDetail">
                           <tr>
                             <th>
-                              Height :
+                              {{current_language_set?.vitalsDetails?.AnthropometryDataANC_OPD_NCD_PNC?.height}}
                             </th>
                             <td>
                               {{ visit.benPreviousData?.nurseData?.vitals?.benAnthropometryDetail?.height_cm || 'NA' }}
@@ -721,7 +721,7 @@
                           </tr>
                           <tr>
                             <th>
-                              Weight : 
+                              {{current_language_set?.vitalsDetails?.AnthropometryDataANC_OPD_NCD_PNC?.weight}}
                             </th>
                             <td>
                               {{ visit.benPreviousData?.nurseData?.vitals?.benAnthropometryDetail?.weight_Kg || 'NA' }}
@@ -729,7 +729,7 @@
                           </tr>
                           <tr>
                             <th>
-                              SBP : 
+                              {{current_language_set?.Sbp}} 
                             </th>
                             <td>
                               {{ visit.benPreviousData?.nurseData?.vitals?.benPhysicalVitalDetail?.averageSystolicBP || 'NA' }}
@@ -737,7 +737,7 @@
                           </tr>
                           <tr>
                             <th>
-                              DBP : 
+                              {{current_language_set?.Dbp}}
                             </th>
                             <td>
                               {{ visit.benPreviousData?.nurseData?.vitals?.benPhysicalVitalDetail?.averageDiastolicBP || 'NA' }}
@@ -745,7 +745,7 @@
                           </tr>
                           <tr>
                             <th>
-                              RBS :
+                              {{current_language_set?.Rbs}}
                             </th>
                             <td>
                               {{ visit.benPreviousData?.nurseData?.vitals?.benPhysicalVitalDetail?.rbsTestResult || 'NA' }}

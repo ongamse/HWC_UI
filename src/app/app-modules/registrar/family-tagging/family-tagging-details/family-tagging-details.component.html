@@ -18,8 +18,8 @@
   <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <section class="row search-button-container" >
         <button  class="btn pull-right full-width-login background-overall" (click)="backToRegistration()">
-          Back to Registration</button>
-        <button md-raised-button class="btn btn-default full-width-login background-overall pull-right adv-button" (click)="openSearchFamily()" data-toggle="modal"> Search Family</button>
+          {{ currentLanguageSet?.backToRegistration }}</button>
+        <button md-raised-button class="btn btn-default full-width-login background-overall pull-right adv-button" (click)="openSearchFamily()" data-toggle="modal"> {{currentLanguageSet?.searchFamily}}</button>
         <button md-raised-button class="btn btn-default full-width-login background-overall button-overall-disabled cu-btn-default pull-right adv-button" (click)="CreateFamilyDialog()" 
         data-toggle="modal" [disabled]="(benFamilyId !== null && benFamilyId !== undefined)">{{currentLanguageSet?.createFamily}}</button>
     </section>

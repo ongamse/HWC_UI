@@ -161,17 +161,17 @@
           <thead>
 
             <tr style="text-align:center">
-              <th id="sNo">S.No</th>
-              <th id="amritID">Amrit ID</th>
-              <th id="healthID">ABHA</th>
-              <th id="healthIdNumber">ABHA Number</th>
-              <th id="externalID">External ID</th>
-              <th id="benName">Name</th>
-              <th id="gender">Gender</th>
-              <th id="dob">Date Of Birth</th>
-              <th id="state">State</th>
-              <th id="district">District</th>
-              <th id="action">Action</th>
+              <th id="sNo">{{ currentLanguageSet?.common?.sNo }}</th>
+              <th id="amritID">{{ currentLanguageSet?.amritID }}</th>
+              <th id="healthID">{{ currentLanguageSet?.abha }}</th>
+              <th id="healthIdNumber">{{ currentLanguageSet?.abhaNumber }}</th>
+              <th id="externalID">{{ currentLanguageSet?.externalID }}</th>
+              <th id="benName">{{ currentLanguageSet?.casesheet?.name }}</th>
+              <th id="gender">{{ currentLanguageSet?.bendetails?.gender }}</th>
+              <th id="dob">{{ currentLanguageSet?.dateOfBirth }}</th>
+              <th id="state">{{ currentLanguageSet?.travel?.state }}</th>
+              <th id="district">{{ currentLanguageSet?.travel?.district }}</th>
+              <th id="action">{{ currentLanguageSet?.bendetails?.action }}</th>
             </tr>
           </thead>
           <tbody>
@@ -207,7 +207,7 @@
                 <button  md-raised-button class="button-overall-disabled" type="button" color="primary" [disabled]="beneficiary?.amritID !== '' && beneficiary?.amritID !== null && beneficiary?.amritID !== undefined && beneficiary?.externalId !== null && 
                 beneficiary?.externalId !== undefined && beneficiary?.externalId !== ''"
                   (click)="migrateBeneficiaryToAmrit(beneficiary.benObject)">
-                  Register to AMRIT
+                  {{ currentLanguageSet?.registertoAMRIT }}
                 </button>
               </td>
             </tr>

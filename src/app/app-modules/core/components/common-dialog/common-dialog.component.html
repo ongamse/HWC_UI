@@ -8,7 +8,7 @@
 </div>
 
 <div *ngIf="confirmHealthID">
-<h3 class="title success">Success</h3>
+<h3 class="title success">{{currentLanguageSet?.common?.Success}}</h3>
   <div class="message">{{ message }}</div>
   <div class="action">
     <button  class="full-width-login button-ok" (click)="dialogRef.close(true)" cdkFocusInitial>{{btnOkText}}</button>
@@ -45,11 +45,11 @@
          {{i+1}}.{{data}}
        </div>
        <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12" style="margin-top: 10px;">
-        Please perform the necessary examinations to confirm.
+        {{currentLanguageSet?.performNecessaryExaminationConfirm}}
       </div>
        </div>
    <br/>
-     Confirm to proceed further 
+   {{currentLanguageSet?.alerts?.info?.confirmtoProceedFurther}}
   </div>
   
   <div class="action">
@@ -67,7 +67,7 @@
 
 
 <div *ngIf="alertFetsenseMessage">
-  <h3 class="title info">Fetosense Device</h3>
+  <h3 class="title info">{{currentLanguageSet?.fetosenseDevice}}</h3>
   <div class="message">{{ message }}</div>
   <div class="action">
     <button class="full-width-login button-ok" md-dialog-close cdkFocusInitial>{{btnOkText}}</button>
@@ -103,7 +103,7 @@
 </div>
 
 <div *ngIf="notify">
-  <h3 class="title info">Info </h3>
+  <h3 class="title info">{{currentLanguageSet?.common?.info}} </h3>
   <div class="message">
     <h4>{{ message | titlecase }}</h4>
     <ul class="list-group ">
@@ -124,7 +124,7 @@
 </div>
 
 <div *ngIf="choice">
-  <h3 class="title info">Info</h3>
+  <h3 class="title info">{{currentLanguageSet?.common?.info}}</h3>
   <div class="message">
     <h4>{{message | titlecase}}</h4>
     <md-radio-group [(ngModel)]="selectedValue" disableRipple="true" class="radio-group">
@@ -154,7 +154,7 @@
   </div>
 
   <div *ngIf="choiceSelect">
-    <h3 class="title info">Info</h3>
+    <h3 class="title info">{{currentLanguageSet?.common?.info}}</h3>
     <div class="message">
       <h4>{{message | titlecase}}</h4>
       <md-radio-group [(ngModel)]="selectedOption" disableRipple="true" class="radio-group">

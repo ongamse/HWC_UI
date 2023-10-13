@@ -118,6 +118,7 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
   drugDurationMaster = [];
   drugDurationUnitMaster: any;
   edlMaster: any;
+  patchedRouteId : any;
 
   beneficiaryRegID: string;
   visitID: string;
@@ -192,6 +193,20 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
     this.clearCurrentDetails();
     this.getFormDetails();
   }
+
+  patchRouteValues(){
+    this.drugMaster.filter(item => {
+      if(item.itemID === this.currentPrescription.drugID)
+      this.patchedRouteId = item.routeID;
+    });
+    this.drugRouteMaster.filter(item => {
+      if(item.routeID === this.patchedRouteId)
+      this.currentPrescription.route = item.routeName;
+    });
+
+  }
+  
+
   getFormDetails() {
     this.drugFormMaster.filter(item => {
       if(item.itemFormName === this.currentPrescription.formName)
@@ -311,7 +326,9 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
         } else {
           this.isStockAvalable = "primary";
         }
+
       }
+      this.patchRouteValues();
     }
   }
 

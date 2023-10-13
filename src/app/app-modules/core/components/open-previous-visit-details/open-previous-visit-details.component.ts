@@ -83,13 +83,17 @@ export class OpenPreviousVisitDetailsComponent implements OnInit {
             this.previousVisitData[i]['benPreviousData'] = res.data;
             //this.previousVisitData.push({ 'benPreviousData': res.data});
             this.filteredHistory = res.data;
-            this.previousHistoryPageChanged({
-              page: this.previousHistoryActivePage,
-              itemsPerPage: this.previousHistoryRowsPerPage
-            });
+            // this.previousHistoryPageChanged({
+            //   page: this.previousHistoryActivePage,
+            //   itemsPerPage: this.previousHistoryRowsPerPage
+            // });
           }
         });
       }
+    });
+    this.previousHistoryPageChanged({
+      page: this.previousHistoryActivePage,
+      itemsPerPage: this.previousHistoryRowsPerPage
     });
     console.log("previous data", this.previousVisitData);
   }
@@ -99,7 +103,14 @@ export class OpenPreviousVisitDetailsComponent implements OnInit {
     console.log('called', event)
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
-    this.previousHistoryPagedList = this.previousVisitData.slice(startItem, endItem);
+    // this.previousHistoryPagedList = this.previousVisitData.slice(startItem, endItem);
+    // this.previousHistoryPagedList = this.previousVisitData[0].benPreviousData;
+    // this.previousHistoryPagedList.push(this.previousVisitData[0]);
+    for(let i=0 ; i<5 && i<this.previousVisitData.length; i++){
+      this.previousHistoryPagedList.push(this.previousVisitData[i]);
+
+    }
+    
     console.log('list', this.previousHistoryPagedList)
   }
 
