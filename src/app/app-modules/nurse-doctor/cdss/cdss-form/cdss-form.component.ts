@@ -121,22 +121,40 @@ export class CdssFormComponent implements OnInit {
     }
   }
   getCdssDetails(beneficiaryRegID, visitID) {
-    this.disableVisit=true;
-    this.viewMode = true;
-    this.doctorService.getVisitComplaintDetails(beneficiaryRegID, visitID)
-      .subscribe(value => {
-        if (value != null && value != undefined && value.statusCode == 200 && 
-            value.data != null && value.data != undefined && 
-            value.data.Cdss != null && value.data.Cdss != undefined && 
-            value.data.Cdss.presentChiefComplaint != null && value.data.Cdss.presentChiefComplaint != undefined)
-            this.disableVisit=true;
-            this.viewMode = true;
-          this.cdssForm.patchValue(value.data.Cdss.presentChiefComplaint);
-          this.cdssForm.controls.presentChiefComplaintView.patchValue(value.data.Cdss.presentChiefComplaint.presentChiefComplaint);
-          // this.cdssForm.patchValue({ presentChiefComplaintView : value.data.Cdss.presentChiefComplaint.presentChiefComplaint});
-      });
+    let visitCategory = localStorage.getItem('visitCategory');    
+    if(visitCategory == "General OPD (QC)"){
+      this.disableVisit=true;
+      this.viewMode = true;
+      this.doctorService.getVisitComplaintDetails(beneficiaryRegID, visitID)
+        .subscribe(value => {
+          if (value != null && value != undefined && value.statusCode == 200 && 
+              value.data != null && value.data != undefined && 
+              value.data.cdss != null && value.data.cdss != undefined )
+              this.disableVisit=true;
+              this.viewMode = true;
+            this.cdssForm.patchValue(value.data.cdss);
+            this.cdssForm.controls.presentChiefComplaintView.patchValue(value.data.cdss.presentChiefComplaint);
+            // this.cdssForm.patchValue({ presentChiefComplaintView : value.data.Cdss.presentChiefComplaint.presentChiefComplaint});
+        });
+    }
+    else{
+      this.disableVisit=true;
+      this.viewMode = true;
+      this.doctorService.getVisitComplaintDetails(beneficiaryRegID, visitID)
+        .subscribe(value => {
+          if (value != null && value != undefined && value.statusCode == 200 && 
+              value.data != null && value.data != undefined && 
+              value.data.Cdss != null && value.data.Cdss != undefined && 
+              value.data.Cdss.presentChiefComplaint != null && value.data.Cdss.presentChiefComplaint != undefined)
+              this.disableVisit=true;
+              this.viewMode = true;
+            this.cdssForm.patchValue(value.data.Cdss.presentChiefComplaint);
+            this.cdssForm.controls.presentChiefComplaintView.patchValue(value.data.Cdss.presentChiefComplaint.presentChiefComplaint);
+            // this.cdssForm.patchValue({ presentChiefComplaintView : value.data.Cdss.presentChiefComplaint.presentChiefComplaint});
+        });
+    }
   }
-  
+
   assignSelectedLanguage() {
     const getLanguageJson = new SetLanguageComponent(this.httpServiceService);
     getLanguageJson.setLanguage();

@@ -34,21 +34,92 @@ This microservice is built on Java, Spring boot framework and MySQL DB.
 
 
 ## Installation
-This service has been tested on Wildfly as the application server.
+* Visual Studio Code Installation
+Angular is a popular web development platform developed and maintained by Google. Angular uses TypeScript as its main programming language. The Visual Studio Code editor supports TypeScript IntelliSense and code navigation out of the box, so you can do Angular development without installing any other extension.
 
-To install the Health and Wellness Centre (HWC) module, follow these steps:
+Download Visual Studio Code from the below link: 
+https://code.visualstudio.com/download
 
-Clone the repository to your local machine.
-Install the dependencies.
-
-* npm install
-* npm install ng2-smart-table@1.2.1
-* npm run build
-* mvn clean install
+Link for installation steps: 
+https://www.educative.io/answers/how-to-install-visual-studio-code-on-windows-os
 
 
-## Configuration
-The admin module can be configured by editing the config.js file. This file contains all of the settings for the module, such as the database connection string, the user authentication mechanism, and the role hierarchy.
+* NVM Installation
+nvm - Node Version Manager. It is a tool that allows you to download and install Node.js. It allows you to pick and choose the Node.js version that you wish to use.
+
+Download NVM form below link:
+https://github.com/coreybutler/nvm-windows/releases
+
+Steps to download nvm and node: https://dev.to/skaytech/how-to-install-node-version-manager-nvm-for-windows-10-4nbi
+
+Install Node.js using below command:
+nvm install 8.9.0
+
+Check Node.js version:
+node --version
+
+Check npm version:
+npm --version
+
+Using the below command to specify the version of npm that you wish to use. In our case, since we have only one version installed. Let's go with that.
+ nvm use 8.9.0
+
+* Angular CLI Installation
+Angular CLI is a command line tool for Angular. You can install it globally using npm with the following command:
+npm install -g @angular/cli@1.7.0
+
+* Python Installation [ If you face any Python related error during node_modules installation]
+Download Python 2.7.12
+Download link: https://www.python.org/downloads/
+
+
+* Setup Environment Variables
+1. Add below paths in “User Environment Variables”:
+%NVM_HOME%    - C:\Users\myFolder\AppData\Roaming\nvm
+%NVM_SYMLINK% - C:\Program Files\nodejs
+
+2. Add below paths in “User Environment Variables -> Path “:
+C:\Python27
+C:\Python27\Scripts
+C:\Users\myFolder\AppData\Local\Programs\Microsoft VS Code\bin
+C:\Users\ myFolder\AppData\Roaming\npm
+C:\Users\ myFolder\AppData\Roaming\npm\node_modules\@angular\cli\bin
+%NVM_HOME%
+%NVM_SYMLINK%
+
+3. Add below paths in “System Environment Variables”:
+%NVM_HOME% - C:\Users\ myFolder \AppData\Roaming\nvm
+%NVM_SYMLINK% - C:\Program Files\nodejs
+
+
+4. Add below paths in “System Environment Variables -> Path “:
+C:\Python27
+%NVM_HOME%
+%NVM_SYMLINK%
+%AppData%\npm
+C:\Users\ myFolder\AppData\Roaming\npm
+
+Note: After changing environment variables, please restart your system and check again.
+
+
+* Steps to clone and setup HWC-Facility-APP:
+1. Clone HWC-Facility-App from git hub fork branch in your local system using below command:
+      git clone <repository-Url>
+
+2. Open hwc-facility-app project code in Visual Studio Code
+
+3. Navigate to your project folder and execute below command for node_modules installation:
+      npm install
+
+4. If you face any error related to ng2-smart-table, execute below command: 
+
+      npm install ng2-smart-table@1.2.1
+
+5. Once node module is installed successfully, then run the project using below command:
+      ng serve
+
+By default your application will be available at ‘http://localhost:4200/’. You can access it in your browser.
+
 
 ### Prerequisites 
 * Wildfly (or any compatible app server)
@@ -61,33 +132,3 @@ The admin module can be configured by editing the config.js file. This file cont
 ## Usage
 All features have been exposed as REST endpoints. Refer to the SWAGGER API specification for details.
 
-
-
-<!-- # MMUUI
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0-rc.0.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->

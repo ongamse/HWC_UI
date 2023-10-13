@@ -294,7 +294,8 @@ createCdssForm(disableFlag: boolean = false){
     parkingPlaceID :JSON.parse(localStorage.getItem('serviceLineDetails')).parkingPlaceID
   })
 }
-createPresentCheifComplaint(){
+
+createPresentCheifComplaint() : FormGroup{
   return this.fb.group({
     presentChiefComplaint: null,
     presentChiefComplaintID: null,
@@ -305,7 +306,7 @@ createPresentCheifComplaint(){
     presentChiefComplaintView : null
   })
 }
-createDiseaseSummary(){
+createDiseaseSummary(): FormGroup{
   return this.fb.group({
     diseaseSummary: null,
     diseasesummaryID: null,

@@ -161,6 +161,9 @@ export class NurseService {
         .value,
       medicalForm.controls.patientVisitForm.controls
         .patientFileUploadDetailsForm.value,
+        medicalForm.controls.patientVisitForm.controls.cdssForm.controls.presentChiefComplaintDb.value,
+        medicalForm.controls.patientVisitForm.controls.cdssForm.controls.diseaseSummaryDb.value,
+
       temp
     );
     let vitalsDetails = Object.assign(
