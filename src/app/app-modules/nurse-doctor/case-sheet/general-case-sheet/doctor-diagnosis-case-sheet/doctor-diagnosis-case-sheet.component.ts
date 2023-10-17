@@ -443,7 +443,11 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
 
      if (this.casesheetData.nurseData.cdss !== undefined && 
      this.casesheetData.nurseData.cdss !== null && this.casesheetData.nurseData.cdss.presentChiefComplaint !== undefined && 
-     this.casesheetData.nurseData.cdss.presentChiefComplaint !== null && this.casesheetData.nurseData.cdss.diseaseSummary !== undefined && this.casesheetData.nurseData.cdss.diseaseSummary !== null){
+     this.casesheetData.nurseData.cdss.presentChiefComplaint !== null && this.casesheetData.nurseData.cdss.diseaseSummary !== undefined && this.casesheetData.nurseData.cdss.diseaseSummary !== null
+      &&( (this.casesheetData.nurseData.cdss.diseaseSummary.diseaseSummary !== undefined &&
+         this.casesheetData.nurseData.cdss.diseaseSummary.diseaseSummary !== null) 
+       || (this.casesheetData.nurseData.cdss.presentChiefComplaint.presentChiefComplaint !== undefined && 
+        this.casesheetData.nurseData.cdss.presentChiefComplaint.presentChiefComplaint !== null) )){
      this.cdssFormDetails = this.casesheetData.nurseData.cdss;
      this.isCdssStatus = true;
     }else{
