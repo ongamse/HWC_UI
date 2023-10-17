@@ -76,7 +76,11 @@ export class VisitDetailsComponent implements OnInit {
   ngOnInit() {
     this.ncdScreeningService.clearDiseaseConfirmationScreenFlag();
     this.isCdss = localStorage.getItem('isCdss'); 
-    this.isCdssStatus = this.isCdss;
+    if(this.isCdss !== undefined && this.isCdss !== null && this.isCdss === 'true'){
+      this.isCdssStatus = true;
+    }else{
+      this.isCdssStatus = false;
+    }
      this.ncdScreeningService.enableDiseaseConfirmForm$.subscribe((response) => {
       if(response === "idrs" || response === "cbac")
       {
