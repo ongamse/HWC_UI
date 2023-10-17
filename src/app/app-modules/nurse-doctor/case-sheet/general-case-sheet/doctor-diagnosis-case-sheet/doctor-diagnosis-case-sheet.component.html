@@ -371,7 +371,7 @@
 
   <!-- CDSS -->
   <div class="row m-t-10"  >
-    <div class="col-xs-12">
+    <div class="col-xs-12" *ngIf="isCdssStatus">
       <fieldset>
         <legend>{{current_language_set?.cdss}}:</legend>
         <table class="table table-no-border casesheet-table" aria-describedby="cdssFormDetails">

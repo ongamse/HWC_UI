@@ -115,6 +115,8 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
   cough_pattern: any;
   cough_severity_score: any;
   record_duration: any;
+  isCdss: any;
+  isCdssStatus: boolean = false;
 
   constructor(private doctorService: DoctorService,
     public httpServiceService: HttpServiceService,
@@ -126,6 +128,8 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
 
   ngOnInit() {
     this.visitCategory = localStorage.getItem('caseSheetVisitCategory');
+    // this.isCdss = localStorage.getItem('isCdss'); 
+    // this.isCdssStatus = this.isCdss;
     // this.language = sessionStorage.getItem('setLanguage');
     this.fetchHRPPositive();
     this.getHealthIDDetails();
@@ -441,6 +445,9 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
      this.casesheetData.nurseData.cdss !== null && this.casesheetData.nurseData.cdss.presentChiefComplaint !== undefined && 
      this.casesheetData.nurseData.cdss.presentChiefComplaint !== null && this.casesheetData.nurseData.cdss.diseaseSummary !== undefined && this.casesheetData.nurseData.cdss.diseaseSummary !== null){
      this.cdssFormDetails = this.casesheetData.nurseData.cdss;
+     this.isCdssStatus = true;
+    }else{
+      this.isCdssStatus = false;
     }
 
   this.downloadSign();
