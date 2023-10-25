@@ -56,7 +56,7 @@
 	<!-- we could create individual properties similar to variables -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<final-name>hwcui</final-name>
+		<final-name>hwc-app-facility</final-name>
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     <environment>${ENV_VAR}</environment>
