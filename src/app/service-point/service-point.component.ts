@@ -30,6 +30,7 @@ import { SetLanguageComponent } from 'app/app-modules/core/components/set-langua
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationUtils } from 'app/app-modules/registrar/shared/utility/registration-utility';
 import { RegistrarService } from 'app/app-modules/registrar/shared/services/registrar.service';
+import { CDSSService } from 'app/app-modules/nurse-doctor/shared/services/cdss-service';
 
 @Component({
   selector: 'app-service-point',
@@ -130,6 +131,7 @@ export class ServicePointComponent implements OnInit {
     this.serviceProviderId = localStorage.getItem('providerServiceID');
     this.userId = localStorage.getItem('userID');
     this.getServicePoint();
+    this.getCdssAdminStatus();
      //this.getDemographics();
     // console.log( "language",this.appLanguage.appCurrentLanguge.value);
     // this.httpServiceService.currentLangugae$.subscribe(response =>this.current_language_set = response);
@@ -363,6 +365,16 @@ this.goToWorkList();
 
   locationGathetingIssues() {
     this.confirmationService.alert(this.current_language_set.coreComponents.issuesInGettingLocationTryToReLogin, 'error');
+  }
+
+  getCdssAdminStatus(){
+    let psmid = this.serviceProviderId;
+    this.servicePointService.getCdssAdminDetails(psmid)
+    .subscribe((res) => {
+      if (res.data !== null && res.data !== undefined && res.data.isCdss !== undefined && res.data.isCdss !== null) {
+       localStorage.setItem('isCdss', res.data.isCdss);
+      }
+    });
   }
 
 }

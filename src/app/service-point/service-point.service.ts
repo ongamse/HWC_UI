@@ -61,5 +61,10 @@ export class ServicePointService {
         return Observable.throw(err);
       })
   }
+  getCdssAdminDetails(providerServiceMapID) {
+    return this.http
+      .get(environment.getAdminCdssStatus +'/'+ providerServiceMapID )
+      .map((res) => res.json());
+  }
 
 }
