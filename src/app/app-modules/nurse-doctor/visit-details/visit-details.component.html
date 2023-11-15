@@ -27,7 +27,7 @@
     <patient-chief-complaints [mode]="mode" [patientChiefComplaintsForm]='patientVisitForm.controls.patientChiefComplaintsForm'></patient-chief-complaints>
   </md-expansion-panel>
   
-  <md-expansion-panel *ngIf="visitCategory">
+  <md-expansion-panel *ngIf="visitCategory && isCdssStatus">
     <md-expansion-panel-header >
       <h5> {{currentLanguageSet?.nurseData?.chiefComplaintsDetails?.cdss}}</h5>
     </md-expansion-panel-header>

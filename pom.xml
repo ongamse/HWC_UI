@@ -2,13 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<!-- @Author : Sunil K Sundaram @Date : 21-May-17 @Email : sunil.ks@gmail.com -->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.iemr.tmui</groupId>
-	<artifactId>TM-ui</artifactId>
+	<groupId>com.iemr.hwcui</groupId>
+	<artifactId>HWC-UI</artifactId>
 	<version>1.0</version>
-	<name>TM-ui</name>
-	<description>Piramal - tm: Module ui</description>
+	<name>HWC-UI</name>
+	<description>Piramal - HWC: Module ui</description>
 	<packaging>war</packaging>
 	<profiles>
 		<profile>
@@ -46,14 +45,21 @@
 				<environment>test</environment>
 			</properties>
 		</profile>
+    <profile>
+      <id>ci</id>
+      <properties>
+        <environment>ci</environment>
+      </properties>
+    </profile>
 	</profiles>
-	
+
 	<!-- we could create individual properties similar to variables -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<final-name>tmui-v1.0</final-name>
+		<final-name>hwc-app-facility</final-name>
 		<build.timestamp>${maven.build.timestamp}</build.timestamp>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+    <environment>${ENV_VAR}</environment>
 		<hostname-dev>10.208.122.32</hostname-dev>
 		<port-dev>9990</port-dev>
 		<hostname-local>localhost</hostname-local>
@@ -66,10 +72,10 @@
 		<server-hostname>{hostname-${environment}}</server-hostname>
 		<server-port>{port-${environment}}</server-port>
 	</properties>
-	
+
 	<!-- install the necessary node_modules & compile in prod mode -->
 	<build>
-		<finalName>tmui-v1.0</finalName>
+		<finalName>hwcui</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -92,7 +98,7 @@
 				<version>1.6.0</version>
 				<executions>
 					<execution>
-						<id>running npm install</id>
+						<id>npm-install</id>
 						<phase>compile</phase>
 						<goals>
 							<goal>exec</goal>
@@ -105,14 +111,11 @@
 							<executable>npm</executable>
 							<arguments>
 								<argument>install</argument>
-								<!-- use save-dev or save if you understand the consequences, else -->
-								<!-- please leave them alone & add appropriate npm dependencies in 
-									package.json -->
 							</arguments>
 						</configuration>
 					</execution>
 					<execution>
-						<id>running ng build --${environment}</id>
+						<id>npm-run-build</id>
 						<phase>compile</phase>
 						<goals>
 							<goal>exec</goal>
@@ -131,9 +134,9 @@
 							</arguments>
 						</configuration>
 					</execution>
-				</executions> 
+				</executions>
 			</plugin>
-			<!-- use following incase resources from other dirs -->			
+			<!-- use following incase resources from other dirs -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -165,9 +168,9 @@
 							<!-- this is relative to the pom.xml directory -->
 							<directory>dist</directory>
 						</resource>
-						<resource>		
-							<filtering>true</filtering>					
-							<directory>src/packaging/</directory>							
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/packaging/</directory>
 						</resource>
 					</webResources>
 				</configuration>
@@ -178,7 +181,7 @@
 				<version>1.8</version>
 				<executions>
 					<execution>
-						<id>properties-updated 1</id>
+						<id>properties-updated</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>run</goal>

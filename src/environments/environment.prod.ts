@@ -1,8 +1,8 @@
 /*
-* AMRIT – Accessible Medical Records via Integrated Technology 
-* Integrated EHR (Electronic Health Records) Solution 
+* AMRIT – Accessible Medical Records via Integrated Technology
+* Integrated EHR (Electronic Health Records) Solution
 *
-* Copyright (C) "Piramal Swasthya Management and Research Institute" 
+* Copyright (C) "Piramal Swasthya Management and Research Institute"
 *
 * This file is part of AMRIT.
 *
@@ -29,10 +29,10 @@ const tmIP = "http://10.208.122.38:8080/";
 const mmuIP = "http://10.208.122.38:8080/";
 const schedulerIP = "http://10.208.122.38:8080/";
 const tmUI_IP = "http://10.208.122.38:8080/";
-const schedulerUI_IP = "http://10.208.122.38:8080/";  
+const schedulerUI_IP = "http://10.208.122.38:8080/";
 const inventoryUI_IP = "http://10.208.122.38:8080/";
 const SERVER_IP = "dataSYNCIP";
-const SWYMED_IP = "swymed://14.143.13.109";
+const SWYMED_IP = "14.143.13.109";
 const adminIP = "http://10.208.122.38:8080";
 const FHIRIP = "http://10.208.122.38:8080";
 const identityIP = "http://10.208.122.38:8080/";
@@ -55,7 +55,7 @@ const COMMON_API_OPEN_SYNC = `${SERVER_IP}commonapi-v1.0/`;
 const SCHEDULER_API = `${schedulerIP}schedulerapi-v1.0/`;
 const ADMIN_API = `${adminIP}/adminapi-v1.0`;
 const API104 = `${IP104}/104api-v1.0/`;
-const biologicalScreeningDeviceAPI = `${ADMIN_API}/diagnostics/biologicalScreeningDevice`; 
+const biologicalScreeningDeviceAPI = `${ADMIN_API}/diagnostics/biologicalScreeningDevice`;
 const FHIR_API = `${FHIRIP}/fhirapi-v1.0/`;
 const mmuUICasesheet = `${tmUI_IP}tmui-v1.0`;
 
@@ -362,7 +362,7 @@ export const environment = {
   cancelBeneficiaryTCRequestUrl: `${TM_API}tc/cancel/benTCRequest`,
   scheduleTCUrl: `${TM_API}tc/create/benTCRequestWithVisitCode`,
   beneficiaryTCRequestStatusUrl: `${TM_API}tc/check/benTCRequestStatus`,
-  swymedUrl: `${SWYMED_IP}`,
+  swymedUrl: `swymed://${SWYMED_IP}`,
   saveSpecialistCancerObservationUrl: `${TM_API}CS-cancerScreening/update/doctorData`,
   getSwymedMailLoginUrl: `${TM_API}videoConsultation/login/`,
   invokeSwymedCallUrl: `${TM_API}videoConsultation/call/`,
@@ -445,7 +445,7 @@ export const environment = {
   /**Screening URL's */
   getNcdScreeningDetailsForCbac: `${TM_API}/NCD/get/ncd/screening/data`,
   updateNCDScreeningDetailsUrl: `${TM_API}NCD/update/ncd/screening/data`,
-  
+
   /*Family Tagging Urls */
   relationShipUrl: `${TM_API}registrar/registrarMasterData`,
   saveFamilyTaggingUrl: `${IDENTITY_API}/family/addTag`,
@@ -491,7 +491,7 @@ export const environment = {
     updateNeonatalImmunizationService: `${TM_API}neonatal-infantServices/update/ImmunizationServicesScreen`,
     getNeonatalVisitDetails: `${TM_API}/neonatal-infant-services/getBenVisitDetailsFrmNurseNNI`,
 
-    
+
     /* Child And Adolescent Urls */
     saveNurseChildAndAdloescentDetails: `${TM_API}/child-adolescent-care/save/nurseData`,
     getChildAndAdolescentVisitDetails: `${TM_API}/child-adolescent-care/getBenVisitDetailsFrmNurseCAC`,
@@ -506,13 +506,13 @@ export const environment = {
     updateBirthAndImmunizationHistoryDataUrl: `${TM_API}/child-adolescent-care/update/BirthAndImmunizationHistoryScreen`,
     getBirthImmunizationHistoryDataUrl: `${TM_API}/child-adolescent-care/getBenHistoryDetails`,
 
-    /* SWAASA Urls*/ 
+    /* SWAASA Urls*/
     getResultStatusURL: `${COMMON_API}lungAssessment/startAssesment`,
     getAssessmentUrl: `${COMMON_API}lungAssessment/getAssesment`,
     getAssessmentIdUrl: `${COMMON_API}lungAssessment/getAssesmentDetails`,
     getnurse104referredworklisturls: `${TM_API}uptsu/getWorklistByVanID`,
 
-    
+
     /* CDSS Urls */
     getCdssQuestionsUrl: `${API104}CDSS/getQuestions`,
     getCdssAnswersUrl: `${API104}CDSS/getResult`,
@@ -522,5 +522,7 @@ export const environment = {
     closeVisitSaveComplaintsUrl: `${TM_API}uptsu/submit/closevisit`,
     getDiseaseDataUrls: `${API104}diseaseController/getDiseasesByID`,
     getDiseaseNamesUrls: `${API104}diseaseController/getAvailableDiseases`,
+    getAdminCdssStatus: `${ADMIN_API}uptsu/getCdssData`,
+
 
 };

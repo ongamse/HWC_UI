@@ -63,6 +63,8 @@ export class VisitDetailsComponent implements OnInit {
   enableCBACForm: boolean = false;
   isCdssVitals : boolean = false;
   enablingCBACSectionSubscription: Subscription
+  isCdssStatus: boolean = false;
+  isCdss : any;
 
   constructor(
     private fb: FormBuilder,
@@ -73,6 +75,12 @@ export class VisitDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.ncdScreeningService.clearDiseaseConfirmationScreenFlag();
+    this.isCdss = localStorage.getItem('isCdss'); 
+    if(this.isCdss !== undefined && this.isCdss !== null && this.isCdss === 'true'){
+      this.isCdssStatus = true;
+    }else{
+      this.isCdssStatus = false;
+    }
      this.ncdScreeningService.enableDiseaseConfirmForm$.subscribe((response) => {
       if(response === "idrs" || response === "cbac")
       {
