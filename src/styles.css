@@ -477,3 +477,8 @@ body md-icon.search-btn.cursorPointer.mat-icon.material-icons.ng-star-inserted {
   background-position: 0;
   background-color: transparent !important;
 }
+
+@media (min-width: 1200px) {
+  .hidden-lg .hidden-md .hidden-sm {
+      display: inline-block !important;
+  }
