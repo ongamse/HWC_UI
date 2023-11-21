@@ -48,7 +48,9 @@ const defaultEnvValues = {
   ADMIN_API_BASE: '',
   FHIR_API_BASE: '',
   SERVER_IP: '',
-  SWYMED_IP: ''
+  SWYMED_IP: '',
+  SCHEDULER_UI_BASE: '',
+  INVENTORY_UI_BASE: '',
 };
 
 // Generate output data
