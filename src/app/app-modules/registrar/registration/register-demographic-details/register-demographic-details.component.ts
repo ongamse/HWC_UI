@@ -464,14 +464,6 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
       this.loadLocalMasterForDemographic();
        this.districtList = this.demographicsMaster.otherLoc.districtList;
 
-      // this.districtList = [];
-      this.subDistrictList = [];
-      this.villageList = [];
-      this.emptyDistrict();
-      this.emptyVillage();
-      this.emptySubDistrict();
-      // this.onDistrictChange();
-      //this.stateChangeOnLoad();
       this.disableDistrict = false;
 
     } else if (
@@ -515,32 +507,19 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
     });
 
     this.registrarService.stateIdFamily = this.demographicsMaster.otherLoc.stateID;
-    
-
-    // this.demographicDetailsForm.patchValue({
-    //   stateID: this.demographicsMaster.otherLoc.stateID,
-    //   stateName: this.demographicsMaster.otherLoc.stateName,
-    // });
-
-    // this.registrarService.stateIdFamily = this.demographicsMaster.otherLoc.stateID;
+  
   }
 
   /**
    * Load Districts  for New Patient
    */
   loadDistrict() {
-    // this.districtList = [
-    //   {
-    //     districtID: this.demographicsMaster.otherLoc.districtList[0].districtID,
-    //     districtName:
-    //       this.demographicsMaster.otherLoc.districtList[0].districtName,
-    //   },
-    // ];
-    // this.demographicDetailsForm.patchValue({
-    //   districtID: this.locationData.districtID,
-    //   districtName:
-    //     this.locationData.districtName,
-    // });
+    this.districtList = this.demographicsMaster.otherLoc.districtList;
+    this.demographicDetailsForm.patchValue({
+      districtID: this.demographicsMaster.otherLoc.districtList[0].districtID,
+      districtName: this.demographicsMaster.otherLoc.districtList[0].districtName,
+    });
+    
   }
 
   /**
@@ -549,28 +528,27 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
   loadSubDistrict() {
     this.subDistrictList = [
       {
-        blockID: this.demographicsMaster.otherLoc.blockID,
-        blockName: this.demographicsMaster.otherLoc.blockName,
+        blockID: this.demographicsMaster.otherLoc.districtList[0].blockId,
+        blockName: this.demographicsMaster.otherLoc.districtList[0].blockName,
       },
     ];
-    // this.demographicDetailsForm.patchValue({
-    //   blockID: this.locationData.blockID,
-    //   blockName: this.locationData.blockName,
-    // });
+    this.demographicDetailsForm.patchValue({
+      blockID: this.demographicsMaster.otherLoc.districtList[0].blockId,
+      blockName: this.demographicsMaster.otherLoc.districtList[0].blockName,
+    });
   }
+
   /**
    * Load Village  for New Patient
    */
   loadVillage() {
-    this.villageList = this.demographicsMaster.villageMaster;
-    this.demographicDetailsForm.patchValue({
-      villageID: null,
-      villageName: null,
-    });
-    // this.demographicDetailsForm.patchValue({
-    //   villageID: this.locationData.subDistrictID,
-    //   villageName: this.locationData.villageName,
-    // });
+    this.villageList = this.demographicsMaster.otherLoc.districtList[0].villageList;
+    if(this.villageList.length == 1){
+      this.demographicDetailsForm.patchValue({
+        villageID: this.demographicsMaster.otherLoc.districtList[0].villageList[0].districtBranchID,
+        villageName: this.demographicsMaster.otherLoc.districtList[0].villageList[0].villageName,
+      });
+    }
   }
   /**
    * Load Zones  for New Patient
@@ -780,17 +758,7 @@ export class RegisterDemographicDetailsComponent implements OnInit, OnDestroy {
   onVillageChange() {
     this.updateVillageName();
   }
-  // onVillageChangeOnLoad(){
-  //   this.villageList.find((village) => {
-  //     if (
-  //       village.districtBranchID === this.demographicDetailsForm.value.villageID
-  //     ) {
-  //       this.demographicDetailsForm.patchValue({
-  //         villageName: village.villageName,
-  //       });
-  //     }
-  //   });
-  // }
+  
  onSubDistrictOnLoad(){
   this.updateSubDistrictName();
   this.registrarService
