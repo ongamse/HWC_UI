@@ -43,13 +43,21 @@ export class ServiceComponent implements OnInit {
   getServicePoint() {
     let serviceProviderId = localStorage.getItem('providerServiceID');
     let userId = localStorage.getItem('userID');
+    let data =localStorage.getItem('loginDataResponse');
+    let jsonData = JSON.parse(data);
+    let designation = jsonData.designation.designationName;
     this.servicePointService.getServicePoints(userId,serviceProviderId).subscribe(res => {
       if (res.statusCode == 200 && res.data != null) {
         let data = res.data;
-        if (data.UserVanSpDetails) {
+        
+        if (data.UserVanSpDetails && data.UserVanSpDetails.length > 0) {
           this.vanServicepointDetails = data.UserVanSpDetails;
           this.filterVanList(this.vanServicepointDetails)
           this.getDemographics();
+          this.checkRoleAndDesingnationMappedForservice(this.loginDataResponse, this.serviceDetails);
+        }
+        else if(designation === "TC Specialist"){
+          // this.getDemographics();
           this.checkRoleAndDesingnationMappedForservice(this.loginDataResponse, this.serviceDetails);
         }
       } else if (res.statusCode == 5002) {
