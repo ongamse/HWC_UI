@@ -38,6 +38,8 @@ const SCHEDULER_API =  '<%= SCHEDULER_API_BASE %>';
 const mmuUICasesheet = '<%= TM_API_BASE %>';
 const ADMIN_API = '<%= ADMIN_API_BASE %>';
 const FHIR_API = '<%= FHIR_API_BASE %>';
+const INVENTORY_UI =  '<%= INVENTORY_UI_BASE %>';
+const SCHEDULER_UI =  '<%= SCHEDULER_UI_BASE %>';
 const biologicalScreeningDeviceAPI = `${ADMIN_API}/diagnostics/biologicalScreeningDevice`;
 
 export const environment = {
@@ -55,11 +57,11 @@ export const environment = {
   IdrsOrCbac: ["IDRS", "CBAC"],
   parentAPI: `${TM_API}`,
 
-  INVENTORY_URL: `${inventoryUI_IP}/inventory-ui-v1.0/#/redirin?`,
+  INVENTORY_URL: `${INVENTORY_UI}/#/redirin?`,
   fallbackUrl: `/pharmacist/redirfallback`,
   redirInUrl: `/pharmacist/redirin`,
 
-  TELEMEDICINE_URL: `${schedulerUI_IP}/schedulerui-v1.0/#/?`,
+  TELEMEDICINE_URL: `${SCHEDULER_UI}/#/?`,
   fallbackMMUUrl: `/logout-tm`,
   redirInMMUUrl: `/common/tcspecialist-worklist`,
 
@@ -498,4 +500,5 @@ export const environment = {
   closeVisitSaveComplaintsUrl: `${TM_API}uptsu/submit/closevisit`,
   getDiseaseDataUrls: `${API104}diseaseController/getDiseasesByID`,
   getDiseaseNamesUrls: `${API104}diseaseController/getAvailableDiseases`,
+  getAdminCdssStatus: `${ADMIN_API}uptsu/getCdssData`,
 };
