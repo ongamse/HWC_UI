@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   _iterationCount: any;
 
   userName: any;
-  password: any;
+  code: any;
   eSanjeevaniArr: any=[];
   dynamictype = 'password';
   @ViewChild('focus') private elementRef: ElementRef;  
@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-let encriptPassword = this.encrypt(this.Key_IV, this.password)
+let encriptPassword = this.encrypt(this.Key_IV, this.code)
     
    this.authService.login(this.userName, encriptPassword, false)
       .subscribe(res => {
