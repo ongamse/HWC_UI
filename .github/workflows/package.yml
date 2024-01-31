@@ -22,7 +22,7 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v3
       with:
-          java-version: '8'
+          java-version: '17'
           distribution: 'adopt'
 
 
@@ -31,16 +31,12 @@ jobs:
       with:
           node-version: 16
 
-    - name: Build with NPM and Maven
+    - name: Build with NPM
       run: |
             npm config set legacy-peer-deps true
             npm install -g @angular/cli
-            npm install typescript@2.7.2 --save-dev
-            npm install ng2-smart-table@1.2.1
-            npm install node-sass
             npm install --force
             npm run build
-            mvn clean install
 
     - name: Create WAR file
       run: mvn -B package --file pom.xml
