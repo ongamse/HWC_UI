@@ -37,6 +37,8 @@ export class ServiceComponent implements OnInit {
     localStorage.removeItem('providerServiceID');
     this.servicesList = JSON.parse(localStorage.getItem('services'));
     this.fullName = localStorage.getItem('fullName');
+    this.getCdssAdminStatus();
+    
 
   }
 
@@ -269,5 +271,15 @@ export class ServiceComponent implements OnInit {
         this.goToWorkList();
         break;
     }
+  }
+
+  getCdssAdminStatus(){
+    let psmid = localStorage.getItem('providerServiceID');
+    this.servicePointService.getCdssAdminDetails(psmid)
+    .subscribe((res) => {
+      if (res.data !== null && res.data !== undefined && res.data.isCdss !== undefined && res.data.isCdss !== null) {
+       localStorage.setItem('isCdss', res.data.isCdss);
+      }
+    });
   }
 }
