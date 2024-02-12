@@ -37,7 +37,6 @@ export class ServiceComponent implements OnInit {
     localStorage.removeItem('providerServiceID');
     this.servicesList = JSON.parse(localStorage.getItem('services'));
     this.fullName = localStorage.getItem('fullName');
-    this.getCdssAdminStatus();
     
 
   }
@@ -121,6 +120,7 @@ export class ServiceComponent implements OnInit {
     this.loginDataResponse = JSON.parse(localStorage.getItem('loginDataResponse'));
     this.serviceDetails = service;
     this.getServicePoint();
+    this.getCdssAdminStatus();
 
   }
 
