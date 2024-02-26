@@ -107,7 +107,7 @@ export class GenerateAbhaComponentComponent implements OnInit {
   generateHealthIDCard() {
     const id = {
       "aadharNumber"     : this.aadharNumber,
-      "modeofAbhaHealthID" : this.modeofAbhaHealthID
+      "healthIdMode" : this.modeofAbhaHealthID
     }
     this.registrarService.passIDsToFetchOtp(id);
   }

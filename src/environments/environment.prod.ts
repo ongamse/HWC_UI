@@ -522,7 +522,7 @@ export const environment = {
     closeVisitSaveComplaintsUrl: `${TM_API}uptsu/submit/closevisit`,
     getDiseaseDataUrls: `${API104}diseaseController/getDiseasesByID`,
     getDiseaseNamesUrls: `${API104}diseaseController/getAvailableDiseases`,
-    getAdminCdssStatus: `${ADMIN_API}uptsu/getCdssData`,
+    getAdminCdssStatus: `${ADMIN_API}/uptsu/getCdssData`,
 
 
 };
