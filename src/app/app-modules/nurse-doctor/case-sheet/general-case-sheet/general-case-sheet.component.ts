@@ -65,7 +65,8 @@ export class GeneralCaseSheetComponent implements OnInit {
     caseSheetVisitDetails: true,
     caseSheetTreatmentOnSideEffects: true,
     caseSheetCounsellingProvided: true,
-    caseSheetNeonatalAndInfant: true
+    caseSheetNeonatalAndInfant: true,
+    caseSheetCdss:true
   }
   current_language_set: any;
 
@@ -220,6 +221,7 @@ export class GeneralCaseSheetComponent implements OnInit {
         this.printPagePreviewSelect.caseSheetTreatmentOnSideEffects = result.caseSheetTreatmentOnSideEffects;
         this.printPagePreviewSelect.caseSheetCounsellingProvided = result.caseSheetCounsellingProvided;
         this.printPagePreviewSelect.caseSheetNeonatalAndInfant = result.caseSheetNeonatalAndInfant;
+        this.printPagePreviewSelect.caseSheetCdss = result.caseSheetCdss;
       }
     });
   }

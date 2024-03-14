@@ -542,5 +542,5 @@ export const environment = {
     getnurse104referredworklisturls: `${TM_API}uptsu/getWorklistByVanID`,
     getDiseaseDataUrls: `${API104}diseaseController/getDiseasesByID`,
     getDiseaseNamesUrls: `${API104}diseaseController/getAvailableDiseases`,
-    getAdminCdssStatus: `${ADMIN_API}uptsu/getCdssData`,
+    getAdminCdssStatus: `${ADMIN_API}/uptsu/getCdssData`,
 };

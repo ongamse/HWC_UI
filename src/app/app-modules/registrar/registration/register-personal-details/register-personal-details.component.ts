@@ -74,6 +74,8 @@ export class RegisterPersonalDetailsComponent implements OnInit {
 
   @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective;
   personalDataOnHealthIDSubscription: Subscription;
+  maritalSubscription: Subscription;
+  MaritalStatus: boolean = false;
 
   @HostListener("window:scroll")
   onScrollEvent() {
@@ -103,6 +105,7 @@ export class RegisterPersonalDetailsComponent implements OnInit {
     this.setDateLimits();
     this.setDefaultAgeUnit();
     this.loadMasterDataObservable();
+    this.isMaritalStatus();
     this.setPhoneSelectionEnabledByDefault();
     this.setImageChangeFlagToFalseByDefault();
     this.setCalendarConfig();
@@ -156,6 +159,9 @@ export class RegisterPersonalDetailsComponent implements OnInit {
     }
     if (this.personalDataOnHealthIDSubscription) {
       this.personalDataOnHealthIDSubscription.unsubscribe();
+    }
+    if (this.maritalSubscription){
+    this.maritalSubscription.unsubscribe();
     }
   }
 
@@ -496,8 +502,19 @@ export class RegisterPersonalDetailsComponent implements OnInit {
       );
     }
   }
-
- 
+  isMaritalStatus(){
+    this.maritalSubscription = this.registrarService.maritalStatus$.subscribe((response) =>{
+      if(response === true){
+        this.MaritalStatus = true;
+        this.enableMaritalStatus = true;
+        this.onGenderSelected();
+      }
+      else{
+        this.MaritalStatus = false;
+        this.enableMaritalStatus = false;
+      }
+    });
+  } 
 
   /**
    * Phone Number Parent Relations

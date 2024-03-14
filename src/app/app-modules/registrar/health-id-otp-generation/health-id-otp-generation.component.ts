@@ -47,6 +47,7 @@ export class HealthIdOtpGenerationComponent implements OnInit {
   showProgressBar: Boolean = false;
   password: any;
   aadharNum: any;
+  registrarMasterData: any;
   // mobileLinkedOtp: any;
 
   constructor(private fb: FormBuilder,public dialogRef: MdDialogRef<HealthIdOtpGenerationComponent>,
@@ -68,6 +69,7 @@ export class HealthIdOtpGenerationComponent implements OnInit {
       this.enablehealthIdOTPForm = true;
       this.getHealthIdOtpForInitial();
     }
+    this.loadMasterDataObservable();
   }
   ngDoCheck() {
     this.assignSelectedLanguage();
@@ -226,6 +228,18 @@ export class HealthIdOtpGenerationComponent implements OnInit {
               this.enablehealthIdOTPForm = true;
           })
   }
+
+  masterDataSubscription: any;
+  loadMasterDataObservable() {
+    this.masterDataSubscription = this.registrarService.registrationMasterDetails$
+      .subscribe(res => {
+        console.log('Registrar master data', res);
+        if (res != null) {
+          this.registrarMasterData = Object.assign({}, res);
+         console.log("master data",this.registrarMasterData);
+        }
+      })
+  }
   posthealthIDButtonCall()
   {
     let dialogRefPass = this.dialog.open(SetPasswordForAbhaComponent, {
@@ -253,6 +267,7 @@ export class HealthIdOtpGenerationComponent implements OnInit {
             this.registrarService.abhaGenerateData = res.data;
             this.registrarService.aadharNumberNew = this.aadharNum;
             this.registrarService.getabhaDetail(true);
+            
             let dialogRefSuccess = this.dialog.open(HealthIdOtpSuccessComponent, {
               height: '300px',
               width: '420px',
@@ -261,10 +276,34 @@ export class HealthIdOtpGenerationComponent implements OnInit {
             });
             this.showProgressBar = false;
             dialogRefSuccess.afterClosed().subscribe(result => {
-            
+          const dob = `${res.data.dayOfBirth}/${res.data.monthOfBirth}/${res.data.yearOfBirth}`;
+            let gender = ''; 
+        if (res.data.gender === 'F') {
+          gender = 'Female';
+        } else if (res.data.gender === 'M') {
+          gender = 'Male';
+        } else {
+          gender = 'Transgender';
+        }
+
+        const filteredGender = this.registrarMasterData.genderMaster.filter(g => g.genderName === gender);
+
+          let genderID = null;
+          let genderName = null; 
+          if (filteredGender.length > 0) {
+            genderID = filteredGender[0].genderID;
+            genderName = filteredGender[0].genderName;
+          }
+
             let dat = {
               "healthIdNumber": res.data.healthIdNumber,
               "healthId": res.data.healthId,
+              "firstName": res.data.firstName,
+              "lastName": res.data.lastName,
+              "phoneNo": res.data.mobile,
+              "dob": dob,
+              "gender": genderID,
+              "genderName": genderName
             };
             this.registrarService.setHealthIdMobVerification(dat);
             this.dialogRef.close(dat);
