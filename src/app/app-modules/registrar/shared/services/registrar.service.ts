@@ -96,6 +96,15 @@ export class RegistrarService {
   //  this.benFamilyDetails = value;
   // }
 
+  maritalStatus: boolean = false;
+  isMarriageStatus = new BehaviorSubject<boolean>(this.maritalStatus);
+  maritalStatus$ = this.isMarriageStatus.asObservable();
+
+  isMarriageEnable(maritalStatus){
+    this.isMarriageStatus.next(maritalStatus);
+
+  }
+
   
   // GenerateOTPEnable: any;
   // GenerateOTP = new BehaviorSubject(this.GenerateOTPEnable);

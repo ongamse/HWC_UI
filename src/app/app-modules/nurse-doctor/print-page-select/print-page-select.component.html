@@ -15,6 +15,9 @@
   <div class="col-xs-12 col-sm-6 col-md-6 m-t-15" *ngIf="visitCategory != 'General OPD (QC)'">
     <md-checkbox (change)="unCheckSelectAll()" color='primary' class="" [(ngModel)]="printPagePreviewSelect.caseSheetHistory"> {{currentLanguageSet?.historyData.history}} </md-checkbox>
   </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 m-t-15" *ngIf="isCdssAvailable" >
+    <md-checkbox (change)="unCheckSelectAll()" color='primary' class="" [(ngModel)]="printPagePreviewSelect.caseSheetCdss"> {{currentLanguageSet?.cdss}} </md-checkbox>
+  </div>
   <div class="col-xs-12 col-sm-6 col-md-6 m-t-15" *ngIf="visitCategory != 'NCD care' && visitCategory != 'General OPD (QC)' && visitCategory != 'COVID-19 Screening'">
     <md-checkbox (change)="unCheckSelectAll()" color='primary' class="" [(ngModel)]="printPagePreviewSelect.caseSheetExamination"> {{currentLanguageSet?.ExaminationData.examination}} </md-checkbox>
   </div>

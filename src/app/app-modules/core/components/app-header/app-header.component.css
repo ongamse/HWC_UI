@@ -159,6 +159,12 @@ button.mat-button {
     }
 }
 
+@media (min-width: 1200px) {
+    .hidden-lg  {
+        display: inline-block !important;
+    }
+    }
+
 /* ul li {
     border-radius: 30px;
     background-color: white !important;

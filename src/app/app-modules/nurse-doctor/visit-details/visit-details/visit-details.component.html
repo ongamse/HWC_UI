@@ -233,7 +233,7 @@
       visitCategory == 'NCD screening'
     "
   >
-    <md-radio-group
+    <md-radio-group *ngIf="isRadioGroupVisible"
       formControlName="IdrsOrCbac"
       (change)="enableHistoryScreenOnIdrs(IdrsOrCbac)"
       [(ngModel)]="keyType"

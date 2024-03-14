@@ -23,6 +23,8 @@ import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { HttpServiceService } from 'app/app-modules/core/services/http-service.service';
 import { SetLanguageComponent } from 'app/app-modules/core/components/set-language.component';
+import { CDSSService } from '../shared/services/cdss-service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -53,7 +55,8 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
     caseSheetTreatmentOnSideEffects: true,
     caseSheetCounsellingProvided: true,
     caseSheetNeonatalAndInfant: true,
-    caseSheetOralVitaminA: true
+    caseSheetOralVitaminA: true,
+    caseSheetCdss: true
 
   }
 
@@ -61,13 +64,16 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
   currentLanguageSet: any;
   language_file_path: any = "./assets/";
   language : any;
+  isCdssAvailable: boolean;
+  CdssSubcription: Subscription;
 
   constructor(
     public dialogRef: MdDialogRef<PrintPageSelectComponent>,
     @Inject(MD_DIALOG_DATA) public data: any,
-    public httpServiceService: HttpServiceService) { }
+    public httpServiceService: HttpServiceService, public cdssService: CDSSService) { }
 
   ngOnInit() {
+    this.isCdssStatus();
     if (this.data) {
       this.visitCategory = this.data.visitCategory;
       this.printPagePreviewSelect.caseSheetANC = this.data.printPagePreviewSelect.caseSheetANC;
@@ -90,6 +96,7 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
       this.printPagePreviewSelect.caseSheetCounsellingProvided = this.data.printPagePreviewSelect.caseSheetCounsellingProvided;
       this.printPagePreviewSelect.caseSheetNeonatalAndInfant = this.data.printPagePreviewSelect.caseSheetNeonatalAndInfant;
       this.printPagePreviewSelect.caseSheetOralVitaminA = this.data.printPagePreviewSelect.caseSheetOralVitaminA;
+      this.printPagePreviewSelect.caseSheetCdss = this.data.printPagePreviewSelect.caseSheetCdss;
     }
     this.unCheckSelectAll();
     this.setLanguage();
@@ -171,10 +178,10 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
     this.printPagePreviewSelect.caseSheetExtInvestigation = true;
     this.printPagePreviewSelect.caseSheetCurrentVitals = true;
     this.printPagePreviewSelect.caseSheetChiefComplaints = true;
-    this.printPagePreviewSelect.caseSheetClinicalObservations = true;
+    this.printPagePreviewSelect.caseSheetClinicalObservations = true; 
 
     if(this.visitCategory != 'General OPD (QC)'){
-    this.printPagePreviewSelect.caseSheetFindings = true;
+    this.printPagePreviewSelect.caseSheetFindings = true;   
     }
     this.printPagePreviewSelect.caseSheetCovidVaccinationDetails = true;
 
@@ -197,6 +204,7 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
     if(this.visitCategory.toLowerCase() == 'childhood & adolescent healthcare services'){
     this.printPagePreviewSelect.caseSheetOralVitaminA = true;
     }
+    this.printPagePreviewSelect.caseSheetCdss = true;
   }
 
 
@@ -206,6 +214,7 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
     }
     if(this.visitCategory == "PNC") {
     this.printPagePreviewSelect.caseSheetPNC = false;
+    this.printPagePreviewSelect.caseSheetCdss = false;
     }
 
     if(this.visitCategory != "General OPD (QC)") {
@@ -247,6 +256,7 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
     if(this.visitCategory.toLowerCase() == 'childhood & adolescent healthcare services'){
     this.printPagePreviewSelect.caseSheetOralVitaminA = false;
     }
+    this.printPagePreviewSelect.caseSheetCdss = false;
   }
 
   unCheckSelectAll(){
@@ -302,12 +312,28 @@ export class PrintPageSelectComponent implements OnInit, DoCheck {
     this.printPagePreviewSelect.caseSheetExtInvestigation  && this.printPagePreviewSelect.caseSheetCurrentVitals && 
     this.printPagePreviewSelect.caseSheetChiefComplaints && this.printPagePreviewSelect.caseSheetClinicalObservations && 
     this.printPagePreviewSelect.caseSheetCovidVaccinationDetails && 
-    this.printPagePreviewSelect.caseSheetCounsellingProvided) {
+    this.printPagePreviewSelect.caseSheetCounsellingProvided && this.printPagePreviewSelect.caseSheetCdss) {
       this.printPagePreviewSelect.selectAllCheckBox = true;
   }
   else {
     this.printPagePreviewSelect.selectAllCheckBox = false;
   }
+}
+
+isCdssStatus(){
+  this.CdssSubcription = this.cdssService.isCdssAvailable$.subscribe((response) =>{
+    if(response === true){
+      this.isCdssAvailable = true;
+
+    }
+    else{
+      this.isCdssAvailable = false;
+    }
+  });
+}
+ngOnDestroy() {
+  if (this.CdssSubcription)
+  this.CdssSubcription.unsubscribe();
 }
 
 }
