@@ -28,6 +28,7 @@ import { SetLanguageComponent } from 'app/app-modules/core/components/set-langua
 import { MasterdataService } from 'app/app-modules/nurse-doctor/shared/services/masterdata.service';
 import { environment } from 'environments/environment';
 import { NurseService } from 'app/app-modules/nurse-doctor/shared/services';
+import { CDSSService } from 'app/app-modules/nurse-doctor/shared/services/cdss-service';
 
 @Component({
   selector: 'app-doctor-diagnosis-case-sheet',
@@ -123,7 +124,8 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
     private registrarService: RegistrarService,
     private confirmationService: ConfirmationService,
     private masterdataService: MasterdataService,
-    private nurseService: NurseService
+    private nurseService: NurseService,
+    public cdssService: CDSSService
 ) { }
 
   ngOnInit() {
@@ -450,8 +452,10 @@ export class DoctorDiagnosisCaseSheetComponent implements OnInit {
         this.casesheetData.nurseData.cdss.presentChiefComplaint.presentChiefComplaint !== null) )){
      this.cdssFormDetails = this.casesheetData.nurseData.cdss;
      this.isCdssStatus = true;
+     this.cdssService.isCdssStatusForEnabling(true);
     }else{
       this.isCdssStatus = false;
+      this.cdssService.isCdssStatusForEnabling(false);
     }
 
   this.downloadSign();

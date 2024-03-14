@@ -70,4 +70,14 @@ getDiseaseName() {
     .map((res) => res.json());
 }
 
+isCdssAvailable: boolean = false;
+isCdssStatus = new BehaviorSubject<boolean>(this.isCdssAvailable);
+isCdssAvailable$ = this.isCdssStatus.asObservable();
+
+isCdssStatusForEnabling(isCdssAvailable){
+    this.isCdssStatus.next(isCdssAvailable);
+
+  }
+
+
 }

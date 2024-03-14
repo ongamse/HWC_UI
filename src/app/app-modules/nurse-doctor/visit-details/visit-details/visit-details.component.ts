@@ -73,6 +73,7 @@ export class VisitDetailsComponent implements OnInit {
   subVisitCategory: any;
   templateSubVisitCategories = [];
   subVisitCategoryList = [];
+  isRadioGroupVisible : boolean = false;
   constructor(
     private masterdataService: MasterdataService,
     private doctorService: DoctorService,

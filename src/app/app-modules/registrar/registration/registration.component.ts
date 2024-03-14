@@ -89,6 +89,9 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
   consentGranted: any;
   externalSearchTerm: any;
   myText: any;
+  today: Date;
+  formattedDate: any;
+  enableMaritalStatus: boolean = false;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -153,9 +156,54 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
   setHealthIdAfterGeneration(result) {
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthId: result.healthIdNumber });
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).patchValue({ healthIdNumber: result.healthIdNumber });
-
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ firstName: result.firstName });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ lastName: result.lastName });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ phoneNo: result.phoneNo });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({gender : result.gender });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({genderName : result.genderName });  
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthId'].disable();
     // (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthIdNumber'].disable();
+
+    const parts = result.dob.split('/');
+    const parsedDate = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({dob : parsedDate });
+
+    if (
+      result.dob &&
+      (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).controls["dob"].valid
+    ) {
+      const dateDiff = Date.now() - parsedDate.getTime();
+      const age = new Date(dateDiff);
+      const yob = Math.abs(age.getFullYear() - 1970);
+      const mob = Math.abs(age.getMonth());
+      const dob = Math.abs(age.getDate() - 1);
+      this.today = new Date();
+      if (yob > 0) {
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ age: yob });
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ ageUnit: "Years" });
+      } else if (mob > 0) {
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ age: mob });
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ ageUnit: "Months" });
+      } else if (dob > 0) {
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ age: dob });
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ ageUnit: "Days" });
+      }
+      if (parsedDate.setHours(0, 0, 0, 0) == this.today.setHours(0, 0, 0, 0)) {
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ age: 1 });
+        (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({ ageUnit: "Day" });
+      }
+    }
+    let marriageAge : number = 12;
+    if (
+      (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).value.age >= marriageAge &&
+      (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).value.ageUnit == "Years"
+    ) {
+      this.enableMaritalStatus = true;
+      this.registrarService.isMarriageEnable(true);
+    } else {
+      this.enableMaritalStatus = false;
+      this.registrarService.isMarriageEnable(false);
+    }
     this.disableGenerateOTP=true;
   }
 
