@@ -162,7 +162,10 @@ export class RegistrationComponent implements OnInit, AfterViewChecked, OnDestro
     (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({gender : result.gender });
     (<FormGroup>this.beneficiaryRegistrationForm.controls['personalDetailsForm']).patchValue({genderName : result.genderName });  
     (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthId'].disable();
-    // (<FormGroup>this.beneficiaryRegistrationForm.controls['otherDetailsForm']).controls['healthIdNumber'].disable();
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['demographicDetailsForm']).patchValue({stateID : result.stateID });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['demographicDetailsForm']).patchValue({stateName : result.stateName });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['demographicDetailsForm']).patchValue({districtID : result.districtID });
+    (<FormGroup>this.beneficiaryRegistrationForm.controls['demographicDetailsForm']).patchValue({districtName : result.districtName });
 
     const parts = result.dob.split('/');
     const parsedDate = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
