@@ -25,6 +25,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 
+
 const commonIP = 'http://10.208.122.100:8080/';
 const identityIP = 'http://10.208.122.100:8080/';
 const tmIP = 'http://10.208.122.100:8080/';
@@ -49,7 +50,7 @@ const COMMON_API = `${commonIP}/commonapi-v1.0/`;
 const IDENTITY_API = `${identityIP}/identity-0.0.1/`;
 // const COMMON_API_OPEN = `http://localhost:8080/`;
 // const COMMON_API = `http://localhost:8080/`;
-const TM_API = `${tmIP}/hwc-facility-service-v1.1/`;
+const TM_API = `${tmIP}/hwc-facility-service/`;
 // const TM_API = `${tmIP}/hwc-facility-service/`;
 
 const API104 = `${IP104}/104api-v1.0/`;
@@ -59,6 +60,7 @@ const COMMON_API_OPEN_SYNC = `http://${SERVER_IP}:8080/commonapi-v1.0/`;
 const SCHEDULER_API = `${schedulerIP}/schedulerapi-v1.0/`;
 const mmuUICasesheet = "http://localhost:4200/";
 const ADMIN_API = `${adminIP}/adminapi-v1.0`;
+var inventoryUI_IP = 'https://amritwprdev.piramalswasthya.org/';
 
 const biologicalScreeningDeviceAPI = `${ADMIN_API}/diagnostics/biologicalScreeningDevice`;
 
@@ -81,11 +83,10 @@ export const environment = {
 
   parentAPI: `${TM_API}`,
 
-  INVENTORY_URL: "http://localhost:5000/#/redirin?",
-  fallbackUrl: `/pharmacist/redirfallback`,
-  redirInUrl: `/pharmacist/redirin`,
-
-  TELEMEDICINE_URL: "http://localhost:4300/#/?",
+  INVENTORY_URL: inventoryUI_IP + "/inventory-ui-v1.0/#/redirin?",
+  fallbackUrl: "/pharmacist/redirfallback",
+  redirInUrl: "/pharmacist/redirin",
+  TELEMEDICINE_URL: schedulerIP + "/schedulerui-v1.0/#/?",
   fallbackMMUUrl: `/logout-tm`,
   redirInMMUUrl: `/common/tcspecialist-worklist`,
 
