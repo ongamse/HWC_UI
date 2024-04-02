@@ -71,7 +71,20 @@ export class RegistrarService {
 
   public dialogData = new BehaviorSubject<any>(null);
   dialogResult$ = this.dialogData.asObservable();
+
+
+  districtMainList = new BehaviorSubject<any[]>([]);
+  districtList$ = this.districtMainList.asObservable();
+
+  updateDistrictList(districtList: any[]){
+  this.districtMainList.next(districtList);
+  }
   
+  subDistrictMainList = new BehaviorSubject<any[]>([]);
+  subDistrictList$ = this.subDistrictMainList.asObservable();
+  updateSubDistrictList(subDistrictList){
+    this.subDistrictMainList.next(subDistrictList);
+  }
 
   changePersonalDetailsData(res) {
     this.dialogData.next(res);
@@ -104,7 +117,9 @@ export class RegistrarService {
     this.isMarriageStatus.next(maritalStatus);
 
   }
-
+  clearMaritalDetails() {
+    this.isMarriageStatus.next(null);
+  }
   
   // GenerateOTPEnable: any;
   // GenerateOTP = new BehaviorSubject(this.GenerateOTPEnable);
