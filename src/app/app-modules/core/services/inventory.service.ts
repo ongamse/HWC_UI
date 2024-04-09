@@ -76,9 +76,9 @@ export class InventoryService {
   }
 
   getHost() {
-    console.log(this.document.location, 'location')
-    console.log(`${this.document.location.host}${this.document.location.pathname}`)
-    return `${this.document.location.host}${this.document.location.pathname}`;
+    const host = `${this.document.location.host}${this.document.location.pathname}`;
+    console.log(host, 'location');
+    return host;
   }
 
   getVanID() {
