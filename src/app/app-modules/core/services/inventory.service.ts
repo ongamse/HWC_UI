@@ -77,7 +77,7 @@ export class InventoryService {
 
 getHost() {
     const host = `${this.document.location.host}${this.document.location.pathname}`;
-    console.log(host);
+    console.log(host, 'location');
     return host;
   }
 
